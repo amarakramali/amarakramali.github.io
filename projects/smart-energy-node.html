@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Energy Node — a benchtop DC-microgrid testbed · Amar Akram</title>
+  <meta name="description" content="Smart Energy Node: a benchtop DC-microgrid testbed that emulates renewable sources, storage and dynamic loads in real hardware — an ESP32-S3 platform for grid-control experiments." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E5F74'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="../index.html#top" aria-label="Amar Akram — home">
+        <span class="brand__mark">AA</span>
+        <span class="brand__name">Amar Akram</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a class="nav__cta" href="mailto:amar.akram_ali@hsbi.de">Email</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <a class="backlink" href="../index.html#work">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All projects
+      </a>
+    </div>
+
+    <!-- HERO -->
+    <section class="detail-hero">
+      <div class="wrap">
+        <p class="detail-hero__cat">Hardware · Embedded systems</p>
+        <h1>Smart Energy Node</h1>
+        <p class="detail-hero__sub">
+          A small, fully instrumented benchtop DC-microgrid testbed that emulates renewable sources, storage
+          and dynamic loads in real hardware — a safe, reproducible platform for studying AI-based grid control.
+        </p>
+
+        <dl class="meta-row">
+          <div><dt>Role</dt><dd>Solo — design, build &amp; test</dd></div>
+          <div><dt>Context</dt><dd>Master's project (MP1), HSBI</dd></div>
+          <div><dt>Supervisor</dt><dd>Prof. Dr. Jörn Loviscach</dd></div>
+          <div><dt>Discipline</dt><dd>Power electronics · Embedded</dd></div>
+          <div><dt>Status</dt><dd>Built &amp; measured, 2026</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- LEAD IMAGE -->
+    <div class="wrap">
+      <figure class="figure reveal">
+        <div class="figure__frame figure__frame--pad" style="background:#FFFFFF">
+          <img src="../assets/mp1/overview.png" alt="System overview: four sources (solar, wind, biomass, battery), each with a diode and ammeter, feeding a shared DC bus with two PWM-controlled loads" />
+        </div>
+        <figcaption><b>System overview.</b> Four emulated sources — solar, wind, biogas and battery — each metered and feeding a shared DC bus, which supplies two independently PWM-controlled loads. Bus voltage is the single shared signal every source must help regulate.</figcaption>
+      </figure>
+    </div>
+
+    <!-- STATS -->
+    <div class="wrap" style="margin-top:38px">
+      <div class="stats reveal">
+        <div class="stat"><div class="stat__num">5.5<small>V</small></div><div class="stat__label">shared DC-bus voltage — the testbed's "grid frequency"</div></div>
+        <div class="stat"><div class="stat__num">22.5<small>F</small></div><div class="stat__label">supercapacitor storage — ≈ 86 s of bridging at 1 W</div></div>
+        <div class="stat"><div class="stat__num">50<small>Hz</small></div><div class="stat__label">full read of all power sensors in under 20 ms</div></div>
+        <div class="stat"><div class="stat__num">≈160<small>€</small></div><div class="stat__label">total parts cost of the built node</div></div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">Overview</p>
+        <div class="prose reveal">
+          <p>
+            The energy transition is replacing a few big power plants with thousands of small, decentralized
+            ones — rooftop solar, wind, biogas, home batteries — that must somehow form one stable grid. The
+            research labs that study this with hardware-in-the-loop setups cost six figures. The
+            <strong>Smart Energy Node</strong> shrinks the core idea down to a lab bench: a real, measurable DC
+            microgrid you can hold in your hands, built as the physical foundation for the reinforcement-learning
+            controllers in my <a href="microgrid-rl.html">companion project</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SYSTEM DESIGN -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">System design</p>
+        <h2>Six subsystems, one shared bus.</h2>
+        <div class="prose reveal">
+          <p>
+            The node is built as a hierarchical six-sheet schematic in Altium Designer, each sheet a
+            self-contained functional block. Together they take mains power in, run a microcontroller, emulate
+            a renewable source, buffer energy, drive a controllable load, and measure everything along the way.
+          </p>
+          <ul class="keylist">
+            <li><strong>Power supply</strong> — a MeanWell 48 V industrial supply feeding isolated 5 V rails and the ESP32's 3.3 V logic.</li>
+            <li><strong>Galvanic isolation &amp; RS485</strong> — an ADUM1201 digital isolator (2.5 kV) with a MAX13487E transceiver for a robust field bus.</li>
+            <li><strong>Microcontroller</strong> — an ESP32-S3 running FreeRTOS, splitting Wi-Fi/telemetry and real-time control across its two cores.</li>
+            <li><strong>Measurement</strong> — INA226 sensors on I²C reading voltage, current and power at every key node.</li>
+            <li><strong>Power path &amp; load</strong> — an IRLZ44N low-side MOSFET driving a fan-plus-resistor load by PWM, with flyback protection.</li>
+            <li><strong>Supercapacitor bank</strong> — the energy buffer that smooths the bus, protected by a resettable fuse and a TVS clamp.</li>
+          </ul>
+          <p>
+            The clever part is the source. Instead of simulating a solar panel in software, a programmable
+            supply in constant-current mode is paired with a passive chain of power diodes whose combined
+            forward voltage reproduces a real panel's nonlinear current–voltage curve — the characteristic
+            "knee" at the maximum-power point — entirely in hardware. It's a simple, robust trick adopted on
+            my supervisor's recommendation.
+          </p>
+        </div>
+
+        <div class="figure-grid reveal">
+          <figure class="figure"><div class="figure__frame"><img src="../assets/mp1/sheet1_power.svg" alt="Sheet 1 — power supply schematic" loading="lazy" /></div><figcaption>1 · Power supply</figcaption></figure>
+          <figure class="figure"><div class="figure__frame"><img src="../assets/mp1/sheet2_isolation.svg" alt="Sheet 2 — galvanic isolation and RS485 schematic" loading="lazy" /></div><figcaption>2 · Isolation &amp; RS485</figcaption></figure>
+          <figure class="figure"><div class="figure__frame"><img src="../assets/mp1/sheet3_mcu.svg" alt="Sheet 3 — microcontroller schematic" loading="lazy" /></div><figcaption>3 · Microcontroller</figcaption></figure>
+          <figure class="figure"><div class="figure__frame"><img src="../assets/mp1/sheet4_sensors.svg" alt="Sheet 4 — measurement schematic" loading="lazy" /></div><figcaption>4 · Measurement</figcaption></figure>
+          <figure class="figure"><div class="figure__frame"><img src="../assets/mp1/sheet5_powerpath.svg" alt="Sheet 5 — power path and load schematic" loading="lazy" /></div><figcaption>5 · Power path &amp; load</figcaption></figure>
+          <figure class="figure"><div class="figure__frame"><img src="../assets/mp1/sheet6_supercap.svg" alt="Sheet 6 — supercapacitor bank schematic" loading="lazy" /></div><figcaption>6 · Supercap bank</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- METHODS -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">Methods &amp; tools</p>
+        <h2>Simulated, characterised, then built.</h2>
+        <div class="prose reveal">
+          <p>
+            The design was de-risked before a single part was soldered. The circuit was simulated in LTspice,
+            and a Python model computed a single-diode solar curve from real Bielefeld weather data. To choose
+            the right hardware source, I ran a dedicated bench experiment — the "diode-chain" measurement —
+            sweeping current from 10 to 500 mA and deriving each diode's true current–voltage curve from two
+            INA226 sensors, to pick the exact number of diodes that places the knee at the 5.5 V bus.
+          </p>
+          <p>
+            A spreadsheet model balanced combined wind-and-solar generation against load hour by hour for a
+            full day, and the firmware — ESP32 with FreeRTOS — drives the source set-points over Modbus,
+            regulates the load by PWM, and streams live telemetry over MQTT to a PC for logging.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">Results &amp; deliverables</p>
+        <h2>A working testbed with real measurements.</h2>
+        <div class="prose reveal">
+          <ul class="keylist">
+            <li><strong>A functioning node</strong> that ran a simulated 48-hour day on real Bielefeld weather, with live voltage, current and power logged at both the source and the load.</li>
+            <li><strong>Real measurement data</strong> captured over two days in March 2026, recording the full source- and load-side electrical behaviour through a simulated day.</li>
+            <li><strong>A quantified energy balance</strong> — for the modelled day, emulated generation of ≈ 47.6 Wh against ≈ 64.4 Wh of load, making the storage-and-deficit problem concrete.</li>
+            <li><strong>A complete build package</strong> — a ten-page wiring and assembly guide with exact pin and address maps, a full bill of materials, and design checklists.</li>
+            <li><strong>Engineering targets</strong> set and tracked: energy-balance error under 2–3%, Modbus failure rate under 0.1% over 24 h, and dynamic response under one second.</li>
+          </ul>
+        </div>
+
+        <div class="callout reveal">
+          <p>
+            <strong>From bench to brain.</strong> This node was always meant to be more than a demo — it is the
+            sim-to-real target for the multi-agent RL controllers. Designing the hardware and its digital twin
+            together is what makes it possible to claim a learned policy could actually run on the board.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECH -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">Technology</p>
+        <h2>Toolchain.</h2>
+        <div class="tags reveal">
+          <span class="tag">ESP32-S3</span><span class="tag">Embedded C / FreeRTOS</span><span class="tag">Altium Designer</span><span class="tag">LTspice</span><span class="tag">Modbus-RTU</span><span class="tag">I²C · INA226</span><span class="tag">MQTT</span><span class="tag">Python · Jupyter</span><span class="tag">Power electronics</span><span class="tag">Supercapacitor storage</span>
+        </div>
+        <div class="prose reveal" style="margin-top:30px">
+          <h3>Scope note</h3>
+          <p>
+            The project spans two layers: the single-source node that was physically built and measured, and an
+            expanded four-source design — adding wind, biogas and a battery with multiplexed sensing — that
+            becomes the full platform for the reinforcement-learning work. The figures above describe the
+            built node; the four-source version is the planned extension.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT -->
+    <nav class="next-project">
+      <div class="wrap">
+        <a href="netzpilot.html">
+          <span>
+            <div class="np-label">Back to start</div>
+            <div class="np-title">NetzPilot — Energy forecasting</div>
+          </span>
+          <svg class="np-arrow" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </nav>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <small>© <span data-year>2026</span> Amar Akram · Built with care in Bielefeld.</small>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="mailto:amar.akram_ali@hsbi.de">Email</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

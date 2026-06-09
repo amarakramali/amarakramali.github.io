@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 700" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a0e27"/><stop offset="100%" stop-color="#111833"/></linearGradient>
+    <filter id="sh5"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.4"/></filter>
+    <marker id="a5R" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 L2,4Z" fill="#e74c3c"/></marker>
+    <marker id="a5B" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 L2,4Z" fill="#5dade2"/></marker>
+    <marker id="a5O" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 L2,4Z" fill="#e67e22"/></marker>
+    <marker id="a5P" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 L2,4Z" fill="#bb8fce"/></marker>
+  </defs>
+  <rect width="1100" height="700" fill="url(#bg5)"/>
+  <text x="550" y="32" text-anchor="middle" fill="#e0e6ed" font-size="16" font-weight="700" letter-spacing="2">SHEET 5 — LEISTUNGSPFAD (DC-LINK + UVLO + LAST)</text>
+  <line x1="80" y1="44" x2="1020" y2="44" stroke="#9b59b6" stroke-width="1" opacity="0.4"/>
+
+  <!-- ═══ INPUT FROM SHEET 4/6 ═══ -->
+  <rect x="30" y="80" width="120" height="50" rx="5" fill="#0d1a2e" stroke="#e74c3c" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="90" y="100" text-anchor="middle" fill="#e74c3c" font-size="9" font-weight="600">← Sheet 4</text>
+  <text x="90" y="118" text-anchor="middle" fill="#7f8c8d" font-size="8">POLOLU_IN+ / IN−</text>
+
+  <!-- ═══ POLOLU S13V25F12 ═══ -->
+  <rect x="200" y="65" width="280" height="170" rx="8" fill="#2a1a3a" stroke="#9b59b6" stroke-width="1.5" filter="url(#sh5)"/>
+  <rect x="200" y="65" width="280" height="26" rx="8" fill="#9b59b6" opacity="0.2"/>
+  <text x="340" y="84" text-anchor="middle" fill="#bb8fce" font-size="12" font-weight="700">POLOLU S13V25F12</text>
+  <text x="340" y="112" text-anchor="middle" fill="#e0e6ed" font-size="14" font-weight="700">Step-Up Converter</text>
+  <text x="340" y="132" text-anchor="middle" fill="#aab7c4" font-size="9">Input: 2.8–22V (von Supercap)</text>
+  <text x="340" y="148" text-anchor="middle" fill="#aab7c4" font-size="9">Output: 12.0V fest (kein Poti!)</text>
+  <text x="340" y="164" text-anchor="middle" fill="#aab7c4" font-size="9">Max. 1.5A kontinuierlich</text>
+
+  <!-- VIN -->
+  <text x="210" y="192" fill="#e74c3c" font-size="9" font-weight="600">VIN ← POLOLU_IN+</text>
+  <!-- GND -->
+  <text x="210" y="208" fill="#888" font-size="9">GND ← POLOLU_IN−</text>
+  <!-- VOUT -->
+  <text x="370" y="192" fill="#2ecc71" font-size="9" font-weight="600">VOUT → +12V_BUS</text>
+  <!-- EN Pin -->
+  <text x="370" y="208" fill="#e74c3c" font-size="9" font-weight="600">EN ← DCDC_EN</text>
+  <text x="370" y="222" fill="#7f8c8d" font-size="8">HIGH = Ein, LOW = Aus</text>
+
+  <!-- Arrow Input → Pololu -->
+  <line x1="150" y1="105" x2="200" y2="105" stroke="#e74c3c" stroke-width="2.5" marker-end="url(#a5R)"/>
+  <text x="175" y="97" text-anchor="middle" fill="#e74c3c" font-size="8">2–5.4V</text>
+
+  <!-- ═══ OUTPUT COMPONENTS ═══ -->
+  <!-- SS34 Diode -->
+  <rect x="530" y="75" width="130" height="65" rx="6" fill="#1a2e1a" stroke="#2ecc71" stroke-width="1" filter="url(#sh5)"/>
+  <text x="595" y="96" text-anchor="middle" fill="#2ecc71" font-size="10" font-weight="700">SS34</text>
+  <text x="595" y="112" text-anchor="middle" fill="#aab7c4" font-size="9">Schottky 3A/40V</text>
+  <text x="595" y="128" text-anchor="middle" fill="#7f8c8d" font-size="8">Rückstromschutz</text>
+
+  <line x1="480" y1="105" x2="530" y2="105" stroke="#e74c3c" stroke-width="2.5" marker-end="url(#a5R)"/>
+
+  <!-- 220µF Elko -->
+  <rect x="530" y="160" width="130" height="55" rx="6" fill="#1a2e1a" stroke="#2ecc71" stroke-width="1" filter="url(#sh5)"/>
+  <text x="595" y="181" text-anchor="middle" fill="#2ecc71" font-size="10" font-weight="700">220µF / 25V</text>
+  <text x="595" y="197" text-anchor="middle" fill="#aab7c4" font-size="9">Low-ESR Elko</text>
+  <text x="595" y="210" text-anchor="middle" fill="#7f8c8d" font-size="8">Ripple-Glättung</text>
+
+  <line x1="595" y1="140" x2="595" y2="160" stroke="#888" stroke-width="1.5"/>
+
+  <!-- 12V Bus Rail -->
+  <line x1="660" y1="105" x2="1050" y2="105" stroke="#e74c3c" stroke-width="3" opacity="0.6"/>
+  <text x="860" y="95" text-anchor="middle" fill="#e74c3c" font-size="11" font-weight="700">+12V_BUS</text>
+
+  <!-- To Sheet 4 INA226 #3 -->
+  <rect x="710" y="80" width="100" height="40" rx="5" fill="#0d1a2e" stroke="#5dade2" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="760" y="98" text-anchor="middle" fill="#5dade2" font-size="9" font-weight="600">→ Sheet 4</text>
+  <text x="760" y="112" text-anchor="middle" fill="#7f8c8d" font-size="8">via INA226 #3</text>
+
+  <!-- ═══ UVLO SECTION ═══ -->
+  <rect x="30" y="280" width="500" height="240" rx="8" fill="#1e1015" stroke="#e74c3c" stroke-width="1.5" stroke-dasharray="6,3" filter="url(#sh5)"/>
+  <rect x="30" y="280" width="500" height="26" rx="8" fill="#e74c3c" opacity="0.15"/>
+  <text x="280" y="298" text-anchor="middle" fill="#e74c3c" font-size="12" font-weight="700" letter-spacing="1">UVLO — ZWEISTUFIGER UNTERSPANNUNGSSCHUTZ</text>
+
+  <!-- Software UVLO -->
+  <rect x="50" y="320" width="220" height="110" rx="6" fill="#0d1220" stroke="#5dade2" stroke-width="1"/>
+  <text x="160" y="340" text-anchor="middle" fill="#5dade2" font-size="10" font-weight="700">SOFTWARE-UVLO (Primär)</text>
+  <text x="160" y="362" text-anchor="middle" fill="#aab7c4" font-size="9">INA226 #2 liest V_SC</text>
+  <text x="160" y="378" text-anchor="middle" fill="#aab7c4" font-size="9">alle 50ms via I²C</text>
+  <text x="160" y="398" text-anchor="middle" fill="#f1c40f" font-size="9" font-weight="600">&lt; 2.2V → Warnung</text>
+  <text x="160" y="414" text-anchor="middle" fill="#e74c3c" font-size="9" font-weight="600">&lt; 2.0V → DCDC_EN = LOW</text>
+
+  <!-- Hardware UVLO -->
+  <rect x="290" y="320" width="220" height="180" rx="6" fill="#0d1220" stroke="#e74c3c" stroke-width="1"/>
+  <text x="400" y="340" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="700">HARDWARE-UVLO (Backup)</text>
+  <text x="400" y="365" text-anchor="middle" fill="#e0e6ed" font-size="10" font-weight="600">LM393 Komparator</text>
+
+  <text x="310" y="388" fill="#aab7c4" font-size="9" font-weight="600">Spannungsteiler:</text>
+  <text x="310" y="404" fill="#aab7c4" font-size="9">R1 = 100kΩ (oben)</text>
+  <text x="310" y="418" fill="#aab7c4" font-size="9">R2 = 200kΩ (unten)</text>
+  <text x="310" y="434" fill="#aab7c4" font-size="9">V_div = V_SC × 2/3</text>
+
+  <text x="310" y="458" fill="#e74c3c" font-size="9" font-weight="600">Schwelle: V_SC &lt; 1.8V</text>
+  <text x="310" y="474" fill="#2ecc71" font-size="9" font-weight="600">Reset: V_SC &gt; 2.5V</text>
+  <text x="310" y="490" fill="#aab7c4" font-size="9">Open-Collector → EN Pin</text>
+
+  <!-- UVLO output arrows -->
+  <!-- SW UVLO → EN -->
+  <rect x="50" y="445" width="100" height="26" rx="4" fill="#0d1a2e" stroke="#5dade2" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="100" y="462" text-anchor="middle" fill="#5dade2" font-size="8" font-weight="600">← Sheet 3 GPIO18</text>
+
+  <!-- Both UVLO to EN pin connection -->
+  <path d="M 270,430 L 270,560 L 540,560 L 540,220" stroke="#e74c3c" stroke-width="1.5" fill="none" stroke-dasharray="4,2" marker-end="url(#a5R)"/>
+  <path d="M 510,490 L 540,490 L 540,560" stroke="#e74c3c" stroke-width="1.5" fill="none" stroke-dasharray="4,2"/>
+  <text x="545" y="400" fill="#e74c3c" font-size="8" font-weight="600" transform="rotate(-90,545,400)">DCDC_EN (OR-Verknüpfung)</text>
+
+  <!-- V_SC sense input -->
+  <rect x="30" y="530" width="120" height="26" rx="4" fill="#0d1a2e" stroke="#f1c40f" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="90" y="547" text-anchor="middle" fill="#f1c40f" font-size="8" font-weight="600">← Sheet 6: V_SUPERCAP</text>
+
+  <line x1="150" y1="543" x2="290" y2="450" stroke="#f1c40f" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- ═══ LOAD SECTION ═══ -->
+  <rect x="600" y="280" width="470" height="310" rx="8" fill="#1e1510" stroke="#e67e22" stroke-width="1.5" filter="url(#sh5)"/>
+  <rect x="600" y="280" width="470" height="26" rx="8" fill="#e67e22" opacity="0.15"/>
+  <text x="835" y="298" text-anchor="middle" fill="#e67e22" font-size="12" font-weight="700" letter-spacing="1">STEUERBARE LAST (PRIO 2)</text>
+
+  <!-- MOSFET -->
+  <rect x="630" y="320" width="180" height="130" rx="6" fill="#0d1220" stroke="#e67e22" stroke-width="1"/>
+  <text x="720" y="342" text-anchor="middle" fill="#e67e22" font-size="11" font-weight="700">IRLZ44N</text>
+  <text x="720" y="360" text-anchor="middle" fill="#e0e6ed" font-size="10" font-weight="600">N-MOSFET (Logic-Level)</text>
+  <text x="640" y="385" fill="#aab7c4" font-size="9">Gate ← PWM_LOAD</text>
+  <text x="640" y="400" fill="#aab7c4" font-size="9">  via 100Ω Gate-R</text>
+  <text x="640" y="418" fill="#aab7c4" font-size="9">Drain ← +12V_BUS (via INA226#3)</text>
+  <text x="640" y="434" fill="#aab7c4" font-size="9">Source → GND_POWER</text>
+
+  <!-- Gate Resistor + Pulldown -->
+  <rect x="630" y="460" width="180" height="55" rx="5" fill="#0d1220" stroke="#333" stroke-width="0.8"/>
+  <text x="720" y="480" text-anchor="middle" fill="#e67e22" font-size="9" font-weight="600">Gate-Beschaltung</text>
+  <text x="640" y="496" fill="#aab7c4" font-size="9">100Ω Serie (Strombegrenzung)</text>
+  <text x="640" y="510" fill="#aab7c4" font-size="9">10kΩ Pulldown (Gate → GND)</text>
+
+  <!-- PWM Input -->
+  <rect x="630" y="530" width="120" height="26" rx="4" fill="#0d1a2e" stroke="#e67e22" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="690" y="547" text-anchor="middle" fill="#e67e22" font-size="8" font-weight="600">← Sheet 3: GPIO17</text>
+  <text x="690" y="570" text-anchor="middle" fill="#7f8c8d" font-size="8">PWM 25kHz, LEDC Ch.0</text>
+
+  <!-- Fan / Load -->
+  <rect x="860" y="320" width="180" height="120" rx="6" fill="#2a1a1a" stroke="#e74c3c" stroke-width="1.2" filter="url(#sh5)"/>
+  <rect x="860" y="320" width="180" height="24" rx="6" fill="#e74c3c" opacity="0.15"/>
+  <text x="950" y="338" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="700">80mm DC-LÜFTER</text>
+  <text x="950" y="365" text-anchor="middle" fill="#e0e6ed" font-size="12" font-weight="700">Last (Prio 2)</text>
+  <text x="950" y="385" text-anchor="middle" fill="#aab7c4" font-size="9">12V / 0.15–0.25A</text>
+  <text x="950" y="402" text-anchor="middle" fill="#aab7c4" font-size="9">1.8–3W (PWM-moduliert)</text>
+  <text x="950" y="420" text-anchor="middle" fill="#aab7c4" font-size="9">BDEW SLP-H0 Lastprofil</text>
+  <text x="950" y="435" text-anchor="middle" fill="#7f8c8d" font-size="8">Kugellager empfohlen</text>
+
+  <!-- Flyback Diode -->
+  <rect x="860" y="460" width="180" height="50" rx="5" fill="#0d1220" stroke="#2ecc71" stroke-width="0.8"/>
+  <text x="950" y="480" text-anchor="middle" fill="#2ecc71" font-size="10" font-weight="700">1N5819 Schottky</text>
+  <text x="950" y="496" text-anchor="middle" fill="#aab7c4" font-size="9">Freilaufdiode (parallel zum Lüfter)</text>
+  <text x="950" y="508" text-anchor="middle" fill="#7f8c8d" font-size="8">Schützt MOSFET vor indukt. Spitzen</text>
+
+  <!-- Arrow MOSFET → Fan -->
+  <line x1="810" y1="380" x2="860" y2="380" stroke="#e74c3c" stroke-width="2" marker-end="url(#a5R)"/>
+
+  <!-- GND Power Rail -->
+  <line x1="600" y1="610" x2="1050" y2="610" stroke="#555" stroke-width="3" opacity="0.5"/>
+  <text x="830" y="632" text-anchor="middle" fill="#888" font-size="10" font-weight="600">GND_POWER (Common Return)</text>
+
+  <!-- Energy Balance Note -->
+  <rect x="30" y="640" width="1040" height="40" rx="5" fill="#0d1220" stroke="#2e86c1" stroke-width="0.8"/>
+  <text x="550" y="658" text-anchor="middle" fill="#5dade2" font-size="10" font-weight="700">Energiebilanz-Validierung auf diesem Sheet:</text>
+  <text x="550" y="674" text-anchor="middle" fill="#aab7c4" font-size="9">P_in (INA226#2, Sheet 4) − P_out (INA226#3, Sheet 4) = P_wandler_verlust  |  η = P_out / P_in  |  Ziel: η > 80% bei V_in > 2.5V</text>
+</svg>

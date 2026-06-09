@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NetzPilot — Day-ahead forecasting &amp; §14a coordination · Amar Akram</title>
+  <meta name="description" content="NetzPilot: a leakage-safe day-ahead load-forecasting and §14a grid-coordination tool for small municipal utilities, with calibrated P10/P50/P90 uncertainty bands. Beats the seasonal-naive baseline on 44 of 46 real grid load series." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E5F74'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="../index.html#top" aria-label="Amar Akram — home">
+        <span class="brand__mark">AA</span>
+        <span class="brand__name">Amar Akram</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a class="nav__cta" href="mailto:amar.akram_ali@hsbi.de">Email</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <a class="backlink" href="../index.html#work">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All projects
+      </a>
+    </div>
+
+    <!-- HERO -->
+    <section class="detail-hero">
+      <div class="wrap">
+        <p class="detail-hero__cat">Software · Energy forecasting</p>
+        <h1>NetzPilot</h1>
+        <p class="detail-hero__sub">
+          A leakage-safe, day-ahead load-forecasting and §14a grid-coordination tool for small German
+          municipal utilities — delivering calibrated P10/P50/P90 uncertainty bands and a fair,
+          minimal-curtailment control schedule.
+        </p>
+
+        <dl class="meta-row">
+          <div><dt>Role</dt><dd>Solo — concept, ML &amp; engineering</dd></div>
+          <div><dt>Field</dt><dd>Energy informatics</dd></div>
+          <div><dt>Core methods</dt><dd>Quantile boosting · Conformal prediction</dd></div>
+          <div><dt>Validated on</dt><dd>46 real grid load series (DE + FR)</dd></div>
+          <div><dt>Status</dt><dd>Working prototype, 2026</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- LEAD VISUAL -->
+    <div class="wrap">
+      <figure class="figure reveal">
+        <div class="figure__frame" style="background:linear-gradient(157deg,#0E2E3A 0%,#1E5F74 100%)">
+          <svg viewBox="0 0 1000 360" width="100%" role="img" aria-label="Illustration of a calibrated day-ahead load forecast with a P10–P90 uncertainty band around the median">
+            <g stroke="rgba(255,255,255,.13)" stroke-width="1">
+              <line x1="60" y1="90" x2="940" y2="90"/><line x1="60" y1="170" x2="940" y2="170"/><line x1="60" y1="250" x2="940" y2="250"/>
+            </g>
+            <path d="M60,210 L185,165 L310,120 L435,135 L560,170 L685,95 L810,130 L940,170 L940,250 L810,200 L685,160 L560,235 L435,200 L310,175 L185,220 L60,265 Z" fill="rgba(255,255,255,.17)"/>
+            <path d="M60,237 L185,192 L310,148 L435,167 L560,202 L685,128 L810,165 L940,210" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-dasharray="2 6" stroke-linecap="round"/>
+            <path d="M60,182 L185,138 L310,92 L435,103 L560,138 L685,62 L810,95 L940,130" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5" stroke-dasharray="2 6" stroke-linecap="round"/>
+            <path d="M60,210 L185,165 L310,120 L435,135 L560,170 L685,95 L810,130 L940,170" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <g fill="#FFFFFF"><circle cx="185" cy="165" r="4"/><circle cx="435" cy="135" r="4"/><circle cx="685" cy="95" r="4"/><circle cx="940" cy="170" r="4"/></g>
+            <text x="60" y="56" fill="#FFFFFF" font-family="Inter,sans-serif" font-size="20" font-weight="600">Day-ahead residual load</text>
+            <text x="60" y="80" fill="rgba(255,255,255,.7)" font-family="Inter,sans-serif" font-size="14">Median (P50) with calibrated P10 / P90 uncertainty band</text>
+          </svg>
+        </div>
+        <figcaption>Schematic of NetzPilot's core output: a probabilistic day-ahead forecast whose uncertainty band is empirically calibrated, so a stated 80% interval really contains the outcome ~80% of the time.</figcaption>
+      </figure>
+    </div>
+
+    <!-- STATS -->
+    <div class="wrap" style="margin-top:38px">
+      <div class="stats reveal">
+        <div class="stat"><div class="stat__num">44/46</div><div class="stat__label">real grid load series beaten vs. the seasonal-naive baseline (p&lt;0.05)</div></div>
+        <div class="stat"><div class="stat__num">+23.7<small>%</small></div><div class="stat__label">mean forecast-skill gain across all series</div></div>
+        <div class="stat"><div class="stat__num">3.36<small>%</small></div><div class="stat__label">MAPE on national load (SMARD, 2-year window)</div></div>
+        <div class="stat"><div class="stat__num">−74.3<small>%</small></div><div class="stat__label">less curtailment energy under §14a re-dispatch</div></div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">Overview</p>
+        <div class="prose reveal">
+          <p>
+            <strong>NetzPilot</strong> is forecasting and grid-coordination software aimed at small German
+            <em>Stadtwerke</em> — municipal utilities that operate the local distribution grid but rarely have
+            the budget or staff for the heavy, expensive tools sold to large operators. It answers two
+            questions a utility faces every single day: <em>how much electricity will the grid draw tomorrow,
+            and how confident can we be?</em> — and then uses that forecast to coordinate flexible consumers
+            within the law.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">The problem</p>
+        <h2>Small utilities, big regulatory pressure.</h2>
+        <div class="prose reveal">
+          <p>
+            Germany's §14a EnWG regulation obliges grid operators to actively manage flexible loads — heat
+            pumps, wallboxes, home batteries — in a way that protects the grid but never discriminates between
+            customers. At the same time, every error in a utility's day-ahead schedule shows up as real money
+            through balancing-energy costs.
+          </p>
+          <p>
+            The established tools that solve this are powerful but expensive and heavy — a poor fit for a
+            utility with one to three energy-IT staff and an IT budget under 1% of revenue. NetzPilot
+            deliberately targets the narrow, high-value day-ahead layer: get the forecast right, quantify its
+            uncertainty honestly, and build coordination on top of it.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT IT DOES -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">What it does</p>
+        <h2>From raw meter data to a defensible schedule.</h2>
+        <div class="prose reveal">
+          <ul class="keylist">
+            <li><strong>Day-ahead &amp; multi-day forecasting (D+1 … D+3)</strong> of grid load and residual load, with calibrated P10/P50/P90 bands and an intraday correction for the remaining day.</li>
+            <li><strong>§14a coordination</strong> that finds the fairest, smallest curtailment using an analytic "water-filling" method instead of bluntly dimming every device to the legal floor.</li>
+            <li><strong>Compliance &amp; audit</strong> — a monthly regulatory report plus a non-discrimination proof derived from a tamper-evident, hash-chained ledger of every intervention.</li>
+            <li><strong>Balancing-group economics</strong> reported as a Monte-Carlo range rather than a single headline number, so savings are never overstated.</li>
+            <li><strong>Standards-based hand-off</strong> via the EEBUS "Limitation of Power Consumption" use-case to certified energy-management gateways — NetzPilot never touches the smart-meter gateway itself.</li>
+            <li><strong>Robust data ingestion</strong> for utility CSV/Excel exports and the MSCONS (EDIFACT) metering format, served through a FastAPI app with a live cockpit and a ~15-second instant backtest.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">Approach &amp; methods</p>
+        <h2>Calibrated forecasts, not just point predictions.</h2>
+        <div class="prose reveal">
+          <p>
+            The forecaster pairs a strong, transparent baseline — the load of the same weekday and hour one
+            week earlier — with a gradient-boosted (LightGBM) quantile model on leakage-safe calendar and lag
+            features. A shrinkage step keeps the model from ever drifting clearly below that trivial baseline.
+          </p>
+          <p>
+            Uncertainty is the centrepiece. Rather than trusting a model's raw quantiles, NetzPilot applies
+            <strong>Conformalized Quantile Regression</strong>, which wraps the predictions in a
+            distribution-free calibration layer so the stated coverage is the coverage you actually get.
+            Holiday-aware fallbacks, an online residual-feedback correction, and rolling asymmetric
+            recalibration round out the engine.
+          </p>
+          <p>
+            Everything is judged under a strict protocol: rolling-origin evaluation, mandatory persistence and
+            seasonal-naive baselines, and paired block-bootstrap significance tests (10,000 resamples, whole
+            days as blocks) over an 84-day test window — on 46 publicly published distribution-grid load
+            series from Germany and France.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">Results</p>
+        <h2>It beats the baseline — and proves it.</h2>
+        <div class="prose reveal" style="margin-bottom:30px">
+          <p>
+            Across the 46 real load series, NetzPilot significantly outperforms the seasonal-naive baseline on
+            44 of them, with a mean skill gain of +23.7%. The chart below shows the improvement on four
+            representative series; all four gains are statistically significant.
+          </p>
+        </div>
+
+        <div class="chart-card reveal">
+          <h3>Forecast skill vs. seasonal-naive baseline</h3>
+          <p class="cc-sub">Higher is better — reduction in error relative to the seasonal-naive forecast.</p>
+          <div class="bar-row">
+            <span class="bar-row__label">National load</span>
+            <span class="bar-track"><span class="bar-fill bar-fill--best" style="width:100%"></span></span>
+            <span class="bar-row__val best">+55.8%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-row__label">EVDB (NS, 2024)</span>
+            <span class="bar-track"><span class="bar-fill" style="width:68%"></span></span>
+            <span class="bar-row__val">+37.9%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-row__label">Herne (2024)</span>
+            <span class="bar-track"><span class="bar-fill" style="width:49%"></span></span>
+            <span class="bar-row__val">+27.5%</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-row__label">Hilden (2025)</span>
+            <span class="bar-track"><span class="bar-fill" style="width:34%"></span></span>
+            <span class="bar-row__val">+18.9%</span>
+          </div>
+          <p class="cc-foot">National load: MAPE 3.36% on a two-year SMARD window. City series: MAPE 3.5–4.8%, each significant under a paired block-bootstrap test.</p>
+        </div>
+
+        <figure class="figure reveal">
+          <div class="figure__frame">
+            <img src="../assets/netzpilot/proof_beweis_p1.png" alt="Page from the validation report showing the benchmark table across real German and French distribution-grid load series" loading="lazy" />
+          </div>
+          <figcaption><b>Excerpt from the validation report (German):</b> the full benchmark across every real DE + FR load series — MAPE, MASE, and skill versus both the seasonal-naive and persistence baselines, each with a 95% confidence interval.</figcaption>
+        </figure>
+
+        <div class="prose reveal" style="margin-top:34px">
+          <h3>Coordination &amp; economics</h3>
+          <p>
+            On the control side, rolling §14a re-dispatch cut the curtailment energy by an average of 74.3%
+            compared with blanket dimming, while always respecting the grid limit and the 4.2 kW legal floor —
+            and the system rejects any illegal schedule outright. Balancing-group savings are reported
+            honestly as a range: strongly positive on some grids (e.g. ≈ +43,700 €/year on one series, with a
+            99.9% probability of saving), and explicitly break-even on others.
+          </p>
+        </div>
+
+        <div class="callout reveal">
+          <p>
+            <strong>An honest result worth highlighting.</strong> An early version showed a large accuracy
+            gain "from weather data" — which turned out to be data leakage: the historical "forecast" weather
+            was identical to the archived ground truth. After fixing it, the true weather contribution was
+            near zero. Finding and reporting that bug, rather than shipping the inflated number, is exactly
+            the kind of rigor the project is built on.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECH -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">Technology</p>
+        <h2>Built to run anywhere, audited end to end.</h2>
+        <div class="prose reveal" style="margin-bottom:22px">
+          <p>
+            A clean Python package with a tested evaluation harness, packaged as a container so a utility can
+            run it on a laptop or a small server with no cloud dependency.
+          </p>
+        </div>
+        <div class="tags reveal">
+          <span class="tag">Python</span><span class="tag">LightGBM</span><span class="tag">scikit-learn</span><span class="tag">Conformal prediction (CQR)</span><span class="tag">pandas · numpy</span><span class="tag">DuckDB</span><span class="tag">pvlib · windpowerlib</span><span class="tag">FastAPI · uvicorn</span><span class="tag">Docker</span><span class="tag">EEBUS · §14a EnWG</span><span class="tag">SMARD · MSCONS</span>
+        </div>
+        <div class="prose reveal" style="margin-top:30px">
+          <h3>Scope &amp; honesty</h3>
+          <p>
+            NetzPilot is validated on public distribution-grid load profiles used as a realistic proxy; it has
+            not yet been run as a live pilot on a single customer's full metering and settlement data, and the
+            documentation says so plainly. It is a private, proprietary project — shown here as a case study,
+            with source code not publicly released.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT -->
+    <nav class="next-project">
+      <div class="wrap">
+        <a href="microgrid-rl.html">
+          <span>
+            <div class="np-label">Next project</div>
+            <div class="np-title">Multi-Agent RL for Microgrid Control</div>
+          </span>
+          <svg class="np-arrow" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </nav>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <small>© <span data-year>2026</span> Amar Akram · Built with care in Bielefeld.</small>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="mailto:amar.akram_ali@hsbi.de">Email</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

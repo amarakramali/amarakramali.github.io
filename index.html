@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amar Akram — Electrical Engineering · Smart Grids &amp; Machine Learning</title>
+  <meta name="description" content="Amar Akram — M.Eng. Electrical Engineering at Hochschule Bielefeld. Projects in smart-grid control, reinforcement learning, energy forecasting, and embedded hardware." />
+  <meta name="author" content="Amar Akram" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Amar Akram — Smart Grids &amp; Machine Learning" />
+  <meta property="og:description" content="M.Eng. Electrical Engineering. Building and controlling smart energy systems — from circuit boards to learning algorithms." />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E5F74'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="#top" aria-label="Amar Akram — home">
+        <span class="brand__mark">AA</span>
+        <span class="brand__name">Amar Akram</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="nav__cta" href="mailto:amar.akram_ali@hsbi.de">Email</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap">
+        <span class="hero__status reveal">
+          <span class="dot" style="background:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)"></span>
+          M.Eng. Electrical Engineering · Hochschule Bielefeld
+        </span>
+        <h1 class="reveal">Amar <span class="accent">Akram</span></h1>
+        <p class="hero__tagline reveal">I build and control smart energy systems — from circuit boards to learning algorithms.</p>
+        <p class="hero__intro reveal">
+          Master's student in Electrical Engineering at Hochschule Bielefeld (HSBI), working where
+          power systems meet machine learning. My focus is making decentralized energy systems —
+          microgrids, distribution networks, and flexible loads — stable, efficient, and trustworthy.
+        </p>
+
+        <div class="hero__meta reveal">
+          <span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            M.Eng. Electrical Engineering
+          </span>
+          <span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Bielefeld, Germany
+          </span>
+          <span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor"/></svg>
+            Smart grids · Control · ML
+          </span>
+        </div>
+
+        <div class="hero__actions reveal">
+          <a class="btn btn--primary" href="#work">View projects
+            <svg class="btn__arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section id="work" class="section-alt">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Selected work</p>
+          <h2>Three projects in smart-grid engineering.</h2>
+          <p>Recent work from my Master's studies — spanning applied forecasting software,
+             reinforcement-learning research, and embedded hardware. Each was built and evaluated end to end.</p>
+        </div>
+
+        <div class="work-list">
+
+          <!-- Project 01 — NetzPilot -->
+          <article class="project reveal">
+            <div class="project__media" style="background:linear-gradient(157deg,#0E2E3A 0%,#1E5F74 100%)">
+              <svg viewBox="0 0 480 300" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Calibrated day-ahead forecast with P10–P90 uncertainty band">
+                <g stroke="rgba(255,255,255,.14)" stroke-width="1">
+                  <line x1="30" y1="80" x2="450" y2="80"/><line x1="30" y1="140" x2="450" y2="140"/><line x1="30" y1="200" x2="450" y2="200"/>
+                </g>
+                <path d="M30,167 L90,132 L150,98 L210,106 L270,124 L330,66 L390,86 L450,110 L450,190 L390,154 L330,126 L270,176 L210,150 L150,138 L90,168 L30,203 Z" fill="rgba(255,255,255,.18)"/>
+                <path d="M30,185 L90,150 L150,118 L210,128 L270,150 L330,96 L390,120 L450,150" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <g fill="#FFFFFF">
+                  <circle cx="90" cy="150" r="3.2"/><circle cx="210" cy="128" r="3.2"/><circle cx="330" cy="96" r="3.2"/><circle cx="450" cy="150" r="3.2"/>
+                </g>
+                <text x="34" y="48" fill="rgba(255,255,255,.85)" font-family="Inter,sans-serif" font-size="14" font-weight="600">Day-ahead load · P10 / P50 / P90</text>
+              </svg>
+            </div>
+            <div class="project__body">
+              <span class="project__index">01</span><span class="project__cat">Software · Energy forecasting</span>
+              <h3>NetzPilot</h3>
+              <p class="project__sub">A leakage-safe day-ahead load-forecasting and §14a grid-coordination tool for small municipal utilities — with calibrated P10/P50/P90 uncertainty bands and fair curtailment scheduling.</p>
+              <div class="tags project__tags">
+                <span class="tag">Python</span><span class="tag">LightGBM</span><span class="tag">Conformal prediction</span><span class="tag">FastAPI</span><span class="tag">Time-series</span>
+              </div>
+              <a class="project__link" href="projects/netzpilot.html">Read the case study
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 02 — Multi-Agent RL -->
+          <article class="project reveal">
+            <div class="project__media project__media--contain">
+              <img src="assets/mp2/trace_comparison.png" alt="48-hour bus-voltage and state-of-charge traces comparing the RL controller against MPC baselines" loading="lazy" />
+            </div>
+            <div class="project__body">
+              <span class="project__index">02</span><span class="project__cat">Machine learning · Control</span>
+              <h3>Multi-Agent RL for Microgrid Control</h3>
+              <p class="project__sub">Cooperative reinforcement-learning agents that keep a simulated DC microgrid stable and supplied — benchmarked head-to-head against classical droop and model-predictive control.</p>
+              <div class="tags project__tags">
+                <span class="tag">PyTorch</span><span class="tag">Ray RLlib</span><span class="tag">PettingZoo</span><span class="tag">Safe RL</span><span class="tag">Control</span>
+              </div>
+              <a class="project__link" href="projects/microgrid-rl.html">Read the case study
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 03 — Smart Energy Node -->
+          <article class="project reveal">
+            <div class="project__media project__media--contain">
+              <img src="assets/mp1/overview.png" alt="Schematic overview of the Smart Energy Node: four sources, storage, and two loads on a shared DC bus" loading="lazy" />
+            </div>
+            <div class="project__body">
+              <span class="project__index">03</span><span class="project__cat">Hardware · Embedded systems</span>
+              <h3>Smart Energy Node</h3>
+              <p class="project__sub">A benchtop DC-microgrid testbed that emulates renewable sources, storage, and dynamic loads in real hardware — a reproducible platform for grid-control experiments.</p>
+              <div class="tags project__tags">
+                <span class="tag">ESP32-S3</span><span class="tag">Power electronics</span><span class="tag">Altium</span><span class="tag">FreeRTOS</span><span class="tag">Modbus</span>
+              </div>
+              <a class="project__link" href="projects/smart-energy-node.html">Read the case study
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">About</p>
+          <h2>Engineering the grid of the future.</h2>
+        </div>
+        <div class="about-grid">
+          <div class="prose reveal">
+            <p>
+              I'm Amar, a Master's student in Electrical Engineering at Hochschule Bielefeld (HSBI).
+              My work sits at the intersection of power systems and machine learning: taking
+              decentralized energy — rooftop solar, wind, biogas, batteries, flexible loads — and
+              making it behave like one stable, coordinated system.
+            </p>
+            <p>
+              Over the past year I've built that stack at every layer myself. I designed and wired the
+              physical hardware of a microgrid node, trained the reinforcement-learning controllers
+              that run on it, and developed forecasting software validated on real utility data.
+            </p>
+            <p>
+              What ties it together is a commitment to <strong>rigorous evaluation</strong> — honest
+              baselines, calibrated uncertainty, statistical significance, and a willingness to report
+              what didn't work. I'd rather have a result that survives scrutiny than a number that looks good.
+            </p>
+          </div>
+          <div class="skills reveal">
+            <div class="skill-group">
+              <h3>Machine Learning &amp; Data</h3>
+              <div class="tags">
+                <span class="tag tag--solid">Reinforcement learning</span><span class="tag tag--solid">PPO / MARL</span><span class="tag tag--solid">Conformal prediction</span><span class="tag tag--solid">Gradient boosting</span><span class="tag tag--solid">PyTorch</span><span class="tag tag--solid">Statistical evaluation</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h3>Control &amp; Power Electronics</h3>
+              <div class="tags">
+                <span class="tag">DC microgrids</span><span class="tag">Droop &amp; MPC control</span><span class="tag">Power-path design</span><span class="tag">Supercapacitor storage</span><span class="tag">Sensing &amp; metering</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h3>Embedded &amp; Software</h3>
+              <div class="tags">
+                <span class="tag">ESP32-S3 / FreeRTOS</span><span class="tag">Modbus &amp; MQTT</span><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Docker</span><span class="tag">LTspice &amp; Altium</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THESIS / BACKGROUND ============ -->
+    <section id="thesis">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow">Background</p>
+          <h2>Bachelor's thesis.</h2>
+        </div>
+        <div class="thesis-card reveal">
+          <div class="thesis-card__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 4-6"/></svg>
+          </div>
+          <div class="thesis-card__body">
+            <h3>Ohmmessmodul für automatisches Prüfsystem</h3>
+            <p class="thesis-card__en">
+              For my Bachelor's thesis I developed a resistance-measurement module for an automated
+              electronics test system — comparing measurement methods (four-wire / Kelvin sensing and the
+              Wheatstone bridge), dimensioning the analog signal chain and the microcontroller control logic,
+              and validating the finished module through practical accuracy measurements. Carried out in
+              collaboration with an industry partner.
+            </p>
+            <div class="tags">
+              <span class="tag tag--solid">B.Eng. Electrical Engineering</span><span class="tag">HSBI · 2025</span><span class="tag">Four-wire sensing</span><span class="tag">Analog signal chain</span><span class="tag">Industry collaboration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="section-alt">
+      <div class="wrap narrow contact reveal">
+        <h2>Let's talk.</h2>
+        <p>Interested in my work on smart grids, control, or applied machine learning?
+           I'd be glad to hear from you.</p>
+        <div class="contact__links">
+          <!-- Contact links -->
+          <a class="contact__link" href="mailto:amar.akram_ali@hsbi.de">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            amar.akram_ali@hsbi.de
+          </a>
+          <a class="contact__link" href="https://github.com/amarakramali" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 8.84 21.5c.5.09.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.58.67.48A10 10 0 0 0 12 2z"/></svg>
+            GitHub
+          </a>
+          <a class="contact__link" href="https://www.linkedin.com/in/amar-akram-0ba4bb1a2/" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM8.34 18.34V10.6H5.76v7.74zM7.05 9.43a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm11.29 8.91v-4.25c0-2.27-1.21-3.33-2.83-3.33a2.44 2.44 0 0 0-2.21 1.21v-1.04h-2.58v7.74h2.58v-4.28c0-1.13.21-2.22 1.61-2.22s1.4 1.29 1.4 2.29v4.21z"/></svg>
+            LinkedIn
+          </a>
+          <a class="contact__link" href="https://www.hsbi.de" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            HSBI Bielefeld
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <small>© <span data-year>2026</span> Amar Akram · Built with care in Bielefeld.</small>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="mailto:amar.akram_ali@hsbi.de">Email</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

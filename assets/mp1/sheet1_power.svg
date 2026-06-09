@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a0e27"/><stop offset="100%" stop-color="#111833"/></linearGradient>
+    <marker id="aR" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 L2,4Z" fill="#e74c3c"/></marker>
+    <marker id="aG" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 L2,4Z" fill="#2ecc71"/></marker>
+    <marker id="aB" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 L2,4Z" fill="#5dade2"/></marker>
+    <marker id="aO" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 L2,4Z" fill="#f39c12"/></marker>
+    <filter id="sh"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.4"/></filter>
+  </defs>
+  <rect width="1100" height="620" fill="url(#bg1)"/>
+
+  <!-- Title -->
+  <text x="550" y="32" text-anchor="middle" fill="#e0e6ed" font-size="16" font-weight="700" letter-spacing="2">SHEET 1 — SPANNUNGSVERSORGUNG (POWER)</text>
+  <line x1="80" y1="44" x2="1020" y2="44" stroke="#2e86c1" stroke-width="1" opacity="0.4"/>
+
+  <!-- 230V AC Input -->
+  <rect x="30" y="120" width="100" height="60" rx="6" fill="#2a1a1a" stroke="#e74c3c" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="80" y="147" text-anchor="middle" fill="#e74c3c" font-size="11" font-weight="700">230V AC</text>
+  <text x="80" y="165" text-anchor="middle" fill="#7f8c8d" font-size="9">Netz</text>
+
+  <!-- MeanWell LRS-350-48 -->
+  <rect x="190" y="90" width="220" height="120" rx="8" fill="#1a2e2e" stroke="#1abc9c" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="190" y="90" width="220" height="24" rx="8" fill="#1abc9c" opacity="0.2"/>
+  <text x="300" y="108" text-anchor="middle" fill="#1abc9c" font-size="11" font-weight="700">MEANWELL LRS-350-48</text>
+  <text x="300" y="135" text-anchor="middle" fill="#e0e6ed" font-size="13" font-weight="700">AC/DC Netzteil</text>
+  <text x="300" y="155" text-anchor="middle" fill="#aab7c4" font-size="9">230V AC → 48V DC / 7.3A</text>
+  <text x="300" y="170" text-anchor="middle" fill="#aab7c4" font-size="9">350W, EN 62368-1</text>
+  <text x="300" y="195" text-anchor="middle" fill="#7f8c8d" font-size="8">Off-Board (Schraubklemmen J1)</text>
+
+  <!-- Arrow: AC → MeanWell -->
+  <line x1="130" y1="150" x2="190" y2="150" stroke="#e74c3c" stroke-width="2.5" marker-end="url(#aR)"/>
+
+  <!-- RD6006P Input -->
+  <rect x="490" y="90" width="200" height="120" rx="8" fill="#1a4a2e" stroke="#27ae60" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="490" y="90" width="200" height="24" rx="8" fill="#27ae60" opacity="0.2"/>
+  <text x="590" y="108" text-anchor="middle" fill="#27ae60" font-size="11" font-weight="700">RIDEN RD6006P</text>
+  <text x="590" y="135" text-anchor="middle" fill="#e0e6ed" font-size="13" font-weight="700">PV-Emulator</text>
+  <text x="590" y="155" text-anchor="middle" fill="#aab7c4" font-size="9">Input: 48V DC (von MeanWell)</text>
+  <text x="590" y="170" text-anchor="middle" fill="#aab7c4" font-size="9">Output: 0–48V / 0–6A</text>
+  <text x="590" y="195" text-anchor="middle" fill="#7f8c8d" font-size="8">Off-Board (Kabel J2)</text>
+
+  <!-- Arrow: MeanWell → RD6006P -->
+  <line x1="410" y1="150" x2="490" y2="150" stroke="#e74c3c" stroke-width="2.5" marker-end="url(#aR)"/>
+  <text x="450" y="140" text-anchor="middle" fill="#e74c3c" font-size="9" font-weight="600">48V DC</text>
+  <text x="450" y="155" text-anchor="middle" fill="#7f8c8d" font-size="8">+48V_PSU</text>
+
+  <!-- RD6006P Output port -->
+  <rect x="750" y="110" width="120" height="50" rx="5" fill="#0d1a0d" stroke="#27ae60" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="810" y="133" text-anchor="middle" fill="#27ae60" font-size="10" font-weight="600">→ Sheet 4</text>
+  <text x="810" y="148" text-anchor="middle" fill="#7f8c8d" font-size="8">SUPERCAP_CHG+/−</text>
+
+  <line x1="690" y1="135" x2="750" y2="135" stroke="#e74c3c" stroke-width="2" marker-end="url(#aR)"/>
+  <text x="720" y="126" text-anchor="middle" fill="#e74c3c" font-size="8">0–5.4V</text>
+
+  <!-- ═══ Isolation Boundary ═══ -->
+  <rect x="28" y="260" width="1044" height="3" fill="#f39c12" opacity="0.5" rx="1"/>
+  <text x="550" y="283" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="600" letter-spacing="1">── GALVANISCHE TRENNUNG (Spannungsdomänen) ──</text>
+
+  <!-- USB 5V Input -->
+  <rect x="30" y="310" width="120" height="60" rx="6" fill="#1a1a3a" stroke="#5dade2" stroke-width="1.5" filter="url(#sh)"/>
+  <text x="90" y="335" text-anchor="middle" fill="#5dade2" font-size="11" font-weight="700">USB 5V</text>
+  <text x="90" y="355" text-anchor="middle" fill="#7f8c8d" font-size="9">PC / Netzteil</text>
+
+  <!-- ESP32 DevKit Onboard Regulator -->
+  <rect x="210" y="300" width="200" height="80" rx="8" fill="#1a3a5c" stroke="#2e86c1" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="210" y="300" width="200" height="24" rx="8" fill="#2e86c1" opacity="0.2"/>
+  <text x="310" y="318" text-anchor="middle" fill="#5dade2" font-size="10" font-weight="700">ESP32-S3 DEVKIT</text>
+  <text x="310" y="340" text-anchor="middle" fill="#e0e6ed" font-size="11" font-weight="600">Onboard LDO</text>
+  <text x="310" y="358" text-anchor="middle" fill="#aab7c4" font-size="9">USB 5V → 3.3V intern</text>
+  <text x="310" y="372" text-anchor="middle" fill="#7f8c8d" font-size="8">Versorgt ADUM1201 VDD1</text>
+
+  <line x1="150" y1="340" x2="210" y2="340" stroke="#5dade2" stroke-width="2" marker-end="url(#aB)"/>
+  <text x="180" y="330" text-anchor="middle" fill="#5dade2" font-size="8">5V USB</text>
+
+  <!-- 3.3V Output -->
+  <rect x="470" y="310" width="100" height="40" rx="5" fill="#1a3a5c" stroke="#5dade2" stroke-width="1"/>
+  <text x="520" y="328" text-anchor="middle" fill="#5dade2" font-size="11" font-weight="700">+3V3</text>
+  <text x="520" y="342" text-anchor="middle" fill="#7f8c8d" font-size="8">Logik-Rail</text>
+
+  <line x1="410" y1="330" x2="470" y2="330" stroke="#5dade2" stroke-width="2" marker-end="url(#aB)"/>
+
+  <!-- 3.3V destinations -->
+  <rect x="620" y="305" width="110" height="26" rx="4" fill="#0d1a2e" stroke="#5dade2" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="675" y="322" text-anchor="middle" fill="#5dade2" font-size="8">→ Sheet 2 (ADUM VDD1)</text>
+  <rect x="620" y="335" width="110" height="26" rx="4" fill="#0d1a2e" stroke="#5dade2" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="675" y="352" text-anchor="middle" fill="#5dade2" font-size="8">→ Sheet 4 (I²C Pull-ups)</text>
+
+  <line x1="570" y1="320" x2="620" y2="318" stroke="#5dade2" stroke-width="1" marker-end="url(#aB)"/>
+  <line x1="570" y1="340" x2="620" y2="348" stroke="#5dade2" stroke-width="1" marker-end="url(#aB)"/>
+
+  <!-- B0505S Isolator -->
+  <rect x="210" y="420" width="200" height="100" rx="8" fill="#2a2a3e" stroke="#f39c12" stroke-width="1.5" filter="url(#sh)"/>
+  <rect x="210" y="420" width="200" height="24" rx="8" fill="#f39c12" opacity="0.15"/>
+  <text x="310" y="438" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="700">B0505S-1W</text>
+  <text x="310" y="462" text-anchor="middle" fill="#e0e6ed" font-size="11" font-weight="600">DC/DC Isolator</text>
+  <text x="310" y="480" text-anchor="middle" fill="#aab7c4" font-size="9">5V → 5V (galvanisch getrennt)</text>
+  <text x="310" y="496" text-anchor="middle" fill="#aab7c4" font-size="9">1W max, 1kV Isolation</text>
+  <text x="310" y="510" text-anchor="middle" fill="#7f8c8d" font-size="8">+ 100nF / 10µF Stütz-C beidseitig</text>
+
+  <!-- USB to B0505S -->
+  <path d="M 90,370 L 90,470 L 210,470" stroke="#f39c12" stroke-width="2" fill="none" marker-end="url(#aO)"/>
+  <text x="130" y="465" fill="#f39c12" font-size="8" font-weight="600">5V USB Input</text>
+
+  <!-- 5V ISO output -->
+  <rect x="470" y="450" width="100" height="40" rx="5" fill="#2a2a3e" stroke="#f39c12" stroke-width="1"/>
+  <text x="520" y="468" text-anchor="middle" fill="#f39c12" font-size="11" font-weight="700">+5V_ISO</text>
+  <text x="520" y="482" text-anchor="middle" fill="#7f8c8d" font-size="8">Isoliert</text>
+
+  <line x1="410" y1="470" x2="470" y2="470" stroke="#f39c12" stroke-width="2" marker-end="url(#aO)"/>
+
+  <!-- 5V ISO destinations -->
+  <rect x="620" y="445" width="110" height="26" rx="4" fill="#0d1a2e" stroke="#f39c12" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="675" y="462" text-anchor="middle" fill="#f39c12" font-size="8">→ Sheet 2 (ADUM VDD2)</text>
+  <rect x="620" y="475" width="110" height="26" rx="4" fill="#0d1a2e" stroke="#f39c12" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="675" y="492" text-anchor="middle" fill="#f39c12" font-size="8">→ Sheet 2 (MAX485 VCC)</text>
+
+  <line x1="570" y1="460" x2="620" y2="458" stroke="#f39c12" stroke-width="1" marker-end="url(#aO)"/>
+  <line x1="570" y1="480" x2="620" y2="488" stroke="#f39c12" stroke-width="1" marker-end="url(#aO)"/>
+
+  <!-- GND Symbols -->
+  <text x="80" y="195" text-anchor="middle" fill="#888" font-size="9" font-weight="600">PE / GND_AC</text>
+  <text x="310" y="398" text-anchor="middle" fill="#5dade2" font-size="8" font-weight="600">GND_LOGIC</text>
+  <text x="310" y="540" text-anchor="middle" fill="#f39c12" font-size="8" font-weight="600">GND_LOGIC (In) → GND_ISO (Out)</text>
+  <text x="590" y="208" text-anchor="middle" fill="#27ae60" font-size="8" font-weight="600">GND_POWER</text>
+
+  <!-- Power Net Summary Box -->
+  <rect x="800" y="400" width="270" height="175" rx="6" fill="#0d1220" stroke="#2e86c1" stroke-width="1"/>
+  <text x="935" y="420" text-anchor="middle" fill="#5dade2" font-size="10" font-weight="700" letter-spacing="1">POWER NETS (Global)</text>
+  <text x="820" y="442" fill="#e74c3c" font-size="9" font-weight="600">+48V_PSU</text>
+  <text x="920" y="442" fill="#aab7c4" font-size="9">MeanWell → RD6006P</text>
+  <text x="820" y="460" fill="#27ae60" font-size="9" font-weight="600">+5V4_MAX</text>
+  <text x="920" y="460" fill="#aab7c4" font-size="9">RD6006P Out (variabel)</text>
+  <text x="820" y="478" fill="#5dade2" font-size="9" font-weight="600">+3V3</text>
+  <text x="920" y="478" fill="#aab7c4" font-size="9">ESP32 LDO → Logik</text>
+  <text x="820" y="496" fill="#f39c12" font-size="9" font-weight="600">+5V_ISO</text>
+  <text x="920" y="496" fill="#aab7c4" font-size="9">B0505S → ADUM/MAX485</text>
+  <text x="820" y="514" fill="#bb8fce" font-size="9" font-weight="600">+12V_BUS</text>
+  <text x="920" y="514" fill="#aab7c4" font-size="9">Pololu Out (Sheet 5)</text>
+  <line x1="815" y1="524" x2="1055" y2="524" stroke="#333" stroke-width="0.5"/>
+  <text x="820" y="540" fill="#888" font-size="9" font-weight="600">GND_LOGIC</text>
+  <text x="920" y="540" fill="#aab7c4" font-size="9">ESP32 / Sensorseite</text>
+  <text x="820" y="558" fill="#888" font-size="9" font-weight="600">GND_POWER</text>
+  <text x="920" y="558" fill="#aab7c4" font-size="9">RD6006P / Supercap / Last</text>
+  <text x="820" y="573" fill="#888" font-size="9" font-weight="600">GND_ISO</text>
+  <text x="920" y="573" fill="#aab7c4" font-size="9">Isolierte Seite (ADUM)</text>
+
+  <!-- Decoupling note -->
+  <rect x="30" y="560" width="350" height="40" rx="4" fill="#0d1220" stroke="#333" stroke-width="0.5"/>
+  <text x="45" y="577" fill="#aab7c4" font-size="9">📌 Stützkondensatoren: 100nF + 10µF an jedem VDD-Pin</text>
+  <text x="45" y="592" fill="#7f8c8d" font-size="8">(B0505S Ein/Aus, ADUM1201 VDD1/VDD2, ESP32 3V3)</text>
+</svg>

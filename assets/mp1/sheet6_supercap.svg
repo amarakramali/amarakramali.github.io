@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 550" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg6" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0a0e27"/><stop offset="100%" stop-color="#111833"/></linearGradient>
+    <filter id="sh6"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.4"/></filter>
+    <marker id="a6R" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 L2,4Z" fill="#e74c3c"/></marker>
+    <marker id="a6G" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 L2,4Z" fill="#2ecc71"/></marker>
+    <marker id="a6Y" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 L2,4Z" fill="#f1c40f"/></marker>
+  </defs>
+  <rect width="1100" height="550" fill="url(#bg6)"/>
+  <text x="550" y="32" text-anchor="middle" fill="#e0e6ed" font-size="16" font-weight="700" letter-spacing="2">SHEET 6 — SUPERCAP-BANK (ENERGIESPEICHER)</text>
+  <line x1="80" y1="44" x2="1020" y2="44" stroke="#f1c40f" stroke-width="1" opacity="0.4"/>
+
+  <!-- ═══ CHARGE SIDE (Seite A) ═══ -->
+  <rect x="30" y="80" width="120" height="50" rx="5" fill="#0d1a0d" stroke="#2ecc71" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="90" y="100" text-anchor="middle" fill="#2ecc71" font-size="9" font-weight="600">← Sheet 1</text>
+  <text x="90" y="118" text-anchor="middle" fill="#7f8c8d" font-size="8">RD6006P Output</text>
+
+  <!-- Through INA226 #1 -->
+  <rect x="190" y="80" width="120" height="50" rx="5" fill="#0d1a2e" stroke="#5dade2" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="250" y="100" text-anchor="middle" fill="#5dade2" font-size="9" font-weight="600">via Sheet 4</text>
+  <text x="250" y="118" text-anchor="middle" fill="#7f8c8d" font-size="8">INA226 #1 (0x40)</text>
+
+  <line x1="150" y1="105" x2="190" y2="105" stroke="#e74c3c" stroke-width="2" marker-end="url(#a6R)"/>
+  <line x1="310" y1="105" x2="370" y2="105" stroke="#e74c3c" stroke-width="2" marker-end="url(#a6R)"/>
+
+  <!-- Polyfuse -->
+  <rect x="370" y="75" width="130" height="60" rx="6" fill="#2a1a1a" stroke="#e74c3c" stroke-width="1" filter="url(#sh6)"/>
+  <text x="435" y="98" text-anchor="middle" fill="#e74c3c" font-size="10" font-weight="700">Polyfuse 2A</text>
+  <text x="435" y="115" text-anchor="middle" fill="#aab7c4" font-size="9">Rückstellbare Sicherung</text>
+  <text x="435" y="128" text-anchor="middle" fill="#7f8c8d" font-size="8">I_hold=2A, I_trip=4A</text>
+
+  <line x1="500" y1="105" x2="545" y2="105" stroke="#e74c3c" stroke-width="2" marker-end="url(#a6R)"/>
+
+  <!-- Seite A Label -->
+  <rect x="30" y="148" width="520" height="20" rx="3" fill="#2ecc71" opacity="0.08"/>
+  <text x="290" y="163" text-anchor="middle" fill="#2ecc71" font-size="9" font-weight="600" letter-spacing="1">▲ SEITE A — LADEN (RD6006P CC/CV → Supercap) | Variable Spannung 0–5.4V ▲</text>
+
+  <!-- ═══ SUPERCAP BANK — Center ═══ -->
+  <rect x="545" y="60" width="250" height="320" rx="10" fill="#2a2510" stroke="#f1c40f" stroke-width="2" filter="url(#sh6)"/>
+  <rect x="545" y="60" width="250" height="28" rx="10" fill="#f1c40f" opacity="0.15"/>
+  <text x="670" y="80" text-anchor="middle" fill="#f1c40f" font-size="12" font-weight="700" letter-spacing="1">SUPERCAP-BANK</text>
+
+  <text x="670" y="110" text-anchor="middle" fill="#e0e6ed" font-size="11" font-weight="600">3× Parallel</text>
+  <text x="670" y="128" text-anchor="middle" fill="#aab7c4" font-size="10">CAP 1.5F / 5.5V THT</text>
+  <text x="670" y="145" text-anchor="middle" fill="#7f8c8d" font-size="9">(Mouser, 10er Pack = 17€)</text>
+
+  <!-- 3 Caps visual -->
+  <!-- Cap 1 -->
+  <rect x="570" y="165" width="70" height="80" rx="5" fill="#33280f" stroke="#f1c40f" stroke-width="1.2"/>
+  <text x="605" y="195" text-anchor="middle" fill="#f1c40f" font-size="11" font-weight="700">C1</text>
+  <text x="605" y="212" text-anchor="middle" fill="#aab7c4" font-size="8">1.5F</text>
+  <text x="605" y="226" text-anchor="middle" fill="#aab7c4" font-size="8">5.5V</text>
+  <text x="605" y="240" text-anchor="middle" fill="#7f8c8d" font-size="7">intern balanciert</text>
+
+  <!-- Cap 2 -->
+  <rect x="650" y="165" width="70" height="80" rx="5" fill="#33280f" stroke="#f1c40f" stroke-width="1.2"/>
+  <text x="685" y="195" text-anchor="middle" fill="#f1c40f" font-size="11" font-weight="700">C2</text>
+  <text x="685" y="212" text-anchor="middle" fill="#aab7c4" font-size="8">1.5F</text>
+  <text x="685" y="226" text-anchor="middle" fill="#aab7c4" font-size="8">5.5V</text>
+  <text x="685" y="240" text-anchor="middle" fill="#7f8c8d" font-size="7">intern balanciert</text>
+
+  <!-- Cap 3 -->
+  <rect x="730" y="165" width="70" height="80" rx="5" fill="#33280f" stroke="#f1c40f" stroke-width="1.2"/>
+  <text x="765" y="195" text-anchor="middle" fill="#f1c40f" font-size="11" font-weight="700">C3</text>
+  <text x="765" y="212" text-anchor="middle" fill="#aab7c4" font-size="8">1.5F</text>
+  <text x="765" y="226" text-anchor="middle" fill="#aab7c4" font-size="8">5.5V</text>
+  <text x="765" y="240" text-anchor="middle" fill="#7f8c8d" font-size="7">intern balanciert</text>
+
+  <!-- Parallel connections -->
+  <line x1="570" y1="165" x2="800" y2="165" stroke="#e74c3c" stroke-width="1.5"/>
+  <text x="815" y="168" fill="#e74c3c" font-size="9" font-weight="700">+</text>
+  <line x1="570" y1="245" x2="800" y2="245" stroke="#555" stroke-width="1.5"/>
+  <text x="815" y="248" fill="#888" font-size="9" font-weight="700">−</text>
+  <text x="670" y="158" text-anchor="middle" fill="#e74c3c" font-size="8">SUPERCAP+ (alle Plus verbunden)</text>
+  <text x="670" y="260" text-anchor="middle" fill="#888" font-size="8">SUPERCAP− (alle Minus verbunden)</text>
+
+  <!-- Specs Box -->
+  <rect x="565" y="272" width="210" height="95" rx="5" fill="#0d1220" stroke="#f1c40f" stroke-width="0.8"/>
+  <text x="670" y="290" text-anchor="middle" fill="#f1c40f" font-size="10" font-weight="700">Ergebnis (3× parallel)</text>
+  <text x="580" y="310" fill="#e0e6ed" font-size="9" font-weight="600">C_gesamt = 4.5F</text>
+  <text x="580" y="326" fill="#e0e6ed" font-size="9" font-weight="600">V_max = 5.5V (betrieben ≤ 5.4V)</text>
+  <text x="580" y="342" fill="#e0e6ed" font-size="9" font-weight="600">E_nutzbar = 56.6J (5.4V→2.0V)</text>
+  <text x="580" y="358" fill="#2ecc71" font-size="9" font-weight="600">≈ 24s bei 2W + Wandlerverluste</text>
+
+  <!-- ═══ DISCHARGE SIDE (Seite B) ═══ -->
+  <rect x="845" y="80" width="120" height="50" rx="5" fill="#0d1a2e" stroke="#5dade2" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="905" y="100" text-anchor="middle" fill="#5dade2" font-size="9" font-weight="600">via Sheet 4</text>
+  <text x="905" y="118" text-anchor="middle" fill="#7f8c8d" font-size="8">INA226 #2 (0x41)</text>
+
+  <rect x="1000" y="80" width="80" height="50" rx="5" fill="#0d1a2e" stroke="#bb8fce" stroke-width="1" stroke-dasharray="5,3"/>
+  <text x="1040" y="100" text-anchor="middle" fill="#bb8fce" font-size="9" font-weight="600">→ Sheet 5</text>
+  <text x="1040" y="118" text-anchor="middle" fill="#7f8c8d" font-size="8">Pololu VIN</text>
+
+  <line x1="800" y1="105" x2="845" y2="105" stroke="#e74c3c" stroke-width="2" marker-end="url(#a6R)"/>
+  <line x1="965" y1="105" x2="1000" y2="105" stroke="#e74c3c" stroke-width="2" marker-end="url(#a6R)"/>
+
+  <!-- Seite B Label -->
+  <rect x="545" y="390" width="535" height="20" rx="3" fill="#bb8fce" opacity="0.08"/>
+  <text x="812" y="405" text-anchor="middle" fill="#bb8fce" font-size="9" font-weight="600" letter-spacing="1">▼ SEITE B — ENTLADEN (Supercap → Pololu Step-Up) | 2.0V–5.4V ▼</text>
+
+  <!-- V_SUPERCAP sense to UVLO -->
+  <rect x="845" y="200" width="140" height="50" rx="5" fill="#0d1a2e" stroke="#e74c3c" stroke-width="1" stroke-dasharray="4,2"/>
+  <text x="915" y="220" text-anchor="middle" fill="#e74c3c" font-size="9" font-weight="600">→ Sheet 5</text>
+  <text x="915" y="238" text-anchor="middle" fill="#7f8c8d" font-size="8">V_SUPERCAP (UVLO Sense)</text>
+
+  <line x1="800" y1="205" x2="845" y2="215" stroke="#f1c40f" stroke-width="1.2" stroke-dasharray="3,2" marker-end="url(#a6Y)"/>
+
+  <!-- Screw Terminals -->
+  <rect x="545" y="425" width="210" height="60" rx="5" fill="#0d1220" stroke="#333" stroke-width="0.8"/>
+  <text x="650" y="445" text-anchor="middle" fill="#aab7c4" font-size="9" font-weight="600">Schraubklemmen (J4, J5)</text>
+  <text x="650" y="462" text-anchor="middle" fill="#7f8c8d" font-size="9">J4: Ladeseite (RD6006P ↔ Supercap)</text>
+  <text x="650" y="478" text-anchor="middle" fill="#7f8c8d" font-size="9">J5: Entladeseite (Supercap ↔ Pololu)</text>
+
+  <!-- Spare caps note -->
+  <rect x="30" y="425" width="480" height="100" rx="6" fill="#0d1220" stroke="#f1c40f" stroke-width="0.8"/>
+  <text x="270" y="448" text-anchor="middle" fill="#f1c40f" font-size="10" font-weight="700">ÜBERSICHT: 10er-Pack SUPERCAPS</text>
+  <line x1="45" y1="457" x2="495" y2="457" stroke="#333" stroke-width="0.5"/>
+  <text x="50" y="475" fill="#2ecc71" font-size="9" font-weight="600">Phase 1:</text>
+  <text x="120" y="475" fill="#aab7c4" font-size="9">3× parallel = Hauptspeicher (4.5F / 5.5V)</text>
+  <text x="50" y="495" fill="#7f8c8d" font-size="9" font-weight="600">Reserve:</text>
+  <text x="120" y="495" fill="#aab7c4" font-size="9">7× verbleibend (Ersatz + spätere Phasen)</text>
+  <text x="50" y="515" fill="#7f8c8d" font-size="9">Keine externen Balancing-Widerstände nötig (5.5V-Module intern balanciert)</text>
+
+  <!-- GND -->
+  <line x1="30" y1="395" x2="1070" y2="395" stroke="#555" stroke-width="2" opacity="0.3"/>
+  <text x="50" y="415" fill="#888" font-size="9" font-weight="600">GND_POWER</text>
+</svg>

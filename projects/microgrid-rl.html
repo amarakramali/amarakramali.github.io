@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Agent RL for Microgrid Control · Amar Akram</title>
+  <meta name="description" content="Cooperative multi-agent reinforcement learning that keeps a simulated DC microgrid stable and supplied, benchmarked against droop and model-predictive control. 51% lower voltage error than droop; policy fits a 5€ ESP32-S3." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E5F74'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="../index.html#top" aria-label="Amar Akram — home">
+        <span class="brand__mark">AA</span>
+        <span class="brand__name">Amar Akram</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a class="nav__cta" href="mailto:amar.akram_ali@hsbi.de">Email</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <a class="backlink" href="../index.html#work">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+        All projects
+      </a>
+    </div>
+
+    <!-- HERO -->
+    <section class="detail-hero">
+      <div class="wrap">
+        <p class="detail-hero__cat">Machine learning · Control</p>
+        <h1>Multi-Agent RL for Microgrid Control</h1>
+        <p class="detail-hero__sub">
+          Cooperative reinforcement-learning agents that keep a simulated DC microgrid's voltage stable and
+          its critical loads supplied — benchmarked head-to-head against the classical controllers used in
+          real power systems.
+        </p>
+
+        <dl class="meta-row">
+          <div><dt>Role</dt><dd>Solo — research, code &amp; evaluation</dd></div>
+          <div><dt>Context</dt><dd>Master's project (MP2), HSBI</dd></div>
+          <div><dt>Supervisor</dt><dd>Prof. Dr. Jörn Loviscach</dd></div>
+          <div><dt>Methods</dt><dd>MAPPO · Safe RL · MPC baselines</dd></div>
+          <div><dt>Status</dt><dd>Simulation; sim-to-real planned</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="wrap" style="margin-top:8px">
+      <div class="stats reveal">
+        <div class="stat"><div class="stat__num">−51<small>%</small></div><div class="stat__label">lower bus-voltage error than classical droop control (Cohen's d = −15.8, p&lt;0.001)</div></div>
+        <div class="stat"><div class="stat__num">0.068</div><div class="stat__label">voltage-limit saturation rate — the lowest of every controller tested</div></div>
+        <div class="stat"><div class="stat__num">76<small>KB</small></div><div class="stat__label">quantized policy — runs on a 5 € ESP32-S3 at 2.7 ms latency</div></div>
+        <div class="stat"><div class="stat__num">4</div><div class="stat__label">cooperative agents: PV, wind, biogas and battery</div></div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">Overview</p>
+        <div class="prose reveal">
+          <p>
+            A real power grid keeps its frequency stable by constantly matching generation to demand. A small
+            DC microgrid faces the same challenge in miniature: several independent sources — solar, wind,
+            biogas, a battery — must cooperate to hold the bus voltage steady and keep the most important
+            loads powered, even though no single source sees the whole system. This project asks how well a
+            <strong>multi-agent reinforcement-learning</strong> controller can do that job compared with the
+            classical control methods engineers use today.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUESTION / ENVIRONMENT -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">The research question</p>
+        <h2>Can learned controllers beat the classics?</h2>
+        <div class="prose reveal">
+          <p>
+            The benchmark is a physically realistic simulation of a heterogeneous DC microgrid built on a
+            shared 5.5-volt bus with a supercapacitor buffer. Bus voltage is left to float freely as a dynamic
+            state — the direct analogue of grid frequency — so the agents must actively stabilise it. The
+            biogas source has realistic ramp rates and minimum run-times, wind follows a hub-height power law,
+            and weather is driven by real Open-Meteo data for Bielefeld, where renewables alone cover only
+            about 40% of demand and storage planning spans hours.
+          </p>
+          <p>
+            It is modelled as a cooperative multi-agent environment: four agents share a 21-dimensional view
+            of the system and a common reward that penalises voltage deviation, unsupplied critical load,
+            wasteful curtailment, and unsafe battery charge. Three control speeds — acting every 1, 5, or 30
+            seconds — form the core study matrix. The whole simulation is built as a faithful digital twin of
+            my <a href="smart-energy-node.html">Smart Energy Node</a> hardware, so a trained policy can later
+            be deployed on the real board.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- METHODS -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">Approach &amp; methods</p>
+        <h2>Learning to control — safely.</h2>
+        <div class="prose reveal">
+          <p>
+            The main controller is a multi-policy PPO setup: one learning agent per source, each with its own
+            policy, all sharing a global observation. (I'm deliberate about the naming — it is not the
+            centralized-critic MAPPO of the original paper, and the write-up says so, because that distinction
+            matters to a reviewer.) Two ablations isolate <em>why</em> it works: an independent-learner variant
+            with only local observations, and a single-agent variant that merges all four actions into one
+            policy.
+          </p>
+          <p>
+            Safety is handled by an <strong>action-projection shield</strong> — a training-free layer that
+            catches any unsafe command and projects it to the nearest admissible one before it reaches the
+            grid. It is backed by three formal safety theorems, checked with roughly 64,000 randomised
+            property-based tests. I also tried a Lagrangian constrained-RL approach and report it as an honest
+            negative result, alongside behaviour-cloning warm-starts from the droop controller.
+          </p>
+          <p>
+            The learned controllers are measured against three serious baselines — droop control, a heuristic
+            model-predictive controller, and a convex/QP model-predictive controller — under domain
+            randomisation for sensor noise and actuator drift. Every headline number comes with a bootstrap
+            confidence interval and a paired significance test with effect sizes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">Results</p>
+        <h2>Lowest voltage error of any controller.</h2>
+        <div class="prose reveal" style="margin-bottom:30px">
+          <p>
+            On the headline configuration (20 random seeds, paired bootstrap), the RL controller achieves the
+            lowest bus-voltage error of every method tested — well ahead of droop control and the
+            convex MPC, and statistically tied with the strongest classical baseline while holding voltage
+            limits more tightly.
+          </p>
+        </div>
+
+        <div class="chart-card reveal">
+          <h3>Bus-voltage RMSE by controller</h3>
+          <p class="cc-sub">Lower is better. RL result highlighted.</p>
+          <div class="bar-row">
+            <span class="bar-row__label">Droop</span>
+            <span class="bar-track"><span class="bar-fill bar-fill--muted" style="width:100%"></span></span>
+            <span class="bar-row__val">0.555</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-row__label">MPC (convex)</span>
+            <span class="bar-track"><span class="bar-fill bar-fill--muted" style="width:88%"></span></span>
+            <span class="bar-row__val">0.490</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-row__label">MPC (heuristic)</span>
+            <span class="bar-track"><span class="bar-fill bar-fill--muted" style="width:59%"></span></span>
+            <span class="bar-row__val">0.326</span>
+          </div>
+          <div class="bar-row">
+            <span class="bar-row__label">RL (MAPPO)</span>
+            <span class="bar-track"><span class="bar-fill bar-fill--best" style="width:49%"></span></span>
+            <span class="bar-row__val best">0.270</span>
+          </div>
+          <p class="cc-foot">The RL controller also posts the lowest voltage-saturation rate (0.068) and the best total reward of the group.</p>
+        </div>
+
+        <figure class="figure reveal">
+          <div class="figure__frame figure__frame--pad">
+            <img src="../assets/mp2/trace_comparison.png" alt="48-hour traces of bus voltage, state of charge and control actions comparing the RL controller with MPC baselines" loading="lazy" />
+          </div>
+          <figcaption><b>48-hour behaviour.</b> Bus voltage (top) stays tight and centred under the shielded RL controller (blue), while the unshielded policy (grey) swings widely and forecast-based MPC drifts once its forecast is noisy. Bands show mean ± standard deviation over seeds.</figcaption>
+        </figure>
+
+        <figure class="figure reveal">
+          <div class="figure__frame figure__frame--pad">
+            <img src="../assets/mp2/mpc_robustness_tradeoff.png" alt="Saturation rate rising with forecast noise for MPC, while the forecast-free RL controller stays flat" loading="lazy" />
+          </div>
+          <figcaption><b>The case for going forecast-free.</b> Model-predictive control is excellent with a perfect forecast, but its safety degrades as forecast noise grows. The RL controller uses no forecast at all (flat band) and, by ~15% noise, the two become statistically indistinguishable — a realistic operating point.</figcaption>
+        </figure>
+
+        <figure class="figure reveal">
+          <div class="figure__frame figure__frame--pad">
+            <img src="../assets/mp2/cohens_d_heatmap.png" alt="Heatmap of Cohen's d effect sizes comparing the RL controller against MPC variants across eight metrics" loading="lazy" />
+          </div>
+          <figcaption><b>Effect sizes at a glance.</b> Paired Cohen's d for the RL controller versus each MPC variant across eight metrics, with significance markers — the quantitative backbone behind the headline claims.</figcaption>
+        </figure>
+
+        <div class="callout reveal">
+          <p>
+            <strong>Small enough for the real board.</strong> The trained policy quantises to about 76 KB and
+            runs in 2.7 ms — comfortably inside a 5 € ESP32-S3 microcontroller. The controller that wins in
+            simulation is also the one that could actually ship on the hardware it was designed for.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECH -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">Technology</p>
+        <h2>A reproducible research stack.</h2>
+        <div class="tags reveal">
+          <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Ray RLlib</span><span class="tag">PettingZoo</span><span class="tag">Gymnasium</span><span class="tag">cvxpy · OSQP</span><span class="tag">SciPy</span><span class="tag">scikit-optimize</span><span class="tag">MQTT · Modbus (HIL)</span><span class="tag">pytest</span>
+        </div>
+        <div class="prose reveal" style="margin-top:30px">
+          <h3>Scope &amp; honesty</h3>
+          <p>
+            These are simulation results, reported on the clean, post-audit run as the canonical numbers;
+            sim-to-real transfer to the physical node is future work. The fastest control setting remains a
+            weak spot, and domain randomisation helps unevenly across stress scenarios — all stated openly in
+            the write-up rather than hidden behind the best configuration. The project is being prepared toward
+            a venue such as IEEE PES ISGT Europe or ACM e-Energy.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT -->
+    <nav class="next-project">
+      <div class="wrap">
+        <a href="smart-energy-node.html">
+          <span>
+            <div class="np-label">Next project</div>
+            <div class="np-title">Smart Energy Node</div>
+          </span>
+          <svg class="np-arrow" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </nav>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <small>© <span data-year>2026</span> Amar Akram · Built with care in Bielefeld.</small>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="../index.html#work">Work</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="mailto:amar.akram_ali@hsbi.de">Email</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
