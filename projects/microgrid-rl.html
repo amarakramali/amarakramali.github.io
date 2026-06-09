@@ -152,6 +152,83 @@
             confidence interval and a paired significance test with effect sizes.
           </p>
         </div>
+
+        <figure class="figure reveal">
+          <div class="figure__frame figure__frame--pad">
+            <svg class="rsvg" viewBox="0 0 960 420" role="img" aria-label="Control-loop diagram: four agents for PV, wind, biogas and battery send actions through an action-projection safety shield into the DC microgrid environment; a shared 21-dimensional observation and common reward flow back to all agents.">
+              <text class="t-title" x="10" y="20">Control loop — four policies, one safety shield</text>
+              <!-- shared observation feedback (env -> agents) -->
+              <path class="s-line" fill="none" stroke-dasharray="5 6" d="M821,130 V44 H110 V51"/>
+              <path class="f-acc" d="M110,60 l-4.5,-9 h9 z"/>
+              <text class="t-faint" x="465" y="36" text-anchor="middle">shared 21-dim observation &#183; common reward</text>
+              <!-- agents -->
+              <g>
+                <rect class="box" x="20" y="58" width="180" height="64" rx="10"/>
+                <text class="t-ink" x="110" y="84" text-anchor="middle">PV agent &#183; &#960;1</text>
+                <text class="t-faint" x="110" y="104" text-anchor="middle">curtailable solar</text>
+              </g>
+              <g>
+                <rect class="box" x="20" y="152" width="180" height="64" rx="10"/>
+                <text class="t-ink" x="110" y="178" text-anchor="middle">Wind agent &#183; &#960;2</text>
+                <text class="t-faint" x="110" y="198" text-anchor="middle">hub-height power law</text>
+              </g>
+              <g>
+                <rect class="box" x="20" y="246" width="180" height="64" rx="10"/>
+                <text class="t-ink" x="110" y="272" text-anchor="middle">Biogas agent &#183; &#960;3</text>
+                <text class="t-faint" x="110" y="292" text-anchor="middle">ramps &#183; min run-time</text>
+              </g>
+              <g>
+                <rect class="box" x="20" y="340" width="180" height="64" rx="10"/>
+                <text class="t-ink" x="110" y="366" text-anchor="middle">Battery agent &#183; &#960;4</text>
+                <text class="t-faint" x="110" y="386" text-anchor="middle">SoC-safe charging</text>
+              </g>
+              <!-- action arrows into the shield -->
+              <path class="s-acc flow" fill="none" stroke-width="1.5" d="M200,90 H340 V160 H409"/>
+              <path class="f-acc" d="M418,160 l-9,-4.5 v9 z"/>
+              <path class="s-acc flow" fill="none" stroke-width="1.5" d="M200,184 H409"/>
+              <path class="f-acc" d="M418,184 l-9,-4.5 v9 z"/>
+              <path class="s-acc flow" fill="none" stroke-width="1.5" d="M200,278 H409"/>
+              <path class="f-acc" d="M418,278 l-9,-4.5 v9 z"/>
+              <path class="s-acc flow" fill="none" stroke-width="1.5" d="M200,372 H340 V302 H409"/>
+              <path class="f-acc" d="M418,302 l-9,-4.5 v9 z"/>
+              <!-- safety shield -->
+              <g>
+                <rect class="box box--acc" x="420" y="130" width="190" height="200" rx="12" stroke-width="1.5"/>
+                <path class="f-soft s-acc" stroke-width="1.5" d="M515,148 l17,7 v15 c0,13 -8.5,21 -17,25 c-8.5,-4 -17,-12 -17,-25 v-15 z"/>
+                <polyline class="s-acc" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="508,172 513,177 523,165"/>
+                <text class="t-ink" x="515" y="232" text-anchor="middle">Action shield</text>
+                <text class="t-faint" x="515" y="252" text-anchor="middle">projects any unsafe action</text>
+                <text class="t-faint" x="515" y="268" text-anchor="middle">to the nearest safe one</text>
+                <text class="t-acc" x="515" y="296" text-anchor="middle">3 theorems &#183; 64k tests</text>
+              </g>
+              <!-- safe actions into the environment -->
+              <path class="s-acc flow" fill="none" stroke-width="2.5" d="M610,230 H692"/>
+              <path class="f-acc" d="M702,230 l-10,-5 v10 z"/>
+              <text class="t-faint" x="655" y="218" text-anchor="middle">safe actions</text>
+              <!-- environment -->
+              <g>
+                <rect class="box" x="702" y="130" width="238" height="200" rx="12"/>
+                <text class="t-ink" x="821" y="158" text-anchor="middle">DC microgrid env</text>
+                <text class="t-faint" x="821" y="176" text-anchor="middle">digital twin of the node</text>
+                <path class="s-acc lineglow" stroke-width="3" stroke-linecap="round" fill="none" d="M760,196 V310"/>
+                <circle class="f-acc" cx="760" cy="215" r="4"/>
+                <path class="s-line" d="M760,215 H800"/>
+                <text class="t-faint" x="806" y="219">supercap 22.5 F</text>
+                <circle class="f-acc" cx="760" cy="250" r="4"/>
+                <path class="s-line" d="M760,250 H800"/>
+                <text class="t-faint" x="806" y="254">critical load</text>
+                <circle class="f-acc" cx="760" cy="285" r="4"/>
+                <path class="s-line" d="M760,285 H800"/>
+                <text class="t-faint" x="806" y="289">flex load &#183; PWM</text>
+              </g>
+              <text class="t-acc" x="821" y="352" text-anchor="middle">V_bus floats free &#8212; like grid frequency</text>
+            </svg>
+          </div>
+          <figcaption><b>The control loop.</b> Each source runs its own PPO policy over a shared
+            21-dimensional observation; a training-free shield projects unsafe commands to the nearest
+            admissible ones before they reach the bus. The environment is the faithful digital twin of the
+            <a href="smart-energy-node.html">Smart Energy Node</a> hardware.</figcaption>
+        </figure>
       </div>
     </section>
 

@@ -802,6 +802,49 @@ section { padding-block: clamp(56px, 9vw, 104px); position: relative; }
 .cc-foot { font-size: 12.5px; color: var(--faint); margin-top: 16px; }
 @media (max-width: 540px) { .bar-row { grid-template-columns: 96px 1fr 52px; gap: 9px; } .bar-row__label { font-size: 11.5px; } }
 
+/* ---------- Inline result graphics (theme-aware SVGs) ---------- */
+.rsvg { width: 100%; height: auto; display: block; }
+.rsvg text { font-family: var(--font-mono); letter-spacing: .02em; }
+.rsvg .t-title { fill: var(--muted); font-size: 12.5px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; }
+.rsvg .t-ink { fill: var(--ink); font-size: 12.5px; font-weight: 600; }
+.rsvg .t-muted { fill: var(--muted); font-size: 11.5px; }
+.rsvg .t-faint { fill: var(--faint); font-size: 10.5px; }
+.rsvg .t-acc { fill: var(--accent-ink); font-size: 11.5px; font-weight: 600; }
+.rsvg .t-copper { fill: var(--accent-2); font-size: 13.5px; font-weight: 600; }
+.rsvg .t-amber { fill: var(--amber); font-size: 11px; font-weight: 600; }
+.rsvg .box { fill: var(--surface); stroke: var(--line-strong); }
+.rsvg .box--acc { stroke: var(--accent); }
+.rsvg .s-line { stroke: var(--line-strong); }
+.rsvg .s-acc { stroke: var(--accent); }
+.rsvg .s-amber { stroke: var(--amber); }
+.rsvg .f-acc { fill: var(--accent); }
+.rsvg .f-mutedfill { fill: var(--line-strong); }
+.rsvg .f-band { fill: var(--band); }
+.rsvg .f-soft { fill: var(--accent-soft); }
+.rsvg .f-amber-soft { fill: var(--amber); opacity: .16; }
+.rsvg .f-success { fill: var(--success); }
+.rsvg .stop-a { stop-color: var(--accent-deep); }
+.rsvg .stop-b { stop-color: var(--accent); }
+.rsvg .stop-c1 { stop-color: var(--accent-2); }
+.rsvg .stop-c2 { stop-color: #F0B27A; }
+:root[data-theme="dark"] .rsvg .dotglow { filter: drop-shadow(0 0 6px var(--glow)); }
+:root[data-theme="dark"] .rsvg .lineglow { filter: drop-shadow(0 0 7px var(--glow)); }
+
+/* connectors: animated signal-flow dashes */
+.rsvg .flow { stroke-dasharray: 4 7; animation: rsvg-flow 1.3s linear infinite; }
+@keyframes rsvg-flow { to { stroke-dashoffset: -11; } }
+
+/* draw-on-reveal for marked paths (pathLength="1" set in markup) */
+.js .reveal .draw1 { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.js .reveal.in .draw1 { stroke-dashoffset: 0; transition: stroke-dashoffset 1.2s cubic-bezier(.3,0,.2,1) .15s; }
+
+/* chart-card bars grow when the card reveals */
+.js .chart-card.reveal .bar-fill { transition: width .9s cubic-bezier(.2,.7,.2,1) .1s; }
+.js .chart-card.reveal:not(.in) .bar-fill { width: 0 !important; }
+.js .chart-card.reveal.in .bar-row:nth-of-type(2) .bar-fill { transition-delay: .22s; }
+.js .chart-card.reveal.in .bar-row:nth-of-type(3) .bar-fill { transition-delay: .34s; }
+.js .chart-card.reveal.in .bar-row:nth-of-type(4) .bar-fill { transition-delay: .46s; }
+
 /* Callout */
 .callout {
   background: var(--accent-soft); border-radius: var(--r);
@@ -841,6 +884,9 @@ section { padding-block: clamp(56px, 9vw, 104px); position: relative; }
   .project:hover .project__media img,
   .project:hover .project__media svg { transform: none; }
   .kpi:hover { transform: none; }
+  .rsvg .flow { animation: none !important; }
+  .js .reveal .draw1 { stroke-dashoffset: 0 !important; transition: none !important; }
+  .js .chart-card.reveal .bar-fill { transition: none !important; }
   .led, .led::after, .brand__mark::after, .footer::before, .contact h2 .caret,
   .project:hover::after, .scroll-progress { animation: none !important; }
   .scroll-progress { display: none; }

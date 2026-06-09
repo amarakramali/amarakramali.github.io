@@ -165,6 +165,50 @@
             regulates the load by PWM, and streams live telemetry over MQTT to a PC for logging.
           </p>
         </div>
+
+        <figure class="figure reveal">
+          <div class="figure__frame figure__frame--pad">
+            <svg class="rsvg" viewBox="0 0 960 320" role="img" aria-label="Current-voltage characteristic of the diode-chain source: a flat current plateau that bends at a knee placed exactly at the 5.5-volt bus voltage, then drops steeply — the shape of a real solar panel's I-V curve.">
+              <text class="t-title" x="10" y="20">Diode-chain source &#8212; the engineered I&#8211;V knee</text>
+              <text class="t-faint" x="84" y="34">current (mA)</text>
+              <!-- plateau area up to the knee -->
+              <path class="f-band" d="M80,260 L80,71 C260,70 460,71 560,73 C650,75 705,82 740,102 L740,260 Z"/>
+              <!-- axes -->
+              <path class="s-line" fill="none" d="M80,40 V260 H920"/>
+              <!-- crosshair at the knee -->
+              <path class="s-line" stroke-dasharray="4 5" fill="none" d="M740,102 V260"/>
+              <path class="s-line" stroke-dasharray="4 5" fill="none" d="M80,102 H740"/>
+              <!-- I-V curve -->
+              <path class="s-acc draw1 lineglow" pathLength="1" fill="none" stroke-width="2.5" stroke-linecap="round" d="M80,71 C260,70 460,71 560,73 C650,75 705,82 740,102 C775,122 795,150 808,176 C822,204 838,234 850,260"/>
+              <!-- knee marker -->
+              <circle class="s-acc" fill="none" opacity=".35" cx="740" cy="102" r="10"/>
+              <circle class="f-acc dotglow" cx="740" cy="102" r="5.5"/>
+              <text class="t-ink" x="754" y="96">MPP knee</text>
+              <text class="t-faint" x="72" y="106" text-anchor="end">&#8776; 360</text>
+              <!-- x ticks -->
+              <path class="s-line" d="M80,260 V266 M200,260 V266 M320,260 V266 M440,260 V266 M560,260 V266 M680,260 V266 M800,260 V266 M920,260 V266"/>
+              <text class="t-faint" x="80" y="282" text-anchor="middle">0</text>
+              <text class="t-faint" x="200" y="282" text-anchor="middle">1</text>
+              <text class="t-faint" x="320" y="282" text-anchor="middle">2</text>
+              <text class="t-faint" x="440" y="282" text-anchor="middle">3</text>
+              <text class="t-faint" x="560" y="282" text-anchor="middle">4</text>
+              <text class="t-faint" x="680" y="282" text-anchor="middle">5</text>
+              <text class="t-acc" x="740" y="282" text-anchor="middle">5.5 V</text>
+              <text class="t-faint" x="800" y="282" text-anchor="middle">6</text>
+              <text class="t-faint" x="920" y="282" text-anchor="middle">7</text>
+              <!-- y ticks -->
+              <path class="s-line" d="M74,260 H80 M74,150 H80 M74,40 H80"/>
+              <text class="t-faint" x="68" y="264" text-anchor="end">0</text>
+              <text class="t-faint" x="68" y="154" text-anchor="end">250</text>
+              <text class="t-faint" x="68" y="44" text-anchor="end">500</text>
+              <text class="t-faint" x="920" y="304" text-anchor="end">bus voltage (V)</text>
+            </svg>
+          </div>
+          <figcaption><b>Why a diode chain?</b> The combined forward voltage of the series diodes reproduces a
+            solar panel's nonlinear I&#8211;V &#8220;knee&#8221; entirely in hardware. The bench sweep
+            (10&#8211;500 mA, two INA226 meters) fixed the exact diode count that lands the maximum-power knee
+            on the 5.5 V bus. Curve shown schematically.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -182,6 +226,41 @@
             <li><strong>Engineering targets</strong> set and tracked: energy-balance error under 2–3%, Modbus failure rate under 0.1% over 24 h, and dynamic response under one second.</li>
           </ul>
         </div>
+
+        <figure class="figure reveal">
+          <div class="figure__frame figure__frame--pad">
+            <svg class="rsvg" viewBox="0 0 960 235" role="img" aria-label="Energy balance of the modelled day: about 47.6 watt-hours of emulated generation against 64.4 watt-hours of load, leaving a 16.8 watt-hour deficit that storage and load control must bridge.">
+              <defs>
+                <linearGradient id="genGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop class="stop-a" offset="0"/><stop class="stop-b" offset="1"/>
+                </linearGradient>
+                <linearGradient id="loadGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop class="stop-c1" offset="0"/><stop class="stop-c2" offset="1"/>
+                </linearGradient>
+              </defs>
+              <text class="t-title" x="10" y="20">Energy balance &#8212; modelled day, Bielefeld weather</text>
+              <text class="t-muted" x="128" y="80" text-anchor="end">Generation</text>
+              <rect x="140" y="56" width="576" height="34" rx="6" fill="url(#genGrad)"/>
+              <text class="t-acc" x="716" y="50" text-anchor="end">47.6 Wh</text>
+              <rect class="f-amber-soft" x="716" y="56" width="203" height="34"/>
+              <rect class="s-amber" fill="none" stroke-dasharray="5 4" x="716" y="56" width="203" height="34"/>
+              <text class="t-amber" x="817" y="78" text-anchor="middle">&#8722;16.8 Wh</text>
+              <text class="t-muted" x="128" y="152" text-anchor="end">Load</text>
+              <rect x="140" y="130" width="780" height="34" rx="6" fill="url(#loadGrad)" opacity=".92"/>
+              <text class="t-copper" x="920" y="124" text-anchor="end">64.4 Wh</text>
+              <path class="s-line" d="M140,190 H920 M140,190 V196 M333.8,190 V196 M527.6,190 V196 M721.4,190 V196 M915.2,190 V196"/>
+              <text class="t-faint" x="140" y="210" text-anchor="middle">0</text>
+              <text class="t-faint" x="333.8" y="210" text-anchor="middle">16</text>
+              <text class="t-faint" x="527.6" y="210" text-anchor="middle">32</text>
+              <text class="t-faint" x="721.4" y="210" text-anchor="middle">48</text>
+              <text class="t-faint" x="915.2" y="210" text-anchor="middle">64 Wh</text>
+            </svg>
+          </div>
+          <figcaption><b>The storage problem, made concrete.</b> Over the modelled day the emulated sources
+            deliver &#8776;47.6 Wh against &#8776;64.4 Wh of demand &#8212; the dashed segment is the deficit
+            that the supercapacitor buffer and load control must bridge. Figures from the hour-by-hour
+            spreadsheet model behind the March 2026 measurement runs.</figcaption>
+        </figure>
 
         <div class="callout reveal">
           <p>
