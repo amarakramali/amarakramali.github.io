@@ -171,8 +171,13 @@
   --------------------------------------------------------------- */
   var canvas = document.querySelector(".hero__canvas");
   var heroSvg = document.querySelector(".hero__svg");
+  var heroCtx = null;
   if (canvas && !reduce && canvas.getContext) {
-    var ctx = canvas.getContext("2d");
+    // Brave's strict fingerprint shields can block 2D canvas — fall back to the static SVG.
+    try { heroCtx = canvas.getContext("2d"); } catch (e) { heroCtx = null; }
+  }
+  if (heroCtx) {
+    var ctx = heroCtx;
     var DPR = Math.min(window.devicePixelRatio || 1, 2);
     var W = 0, H = 0;
     var N = 96;
@@ -223,11 +228,12 @@
     resize();
 
     var mouseX = -9999, useCursor = finePointer;
-    canvas.parentElement.addEventListener("mousemove", function (e) {
+    var heroArea = canvas.closest(".hero") || canvas.parentElement;   // .hero__bg has pointer-events:none
+    heroArea.addEventListener("mousemove", function (e) {
       var r = canvas.getBoundingClientRect();
       mouseX = e.clientX - r.left;
     }, { passive: true });
-    canvas.parentElement.addEventListener("mouseleave", function () { mouseX = -9999; }, { passive: true });
+    heroArea.addEventListener("mouseleave", function () { mouseX = -9999; }, { passive: true });
 
     var sweep = 0;                 // 0..1 playhead position
     var last = 0, running = false, rafId = null;
@@ -244,11 +250,23 @@
       return b;
     }
 
+    function showStatic() {
+      stop();
+      canvas.classList.remove("live");
+      if (heroSvg) heroSvg.style.opacity = "";
+    }
+
     function draw(ts) {
       if (!running) return;
       var dt = ts - last;
       if (dt < 33) { rafId = requestAnimationFrame(draw); return; }   // ~30fps
       last = ts;
+      try { paint(ts, dt); }
+      catch (e) { showStatic(); return; }      // any canvas failure -> static SVG
+      rafId = requestAnimationFrame(draw);
+    }
+
+    function paint(ts, dt) {
       sweep += dt / 6400;            // full sweep ≈ 6.4s
       if (sweep > 1.08) sweep = -0.08;
 
@@ -315,16 +333,19 @@
         ctx.beginPath(); ctx.arc(sx, dotY, pr + 4, 0, Math.PI * 2); ctx.stroke();
         ctx.globalAlpha = 1;
       }
-
-      rafId = requestAnimationFrame(draw);
     }
 
     function start() { if (running) return; running = true; last = performance.now(); rafId = requestAnimationFrame(draw); }
     function stop() { running = false; if (rafId) cancelAnimationFrame(rafId); rafId = null; }
 
-    // activate: reveal canvas over the static SVG
+    // activate: reveal canvas over the static SVG, then size it while visible —
+    // the first resize() ran while the canvas was still display:none (0×0 rect)
     canvas.classList.add("live");
     if (heroSvg) heroSvg.style.opacity = "0";
+    resize();
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(function () { resize(); }).observe(canvas);
+    }
 
     // pause when hero scrolls off-screen
     if ("IntersectionObserver" in window) {
