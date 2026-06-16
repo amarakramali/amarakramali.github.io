@@ -223,6 +223,7 @@ section { padding-block: clamp(56px, 9vw, 104px); position: relative; }
 }
 .section-head.in h2::after { transform: scaleX(1); }
 .section-head p { color: var(--muted); margin-top: 22px; max-width: 56ch; }
+.section-head .eyebrow { color: var(--accent); margin-top: 0; }
 
 /* ---------- Scroll progress ---------- */
 .scroll-progress {

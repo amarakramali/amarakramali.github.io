@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Page not found · Amar Akram</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0A0E14" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      document.documentElement.classList.add('js');
+    })();
+  </script>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E5F74'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css?v=4" />
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap nav__inner">
+      <a class="brand" href="/" aria-label="Amar Akram — home">
+        <span class="brand__mark">AA</span>
+        <span class="brand__name">Amar Akram</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="/#work">Work</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
+        <a class="nav__cta" href="mailto:amar.akram_ali@hsbi.de">Email</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="detail-hero">
+      <div class="wrap">
+        <p class="eyebrow">Error · 404</p>
+        <h1>Signal lost.<span class="accent">_</span></h1>
+        <p class="detail-hero__sub">
+          This page could not be found — it may have moved or never existed. Let's get you back on the grid.
+        </p>
+        <div class="hero__actions" style="margin-top:28px">
+          <a class="btn btn--primary" href="/">Back to home
+            <svg class="btn__arrow" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="/#work">View projects</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__inner">
+      <small>© <span data-year>2026</span> Amar Akram · Built with care in Bielefeld.</small>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="/#work">Work</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
+        <a href="mailto:amar.akram_ali@hsbi.de">Email</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="/js/main.js?v=4"></script>
+</body>
+</html>
