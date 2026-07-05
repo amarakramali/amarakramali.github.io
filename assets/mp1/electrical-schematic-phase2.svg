@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Smart Energy Node Phase 2 simplified electrical schematic</title>
+  <desc id="desc">Four DPS3005 source emulators pass through isolated INA226 current sensors and MBR745 reverse-current diodes into a shared 5.5 volt bus. The bus connects to three PWM loads, a bus voltage sensor, protective devices, and a 7.5 farad 5.5 volt supercapacitor.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#0f766e"/></marker>
+    <style>
+      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#162235}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+      .title{font-size:34px;font-weight:750;letter-spacing:-.6px}.sub{font-size:15px;fill:#65758b}.label{font-size:16px;font-weight:700}.small{font-size:12.5px;fill:#64748b}.tiny{font-size:11px;fill:#76869a}
+      .wire{stroke:#172033;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}.bus{stroke:#0f766e;stroke-width:8;fill:none;stroke-linecap:round}.control{stroke:#7c3aed;stroke-width:2;fill:none;stroke-dasharray:7 7}.box{fill:#fff;stroke:#cbd5e1;stroke-width:1.5}.meter{fill:#eef2ff;stroke:#6366f1;stroke-width:2}.load{fill:#ecfeff;stroke:#0891b2;stroke-width:2}.storage{fill:#fff7ed;stroke:#ea580c;stroke-width:2}.source{fill:#f8fafc;stroke:#94a3b8;stroke-width:1.5}.ground{stroke:#172033;stroke-width:3}.accent{fill:#0f766e}.amber{fill:#d97706}.purple{fill:#7c3aed}
+    </style>
+  </defs>
+  <rect width="1600" height="900" rx="24" fill="#f8fafc"/>
+  <rect x="28" y="28" width="1544" height="844" rx="20" fill="#fff" stroke="#d8e1ec"/>
+  <text x="70" y="84" class="title">Smart Energy Node · electrical overview</text>
+  <text x="70" y="112" class="sub">Phase 2 · simplified power schematic · sensing and protection shown at their physical position</text>
+
+  <!-- source column -->
+  <g transform="translate(72 164)">
+    <rect width="238" height="88" rx="14" class="source"/><circle cx="34" cy="34" r="16" fill="#fbbf24"/><path d="M24 34h20M34 24v20M27 27l14 14M41 27L27 41" stroke="#fff" stroke-width="2"/>
+    <text x="62" y="34" class="label">PV emulator</text><text x="62" y="58" class="small mono">DPS3005 · Slave 1</text><text x="62" y="77" class="tiny">constant-current source</text>
+  </g>
+  <g transform="translate(72 292)">
+    <rect width="238" height="88" rx="14" class="source"/><circle cx="34" cy="34" r="16" fill="#38bdf8"/><path d="M34 20v28M34 34l12-7M34 34l-12-7M34 34v-14" stroke="#fff" stroke-width="2"/>
+    <text x="62" y="34" class="label">Wind emulator</text><text x="62" y="58" class="small mono">DPS3005 · Slave 2</text><text x="62" y="77" class="tiny">host-defined profile</text>
+  </g>
+  <g transform="translate(72 420)">
+    <rect width="238" height="88" rx="14" class="source"/><circle cx="34" cy="34" r="16" fill="#fb7185"/><path d="M27 42c14-6 5-13 11-20 8 11 4 19-4 23-4 2-7 0-7-3Z" fill="#fff"/>
+    <text x="62" y="34" class="label">Biogas emulator</text><text x="62" y="58" class="small mono">DPS3005 · Slave 3</text><text x="62" y="77" class="tiny">ramp-limited output</text>
+  </g>
+  <g transform="translate(72 548)">
+    <rect width="238" height="88" rx="14" class="source"/><rect x="20" y="21" width="30" height="24" rx="4" fill="#22c55e"/><rect x="50" y="29" width="4" height="8" fill="#22c55e"/><path d="M29 33h12M35 27v12" stroke="#fff" stroke-width="2"/>
+    <text x="62" y="34" class="label">Battery emulator</text><text x="62" y="58" class="small mono">DPS3005 · Slave 4</text><text x="62" y="77" class="tiny">SOC-limited discharge</text>
+  </g>
+
+  <!-- source measurement and blocking paths -->
+  <g>
+    <path class="wire" d="M310 208H351M409 208H484M540 208H724"/>
+    <path class="wire" d="M310 336H351M409 336H484M540 336H724"/>
+    <path class="wire" d="M310 464H351M409 464H484M540 464H724"/>
+    <path class="wire" d="M310 592H351M409 592H484M540 592H724"/>
+    <g><circle cx="380" cy="208" r="29" class="meter"/><text x="380" y="214" text-anchor="middle" class="label purple">A</text><text x="380" y="251" text-anchor="middle" class="tiny mono">CH3 · 0x40</text></g>
+    <g><circle cx="380" cy="336" r="29" class="meter"/><text x="380" y="342" text-anchor="middle" class="label purple">A</text><text x="380" y="379" text-anchor="middle" class="tiny mono">CH2 · 0x40</text></g>
+    <g><circle cx="380" cy="464" r="29" class="meter"/><text x="380" y="470" text-anchor="middle" class="label purple">A</text><text x="380" y="507" text-anchor="middle" class="tiny mono">CH0 · 0x40</text></g>
+    <g><circle cx="380" cy="592" r="29" class="meter"/><text x="380" y="598" text-anchor="middle" class="label purple">A</text><text x="380" y="635" text-anchor="middle" class="tiny mono">CH1 · 0x40</text></g>
+    <!-- MBR745 conventional diode symbols -->
+    <g transform="translate(484 185)"><path d="M0 0v46l42-23Z" fill="#fff" stroke="#172033" stroke-width="3"/><path d="M44 0v46" class="wire"/><text x="28" y="64" text-anchor="middle" class="tiny mono">MBR745</text></g>
+    <g transform="translate(484 313)"><path d="M0 0v46l42-23Z" fill="#fff" stroke="#172033" stroke-width="3"/><path d="M44 0v46" class="wire"/><text x="28" y="64" text-anchor="middle" class="tiny mono">MBR745</text></g>
+    <g transform="translate(484 441)"><path d="M0 0v46l42-23Z" fill="#fff" stroke="#172033" stroke-width="3"/><path d="M44 0v46" class="wire"/><text x="28" y="64" text-anchor="middle" class="tiny mono">MBR745</text></g>
+    <g transform="translate(484 569)"><path d="M0 0v46l42-23Z" fill="#fff" stroke="#172033" stroke-width="3"/><path d="M44 0v46" class="wire"/><text x="28" y="64" text-anchor="middle" class="tiny mono">MBR745</text></g>
+  </g>
+
+  <!-- PV shaping shunt from measured PV node -->
+  <g>
+    <circle cx="445" cy="208" r="5" fill="#172033"/><path class="wire" d="M445 208V690H532"/>
+    <rect x="532" y="660" width="172" height="63" rx="12" class="storage"/><text x="618" y="685" text-anchor="middle" class="label amber">8× 1N5408</text><text x="618" y="707" text-anchor="middle" class="small">PV shunt · GPIO41 bypass</text>
+    <path class="wire" d="M704 690H724"/>
+  </g>
+
+  <!-- shared bus -->
+  <path class="bus" d="M730 174V714"/>
+  <text x="751" y="444" transform="rotate(-90 751 444)" text-anchor="middle" class="label accent">SHARED 5.5 V DC BUS</text>
+  <circle cx="730" cy="208" r="6" class="accent"/><circle cx="730" cy="336" r="6" class="accent"/><circle cx="730" cy="464" r="6" class="accent"/><circle cx="730" cy="592" r="6" class="accent"/>
+
+  <!-- bus sensor -->
+  <path class="wire" d="M730 176H830"/><circle cx="862" cy="176" r="29" class="meter"/><text x="862" y="182" text-anchor="middle" class="label purple">V</text><text x="862" y="217" text-anchor="middle" class="tiny mono">BUS · CH7 @ 0x41</text>
+
+  <!-- supercapacitor branch -->
+  <g>
+    <path class="wire" d="M730 258H920V302"/><path class="wire" d="M900 302H940M900 318H940"/><path class="wire" d="M920 318V744"/>
+    <rect x="840" y="354" width="160" height="104" rx="14" class="storage"/>
+    <text x="920" y="384" text-anchor="middle" class="label amber">7.5 F / 5.5 V</text><text x="920" y="408" text-anchor="middle" class="small">supercapacitor buffer</text><text x="920" y="432" text-anchor="middle" class="tiny">PPTC · TVS P6KE6.8A</text>
+    <text x="947" y="306" class="small">+</text><text x="947" y="323" class="small">−</text>
+  </g>
+
+  <!-- three low-side PWM load branches -->
+  <g>
+    <path class="wire" d="M730 284H1080V320"/><circle cx="1080" cy="349" r="27" class="meter"/><text x="1080" y="355" text-anchor="middle" class="label purple">A</text><path class="wire" d="M1080 376V402"/>
+    <rect x="1010" y="402" width="140" height="76" rx="12" class="load"/><text x="1080" y="431" text-anchor="middle" class="label">Critical load</text><text x="1080" y="455" text-anchor="middle" class="small mono">INA CH4 · Q1</text><path class="wire" d="M1080 478V744"/>
+    <path class="wire" d="M730 528H1270V320"/><circle cx="1270" cy="349" r="27" class="meter"/><text x="1270" y="355" text-anchor="middle" class="label purple">A</text><path class="wire" d="M1270 376V402"/>
+    <rect x="1200" y="402" width="140" height="76" rx="12" class="load"/><text x="1270" y="431" text-anchor="middle" class="label">Flexible load</text><text x="1270" y="455" text-anchor="middle" class="small mono">8 Ω · CH6 · Q2</text><path class="wire" d="M1270 478V744"/>
+    <path class="wire" d="M730 638H1450V402"/>
+    <rect x="1380" y="402" width="140" height="76" rx="12" class="load"/><text x="1450" y="431" text-anchor="middle" class="label">Charge emulator</text><text x="1450" y="455" text-anchor="middle" class="small mono">10 Ω · Q3</text><path class="wire" d="M1450 478V744"/>
+  </g>
+
+  <!-- ground rail -->
+  <path class="wire" d="M650 744H1510"/><g class="ground"><path d="M690 744v22M672 766h36M678 775h24M685 784h10"/><path d="M920 744v22M902 766h36M908 775h24M915 784h10"/><path d="M1080 744v22M1062 766h36M1068 775h24M1075 784h10"/><path d="M1270 744v22M1252 766h36M1258 775h24M1265 784h10"/><path d="M1450 744v22M1432 766h36M1438 775h24M1445 784h10"/></g>
+
+  <!-- controller -->
+  <g>
+    <rect x="72" y="736" width="452" height="94" rx="14" fill="#f5f3ff" stroke="#7c3aed" stroke-width="2"/>
+    <text x="96" y="770" class="label purple">ESP32-S3 · control &amp; safety</text><text x="96" y="797" class="small mono">Modbus TX18/RX17 · I²C SDA38/SCL47 · PWM GPIO13/12/11</text>
+    <path class="control" d="M298 736V672H218V636"/><text x="310" y="688" class="tiny purple">Modbus to DPS 1–4</text>
+    <path class="control" d="M524 786H1000V478"/><path class="control" d="M1000 612H1190V478"/><path class="control" d="M1190 612H1370V478"/><text x="786" y="777" class="tiny purple">PWM / I²C control layer</text>
+  </g>
+  <text x="70" y="854" class="tiny mono">Power path: source → isolated INA226 → MBR745 → bus · simplified for communication; use the Phase 2 connection plan for assembly</text>
+</svg>
