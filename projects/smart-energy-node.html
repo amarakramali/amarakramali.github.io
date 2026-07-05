@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Energy Node — a benchtop DC-microgrid testbed · Amar Akram</title>
-  <meta name="description" content="Smart Energy Node: a benchtop DC-microgrid testbed that emulates renewable sources, storage and dynamic loads in real hardware — an ESP32-S3 platform for grid-control experiments." />
+  <title>Smart Energy Node — Phase 2 hardware testbed · Amar Akram</title>
+  <meta name="description" content="Smart Energy Node: a four-source, 5.5 V DC-microgrid testbed with isolated sensing, programmable loads, measured PV emulation and an ESP32-S3 MQTT hardware interface." />
   <meta name="author" content="Amar Akram" />
   <meta name="theme-color" content="#0A0E14" />
   <link rel="canonical" href="https://amarakramali.github.io/projects/smart-energy-node.html" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://amarakramali.github.io/projects/smart-energy-node.html" />
-  <meta property="og:title" content="Smart Energy Node — a benchtop DC-microgrid testbed" />
-  <meta property="og:description" content="A benchtop DC-microgrid testbed that emulates renewable sources, storage and dynamic loads in real hardware — an ESP32-S3 platform for grid-control experiments." />
+  <meta property="og:title" content="Smart Energy Node — Phase 2 hardware testbed" />
+  <meta property="og:description" content="A four-source, 5.5 V DC-microgrid testbed with isolated sensing, programmable loads, measured PV emulation and an ESP32-S3 MQTT hardware interface." />
   <meta property="og:image" content="https://amarakramali.github.io/assets/og-cover.png" />
   <meta property="og:image:alt" content="Amar Akram — Smart Grids &amp; Machine Learning portfolio" />
   <meta property="og:image:width" content="1200" />
@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=4" />
+  <link rel="stylesheet" href="../css/style.css?v=6" />
   <script>
     (function () {
       try {
@@ -63,262 +63,242 @@
       </a>
     </div>
 
-    <!-- HERO -->
-    <section class="detail-hero">
+    <section class="detail-hero mp1-detail-hero">
       <div class="wrap">
-        <p class="detail-hero__cat">Hardware · Embedded systems</p>
+        <div class="mp1-kicker-row">
+          <p class="detail-hero__cat">Hardware · Embedded systems · Power electronics</p>
+          <span class="phase-pill"><i></i> Phase 2 · commissioning</span>
+        </div>
         <h1>Smart Energy Node</h1>
         <p class="detail-hero__sub">
-          A small, fully instrumented benchtop DC-microgrid testbed that emulates renewable sources, storage
-          and dynamic loads in real hardware — a safe, reproducible platform for studying AI-based grid control.
+          A four-source DC-microgrid testbed that turns grid-control algorithms into measurable hardware:
+          programmable generation, isolated sensing, dynamic loads and a protected 5.5 V bus, all behind one MQTT interface.
         </p>
 
         <dl class="meta-row">
-          <div><dt>Role</dt><dd>Solo — design, build &amp; test</dd></div>
+          <div><dt>Role</dt><dd>Solo — architecture, firmware &amp; test</dd></div>
           <div><dt>Context</dt><dd>Master's project (MP1), HSBI</dd></div>
           <div><dt>Supervisor</dt><dd>Prof. Dr. Jörn Loviscach</dd></div>
-          <div><dt>Discipline</dt><dd>Power electronics · Embedded</dd></div>
-          <div><dt>Status</dt><dd>In progress · built &amp; measured (2026)</dd></div>
+          <div><dt>Focus</dt><dd>Hardware abstraction · HIL</dd></div>
+          <div><dt>Status</dt><dd>Work in progress · Phase 2</dd></div>
         </dl>
       </div>
     </section>
 
-    <!-- STATUS / WORK IN PROGRESS -->
     <div class="wrap">
-      <div class="callout reveal" style="margin-top:6px">
-        <p><strong><span aria-hidden="true">🚧</span> Work in progress.</strong> This Master's project (MP1) is still ongoing — the results and figures shown here are preliminary and are being updated over time as the work progresses.</p>
-      </div>
-    </div>
-
-    <!-- LEAD IMAGE -->
-    <div class="wrap">
-      <figure class="figure reveal">
-        <div class="figure__frame figure__frame--pad" style="background:#FFFFFF">
-          <img src="../assets/mp1/overview.png?v=2" alt="Simplified system overview: four sources (solar, wind, biomass, battery), each with a diode and ammeter, feeding a shared DC bus with PWM-controlled loads" />
+      <figure class="figure figure--hero reveal">
+        <div class="figure__frame mp1-architecture-frame">
+          <a class="figure__zoom" href="../assets/mp1/system-architecture-phase2.svg" target="_blank" rel="noopener" title="Open full-size architecture diagram">
+            <img src="../assets/mp1/system-architecture-phase2.svg" alt="Phase 2 system architecture: four DPS3005 sources feed a shared 5.5 volt bus through isolated INA226 sensors and MBR745 diodes; an ESP32-S3 controls sensing, loads and MQTT." />
+          </a>
         </div>
-        <figcaption><b>System overview.</b> Four emulated sources — solar, wind, biogas and battery — each metered and feeding a shared DC bus, which supplies two independently PWM-controlled loads. Bus voltage is the single shared signal every source must help regulate.</figcaption>
+        <figcaption><b>The current Phase 2 architecture.</b> Power flows left to right; the lower layer separates control and measurement. Pin numbers, Modbus slaves and TCA9548A channels match the latest firmware and commissioning notes.</figcaption>
       </figure>
     </div>
 
-    <!-- STATS -->
-    <div class="wrap" style="margin-top:38px">
+    <div class="wrap mp1-stats-wrap">
       <div class="stats reveal">
-        <div class="stat"><div class="stat__num">5.5<small>V</small></div><div class="stat__label">shared DC-bus voltage — the testbed's "grid frequency"</div></div>
-        <div class="stat"><div class="stat__num">22.5<small>F</small></div><div class="stat__label">supercapacitor storage — ≈ 86 s of bridging at 1 W</div></div>
-        <div class="stat"><div class="stat__num">50<small>Hz</small></div><div class="stat__label">full read of all power sensors in under 20 ms</div></div>
-        <div class="stat"><div class="stat__num">≈160<small>€</small></div><div class="stat__label">total parts cost of the built node</div></div>
+        <div class="stat"><div class="stat__num">5.5<small>V</small></div><div class="stat__label">nominal shared DC bus and central state variable</div></div>
+        <div class="stat"><div class="stat__num">4<small>×</small></div><div class="stat__label">independently addressed DPS3005 source channels</div></div>
+        <div class="stat"><div class="stat__num">7/7</div><div class="stat__label">INA226 channels detected in the latest full boot scan</div></div>
+        <div class="stat"><div class="stat__num">8<small>×</small></div><div class="stat__label">1N5408 diodes selected from measured I–V curves</div></div>
       </div>
     </div>
 
-    <!-- OVERVIEW -->
     <section class="block">
       <div class="wrap">
-        <p class="block__label">Overview</p>
-        <div class="prose reveal">
-          <p>
-            The energy transition is replacing a few big power plants with thousands of small, decentralized
-            ones — rooftop solar, wind, biogas, home batteries — that must somehow form one stable grid. The
-            research labs that study this with hardware-in-the-loop setups cost six figures. The
-            <strong>Smart Energy Node</strong> shrinks the core idea down to a lab bench: a real, measurable DC
-            microgrid you can hold in your hands, built as the physical foundation for the reinforcement-learning
-            controllers in my <a href="microgrid-rl.html">companion project</a>.
-          </p>
+        <p class="block__label">Purpose</p>
+        <div class="mp1-intro-grid">
+          <h2>Build the physical layer before trusting the controller.</h2>
+          <div class="prose reveal">
+            <p>
+              My <a href="microgrid-rl.html">companion MP2 project</a> compares multi-agent reinforcement learning with droop and model-predictive control in simulation. MP1 builds the physical target for that work: a small islanded DC grid whose voltage moves with the real balance of source and load current.
+            </p>
+            <p>
+              The key design choice is a clean hardware-abstraction layer. The host sends normalized actions; the ESP32-S3 translates them into source currents and load PWM, returns measured observations, and enforces safety independently of the controller under test.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- SYSTEM DESIGN -->
     <section class="block">
       <div class="wrap">
-        <p class="block__label">System design</p>
-        <h2>Six subsystems, one shared bus.</h2>
+        <p class="block__label">Power &amp; measurement path</p>
+        <h2>Every source is commanded, measured and isolated.</h2>
         <div class="prose reveal">
           <p>
-            The node is built as a hierarchical six-sheet schematic in Altium Designer, each sheet a
-            self-contained functional block. Together they take mains power in, run a microcontroller, emulate
-            a renewable source, buffer energy, drive a controllable load, and measure everything along the way.
-          </p>
-          <ul class="keylist">
-            <li><strong>Power supply</strong> — a MeanWell 48 V industrial supply feeding isolated 5 V rails and the ESP32's 3.3 V logic.</li>
-            <li><strong>Galvanic isolation &amp; RS485</strong> — an ADUM1201 digital isolator (2.5 kV) with a MAX13487E transceiver for a robust field bus.</li>
-            <li><strong>Microcontroller</strong> — an ESP32-S3 running FreeRTOS, splitting Wi-Fi/telemetry and real-time control across its two cores.</li>
-            <li><strong>Measurement</strong> — INA226 sensors on I²C reading voltage, current and power at every key node.</li>
-            <li><strong>Power path &amp; load</strong> — an IRLZ44N low-side MOSFET driving a fan-plus-resistor load by PWM, with flyback protection.</li>
-            <li><strong>Supercapacitor bank</strong> — the energy buffer that smooths the bus, protected by a resettable fuse and a TVS clamp.</li>
-          </ul>
-          <p>
-            The clever part is the source. Instead of simulating a solar panel in software, a programmable
-            supply in constant-current mode is paired with a passive chain of power diodes whose combined
-            forward voltage reproduces a real panel's nonlinear current–voltage curve — the characteristic
-            "knee" at the maximum-power point — entirely in hardware. It's a simple, robust trick adopted on
-            my supervisor's recommendation.
+            Each source follows the same physical chain: a DPS3005 operates as a programmable CC/CV source, an isolated INA226 measures the actual source current, and an MBR745 Schottky diode blocks reverse current before the channels meet at the bus. A TCA9548A resolves the repeated sensor addresses.
           </p>
         </div>
 
-        <div class="figure-grid reveal">
-          <figure class="figure"><div class="figure__frame"><img src="../assets/mp1/sheet1_power.svg" alt="Sheet 1 — power supply schematic" loading="lazy" /></div><figcaption>1 · Power supply</figcaption></figure>
-          <figure class="figure"><div class="figure__frame"><img src="../assets/mp1/sheet2_isolation.svg" alt="Sheet 2 — galvanic isolation and RS485 schematic" loading="lazy" /></div><figcaption>2 · Isolation &amp; RS485</figcaption></figure>
-          <figure class="figure"><div class="figure__frame"><img src="../assets/mp1/sheet3_mcu.svg" alt="Sheet 3 — microcontroller schematic" loading="lazy" /></div><figcaption>3 · Microcontroller</figcaption></figure>
-          <figure class="figure"><div class="figure__frame"><img src="../assets/mp1/sheet4_sensors.svg" alt="Sheet 4 — measurement schematic" loading="lazy" /></div><figcaption>4 · Measurement</figcaption></figure>
-          <figure class="figure"><div class="figure__frame"><img src="../assets/mp1/sheet5_powerpath.svg" alt="Sheet 5 — power path and load schematic" loading="lazy" /></div><figcaption>5 · Power path &amp; load</figcaption></figure>
-          <figure class="figure"><div class="figure__frame"><img src="../assets/mp1/sheet6_supercap.svg" alt="Sheet 6 — supercapacitor bank schematic" loading="lazy" /></div><figcaption>6 · Supercap bank</figcaption></figure>
+        <div class="mp1-flow reveal" aria-label="Source power path">
+          <div class="mp1-flow__step"><span>01</span><b>DPS3005</b><small>current set-point</small></div>
+          <i aria-hidden="true">→</i>
+          <div class="mp1-flow__step"><span>02</span><b>INA226</b><small>V · I · P measured</small></div>
+          <i aria-hidden="true">→</i>
+          <div class="mp1-flow__step"><span>03</span><b>MBR745</b><small>reverse-current block</small></div>
+          <i aria-hidden="true">→</i>
+          <div class="mp1-flow__step mp1-flow__step--bus"><span>04</span><b>5.5 V bus</b><small>shared dynamic state</small></div>
         </div>
+
+        <div class="mp1-table-wrap reveal">
+          <table class="mp1-map">
+            <thead><tr><th>Role</th><th>DPS slave</th><th>Sensor route</th><th>Control behaviour</th></tr></thead>
+            <tbody>
+              <tr><td><b>PV</b></td><td>1</td><td><code>CH3 @ 0x40</code></td><td>passive diode-shunt mode or bypass</td></tr>
+              <tr><td><b>Wind</b></td><td>2</td><td><code>CH2 @ 0x40</code></td><td>host-defined source profile</td></tr>
+              <tr><td><b>Biogas</b></td><td>3</td><td><code>CH0 @ 0x40</code></td><td>minimum output and ramp limit</td></tr>
+              <tr><td><b>Battery</b></td><td>4</td><td><code>CH1 @ 0x40</code></td><td>SOC-dependent charge/discharge limits</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <figure class="figure reveal" id="electrical-schematic">
+          <div class="figure__frame mp1-schematic-frame">
+            <a class="figure__zoom" href="../assets/mp1/electrical-schematic-phase2.svg" target="_blank" rel="noopener" title="Open full-size electrical schematic">
+              <img src="../assets/mp1/electrical-schematic-phase2.svg" alt="Simplified Phase 2 electrical schematic showing four source emulators, isolated INA226 sensors, MBR745 blocking diodes, the shared 5.5 volt bus, three PWM load branches and the 7.5 farad supercapacitor." loading="lazy" />
+            </a>
+          </div>
+          <figcaption><b>Simplified electrical schematic.</b> This restores the circuit-level view of the project and adds the missing 7.5 F / 5.5 V supercapacitor, protection, real Phase 2 sensor routes and the three PWM load branches.</figcaption>
+        </figure>
       </div>
     </section>
 
-    <!-- METHODS -->
     <section class="block">
       <div class="wrap">
-        <p class="block__label">Methods &amp; tools</p>
-        <h2>Simulated, characterised, then built.</h2>
+        <p class="block__label">Measured PV emulation</p>
+        <h2>Eight diodes put the MPP where the bus needs it.</h2>
         <div class="prose reveal">
           <p>
-            The design was de-risked before a single part was soldered. The circuit was simulated in LTspice,
-            and a Python model computed a single-diode solar curve from real Bielefeld weather data. To choose
-            the right hardware source, I ran a dedicated bench experiment — the "diode-chain" measurement —
-            sweeping current from 10 to 500 mA and deriving each diode's true current–voltage curve from two
-            INA226 sensors, to pick the exact number of diodes that places the knee at the 5.5 V bus.
-          </p>
-          <p>
-            A spreadsheet model balanced combined wind-and-solar generation against load hour by hour for a
-            full day, and the firmware — ESP32 with FreeRTOS — drives the source set-points over Modbus,
-            regulates the load by PWM, and streams live telemetry over MQTT to a PC for logging.
+            Instead of drawing an ideal PV curve in software, the hardware creates it with a constant-current source and a diode chain connected as a shunt. I swept four physical configurations with an isolated INA226, fitted the exponential branch, and evaluated their maximum-power point over the intended current range.
           </p>
         </div>
 
-        <figure class="figure reveal">
-          <div class="figure__frame figure__frame--pad">
-            <svg class="rsvg" viewBox="0 0 960 320" role="img" aria-label="Current-voltage characteristic of the diode-chain source: a flat current plateau that bends at a knee placed exactly at the 5.5-volt bus voltage, then drops steeply — the shape of a real solar panel's I-V curve.">
-              <text class="t-title" x="10" y="20">Diode-chain source &#8212; the engineered I&#8211;V knee</text>
-              <text class="t-faint" x="84" y="34">current (mA)</text>
-              <!-- plateau area up to the knee -->
-              <path class="f-band" d="M80,260 L80,71 C260,70 460,71 560,73 C650,75 705,82 740,102 L740,260 Z"/>
-              <!-- axes -->
+        <figure class="figure reveal" id="pv-knee">
+          <div class="figure__frame figure__frame--pad mp1-knee-frame">
+            <svg class="rsvg" viewBox="0 0 960 320" role="img" aria-label="Schematic current-voltage characteristic of the selected eight-diode PV emulator: a current plateau bends into a knee at a maximum-power point of 5.52 volts and then falls steeply.">
+              <text class="t-title" x="10" y="20">8× 1N5408 PV emulator &#8212; the engineered I&#8211;V knee</text>
+              <text class="t-faint" x="84" y="34">output current (mA)</text>
+              <path class="f-band" d="M80,260 L80,75 C255,73 445,74 560,77 C648,79 706,87 742,105 L742,260 Z"/>
               <path class="s-line" fill="none" d="M80,40 V260 H920"/>
-              <!-- crosshair at the knee -->
-              <path class="s-line" stroke-dasharray="4 5" fill="none" d="M740,102 V260"/>
-              <path class="s-line" stroke-dasharray="4 5" fill="none" d="M80,102 H740"/>
-              <!-- I-V curve -->
-              <path class="s-acc draw1 lineglow" pathLength="1" fill="none" stroke-width="2.5" stroke-linecap="round" d="M80,71 C260,70 460,71 560,73 C650,75 705,82 740,102 C775,122 795,150 808,176 C822,204 838,234 850,260"/>
-              <!-- knee marker -->
-              <circle class="s-acc" fill="none" opacity=".35" cx="740" cy="102" r="10"/>
-              <circle class="f-acc dotglow" cx="740" cy="102" r="5.5"/>
-              <text class="t-ink" x="754" y="96">MPP knee</text>
-              <text class="t-faint" x="72" y="106" text-anchor="end">&#8776; 360</text>
-              <!-- x ticks -->
+              <path class="s-line" stroke-dasharray="4 5" fill="none" d="M742,105 V260"/>
+              <path class="s-line" stroke-dasharray="4 5" fill="none" d="M80,105 H742"/>
+              <path class="s-acc draw1 lineglow" pathLength="1" fill="none" stroke-width="2.5" stroke-linecap="round" d="M80,75 C255,73 445,74 560,77 C648,79 706,87 742,105 C775,122 796,149 811,179 C826,211 840,239 853,260"/>
+              <circle class="s-acc" fill="none" opacity=".35" cx="742" cy="105" r="10"/>
+              <circle class="f-acc dotglow" cx="742" cy="105" r="5.5"/>
+              <text class="t-ink" x="756" y="99">MPP · 5.52 V</text>
+              <text class="t-faint" x="72" y="109" text-anchor="end">≈ 285</text>
+              <text class="t-muted" x="692" y="61" text-anchor="end">current-source region</text>
+              <text class="t-muted" x="825" y="146">diode shunt</text>
               <path class="s-line" d="M80,260 V266 M200,260 V266 M320,260 V266 M440,260 V266 M560,260 V266 M680,260 V266 M800,260 V266 M920,260 V266"/>
-              <text class="t-faint" x="80" y="282" text-anchor="middle">0</text>
-              <text class="t-faint" x="200" y="282" text-anchor="middle">1</text>
-              <text class="t-faint" x="320" y="282" text-anchor="middle">2</text>
-              <text class="t-faint" x="440" y="282" text-anchor="middle">3</text>
-              <text class="t-faint" x="560" y="282" text-anchor="middle">4</text>
-              <text class="t-faint" x="680" y="282" text-anchor="middle">5</text>
-              <text class="t-acc" x="740" y="282" text-anchor="middle">5.5 V</text>
-              <text class="t-faint" x="800" y="282" text-anchor="middle">6</text>
-              <text class="t-faint" x="920" y="282" text-anchor="middle">7</text>
-              <!-- y ticks -->
+              <text class="t-faint" x="80" y="282" text-anchor="middle">0</text><text class="t-faint" x="200" y="282" text-anchor="middle">1</text><text class="t-faint" x="320" y="282" text-anchor="middle">2</text><text class="t-faint" x="440" y="282" text-anchor="middle">3</text><text class="t-faint" x="560" y="282" text-anchor="middle">4</text><text class="t-faint" x="680" y="282" text-anchor="middle">5</text><text class="t-acc" x="742" y="282" text-anchor="middle">5.52 V</text><text class="t-faint" x="800" y="282" text-anchor="middle">6</text><text class="t-faint" x="920" y="282" text-anchor="middle">7</text>
               <path class="s-line" d="M74,260 H80 M74,150 H80 M74,40 H80"/>
-              <text class="t-faint" x="68" y="264" text-anchor="end">0</text>
-              <text class="t-faint" x="68" y="154" text-anchor="end">250</text>
-              <text class="t-faint" x="68" y="44" text-anchor="end">500</text>
+              <text class="t-faint" x="68" y="264" text-anchor="end">0</text><text class="t-faint" x="68" y="154" text-anchor="end">150</text><text class="t-faint" x="68" y="44" text-anchor="end">300</text>
               <text class="t-faint" x="920" y="304" text-anchor="end">bus voltage (V)</text>
             </svg>
           </div>
-          <figcaption><b>Why a diode chain?</b> The combined forward voltage of the series diodes reproduces a
-            solar panel's nonlinear I&#8211;V &#8220;knee&#8221; entirely in hardware. The bench sweep
-            (10&#8211;500 mA, two INA226 meters) fixed the exact diode count that lands the maximum-power knee
-            on the 5.5 V bus. Curve shown schematically.</figcaption>
+          <figcaption><b>Why the diode chain creates a knee.</b> Below the knee, almost all source current reaches the bus; above it, the parallel diode chain diverts current sharply. The marker uses the fitted Phase 2 result for 8× 1N5408 at 300 mA; the measured curves follow below.</figcaption>
         </figure>
+
+        <div class="mp1-result-grid">
+          <figure class="figure reveal">
+            <div class="figure__frame figure__frame--pad mp1-data-frame">
+              <a class="figure__zoom" href="../assets/mp1/diode-chain-measurements.png" target="_blank" rel="noopener" title="Open full-size measurement plot">
+                <img src="../assets/mp1/diode-chain-measurements.png" alt="Measured voltage-current curves for four physical diode-chain configurations, with the 50 milliamp knee marked." loading="lazy" />
+              </a>
+            </div>
+            <figcaption><b>Direct measurement, not a schematic curve.</b> Four configurations were swept on 18 June 2026. At 50 mA the measured knee moves from 4.72 V to 6.61 V as the chain grows.</figcaption>
+          </figure>
+          <figure class="figure reveal">
+            <div class="figure__frame figure__frame--pad mp1-data-frame">
+              <a class="figure__zoom" href="../assets/mp1/pv-characteristic-comparison.png" target="_blank" rel="noopener" title="Open full-size PV comparison plot">
+                <img src="../assets/mp1/pv-characteristic-comparison.png" alt="Model derived from the measured diode curves comparing PV output current and power for seven, eight and nine-diode configurations at 300 milliamps." loading="lazy" />
+              </a>
+            </div>
+            <figcaption><b>Model derived from the measurements.</b> At 300 mA, 8× 1N5408 places the MPP at 5.52 V. Seven diodes peak too early; nine make the source too stiff.</figcaption>
+          </figure>
+        </div>
+
+        <div class="mp1-decision reveal">
+          <div class="mp1-decision__value">8× <span>1N5408</span></div>
+          <div>
+            <h3>Selected configuration</h3>
+            <p>MPP range <b>5.2–5.68 V</b> for 100–500 mA, with <b>84–97%</b> of the source current still delivered to the bus at 5.5 V.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- RESULTS -->
     <section class="block">
       <div class="wrap">
-        <p class="block__label">Results &amp; deliverables</p>
-        <h2>A working testbed with real measurements.</h2>
-        <div class="prose reveal">
-          <ul class="keylist">
-            <li><strong>A functioning node</strong> that ran a simulated 48-hour day on real Bielefeld weather, with live voltage, current and power logged at both the source and the load.</li>
-            <li><strong>Real measurement data</strong> captured over two days in March 2026, recording the full source- and load-side electrical behaviour through a simulated day.</li>
-            <li><strong>A quantified energy balance</strong> — for the modelled day, emulated generation of ≈ 47.6 Wh against ≈ 64.4 Wh of load, making the storage-and-deficit problem concrete.</li>
-            <li><strong>A complete build package</strong> — a ten-page wiring and assembly guide with exact pin and address maps, a full bill of materials, and design checklists.</li>
-            <li><strong>Engineering targets</strong> set and tracked: energy-balance error under 2–3%, Modbus failure rate under 0.1% over 24 h, and dynamic response under one second.</li>
-          </ul>
+        <p class="block__label">Firmware &amp; safety</p>
+        <h2>A hardware API with its own guardrails.</h2>
+        <div class="mp1-feature-grid reveal">
+          <article><span>01</span><h3>Observe</h3><p>Seven isolated sensor routes publish bus voltage, source currents, load currents and validity masks over MQTT.</p></article>
+          <article><span>02</span><h3>Act</h3><p>Normalized host actions become source-current set-points, PWM load commands and a battery charge/discharge decision.</p></article>
+          <article><span>03</span><h3>Protect</h3><p>Overvoltage latching, undervoltage load shedding, current caps, E-stop and a heartbeat watchdog stay in firmware.</p></article>
+          <article><span>04</span><h3>Reset</h3><p>A guarded discharge path returns the supercapacitor to a known state before each repeatable experiment.</p></article>
         </div>
 
-        <figure class="figure reveal">
-          <div class="figure__frame figure__frame--pad">
-            <svg class="rsvg" viewBox="0 0 960 235" role="img" aria-label="Energy balance of the modelled day: about 47.6 watt-hours of emulated generation against 64.4 watt-hours of load, leaving a 16.8 watt-hour deficit that storage and load control must bridge.">
-              <defs>
-                <linearGradient id="genGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop class="stop-a" offset="0"/><stop class="stop-b" offset="1"/>
-                </linearGradient>
-                <linearGradient id="loadGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop class="stop-c1" offset="0"/><stop class="stop-c2" offset="1"/>
-                </linearGradient>
-              </defs>
-              <text class="t-title" x="10" y="20">Energy balance &#8212; modelled day, Bielefeld weather</text>
-              <text class="t-muted" x="128" y="80" text-anchor="end">Generation</text>
-              <rect x="140" y="56" width="576" height="34" rx="6" fill="url(#genGrad)"/>
-              <text class="t-acc" x="716" y="50" text-anchor="end">47.6 Wh</text>
-              <rect class="f-amber-soft" x="716" y="56" width="203" height="34"/>
-              <rect class="s-amber" fill="none" stroke-dasharray="5 4" x="716" y="56" width="203" height="34"/>
-              <text class="t-amber" x="817" y="78" text-anchor="middle">&#8722;16.8 Wh</text>
-              <text class="t-muted" x="128" y="152" text-anchor="end">Load</text>
-              <rect x="140" y="130" width="780" height="34" rx="6" fill="url(#loadGrad)" opacity=".92"/>
-              <text class="t-copper" x="920" y="124" text-anchor="end">64.4 Wh</text>
-              <path class="s-line" d="M140,190 H920 M140,190 V196 M333.8,190 V196 M527.6,190 V196 M721.4,190 V196 M915.2,190 V196"/>
-              <text class="t-faint" x="140" y="210" text-anchor="middle">0</text>
-              <text class="t-faint" x="333.8" y="210" text-anchor="middle">16</text>
-              <text class="t-faint" x="527.6" y="210" text-anchor="middle">32</text>
-              <text class="t-faint" x="721.4" y="210" text-anchor="middle">48</text>
-              <text class="t-faint" x="915.2" y="210" text-anchor="middle">64 Wh</text>
-            </svg>
-          </div>
-          <figcaption><b>The storage problem, made concrete.</b> Over the modelled day the emulated sources
-            deliver &#8776;47.6 Wh against &#8776;64.4 Wh of demand &#8212; the dashed segment is the deficit
-            that the supercapacitor buffer and load control must bridge. Figures from the hour-by-hour
-            spreadsheet model behind the March 2026 measurement runs.</figcaption>
-        </figure>
-
-        <div class="callout reveal">
-          <p>
-            <strong>From bench to brain.</strong> This node was always meant to be more than a demo — it is the
-            sim-to-real target for the multi-agent RL controllers. Designing the hardware and its digital twin
-            together is what makes it possible to claim a learned policy could actually run on the board.
-          </p>
+        <div class="mp1-codebar reveal">
+          <span><b>I²C</b> GPIO38 / GPIO47 · 400 kHz</span>
+          <span><b>Modbus</b> TX18 / RX17 · 9600 8N1</span>
+          <span><b>Loads</b> GPIO13 / 12 / 11 · PWM</span>
+          <span><b>Host</b> MQTT · actions / observations / health</span>
         </div>
       </div>
     </section>
 
-    <!-- TECH -->
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">Commissioning evidence</p>
+        <h2>What Phase 2 proves — and what it does not yet prove.</h2>
+        <div class="mp1-status-grid reveal">
+          <section class="mp1-status-card mp1-status-card--verified">
+            <div class="mp1-status-card__head"><span>Verified</span><b>Core paths</b></div>
+            <ul>
+              <li>All seven INA226 positions detected in the full boot scan.</li>
+              <li>TCA9548A channel and mixed-address map implemented in firmware.</li>
+              <li>All four DPS outputs addressed; set voltages matched INA readings within roughly 10 mV in the isolated test.</li>
+              <li>MQTT actions, observations, health telemetry and safe zero-action confirmed.</li>
+              <li>Physical diode-chain sweep and quantitative 8-diode selection completed.</li>
+            </ul>
+          </section>
+          <section class="mp1-status-card mp1-status-card--open">
+            <div class="mp1-status-card__head"><span>Open</span><b>System validation</b></div>
+            <ul>
+              <li>Verify the complete four-source power path under load.</li>
+              <li>Pulse-test and calibrate the final load-to-sensor assignments.</li>
+              <li>Replace blocking Modbus writes with a non-blocking state machine.</li>
+              <li>Resolve the missing DPS readback path or keep INA-based confirmation as the authority.</li>
+              <li>Run and evaluate the MP2 controllers on the physical closed loop.</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="callout reveal">
+          <p><strong>Why this distinction matters.</strong> The project has a working measurement and actuation foundation, but it is not presented as a finished HIL benchmark. That boundary is part of the engineering result, not a footnote.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="block">
       <div class="wrap">
         <p class="block__label">Technology</p>
         <h2>Toolchain.</h2>
         <div class="tags reveal">
-          <span class="tag">ESP32-S3</span><span class="tag">Embedded C / FreeRTOS</span><span class="tag">Altium Designer</span><span class="tag">LTspice</span><span class="tag">Modbus-RTU</span><span class="tag">I²C · INA226</span><span class="tag">MQTT</span><span class="tag">Python · Jupyter</span><span class="tag">Power electronics</span><span class="tag">Supercapacitor storage</span>
-        </div>
-        <div class="prose reveal" style="margin-top:30px">
-          <h3>Scope note</h3>
-          <p>
-            The project spans two layers: the single-source node that was physically built and measured, and an
-            expanded four-source design — adding wind, biogas and a battery with multiplexed sensing — that
-            becomes the full platform for the reinforcement-learning work. The figures above describe the
-            built node; the four-source version is the planned extension.
-          </p>
+          <span class="tag">ESP32-S3</span><span class="tag">C++ / PlatformIO</span><span class="tag">Power electronics</span><span class="tag">INA226</span><span class="tag">TCA9548A</span><span class="tag">Modbus RTU</span><span class="tag">MQTT</span><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">Matplotlib</span><span class="tag">Hardware-in-the-loop</span>
         </div>
       </div>
     </section>
 
-    <!-- NEXT -->
     <nav class="next-project">
       <div class="wrap">
-        <a href="netzpilot.html">
+        <a href="microgrid-rl.html">
           <span>
-            <div class="np-label">Back to start</div>
-            <div class="np-title">NetzPilot — Energy forecasting</div>
+            <div class="np-label">Continue to the controller</div>
+            <div class="np-title">Multi-Agent RL for Microgrid Control</div>
           </span>
           <svg class="np-arrow" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
@@ -330,10 +310,7 @@
     <div class="wrap footer__inner">
       <small>© <span data-year>2026</span> Amar Akram · Built with care in Bielefeld.</small>
       <nav class="footer__nav" aria-label="Footer">
-        <a href="../index.html#work">Work</a>
-        <a href="../index.html#about">About</a>
-        <a href="../index.html#contact">Contact</a>
-        <a href="mailto:amar.akram_ali@hsbi.de">Email</a>
+        <a href="../index.html#work">Work</a><a href="../index.html#about">About</a><a href="../index.html#contact">Contact</a><a href="mailto:amar.akram_ali@hsbi.de">Email</a>
       </nav>
     </div>
   </footer>

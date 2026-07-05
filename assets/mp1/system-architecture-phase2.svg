@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 860" role="img" aria-labelledby="title desc">
+  <title id="title">Smart Energy Node Phase 2 system architecture</title>
+  <desc id="desc">Four programmable sources feed a shared 5.5 volt DC bus through isolated current sensors and Schottky reverse-current diodes. The bus supplies two PWM loads, a battery charge emulator and a protected 7.5 farad supercapacitor. An ESP32-S3 controls Modbus, the sensor multiplexer, PWM and MQTT.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1320"/><stop offset="1" stop-color="#111c2c"/>
+    </linearGradient>
+    <linearGradient id="bus" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+    <linearGradient id="source" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#182436"/><stop offset="1" stop-color="#152b32"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7dd3fc"/>
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 z" fill="#a78bfa"/>
+    </marker>
+    <style>
+      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#e6edf6} .mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+      .eyebrow{font-size:14px;font-weight:700;letter-spacing:2.4px;fill:#5eead4}.title{font-size:34px;font-weight:700;letter-spacing:-.5px}
+      .sub{font-size:15px;fill:#91a3b8}.card{fill:#132033;stroke:#2a3b52;stroke-width:1.5}.source{fill:url(#source);stroke:#285364}
+      .load{fill:#111f31;stroke:#155e75}.storage{fill:#261e16;stroke:#b45309}.control{fill:#201a35;stroke:#7c3aed}.host{fill:#182231;stroke:#475569}
+      .name{font-size:19px;font-weight:700}.meta{font-size:13.5px;fill:#9fb0c3}.chip{fill:#0c1725;stroke:#30445d}.chiptext{font-size:12px;font-weight:650;fill:#b8c8da}
+      .power{stroke:#7dd3fc;stroke-width:3;fill:none;marker-end:url(#arrow)}.measure{stroke:#a78bfa;stroke-width:2;fill:none;stroke-dasharray:7 7;marker-end:url(#arrow-purple)}
+      .hair{stroke:#37516a;stroke-width:1.4;fill:none}.buslabel{font-size:15px;font-weight:800;letter-spacing:1.7px;fill:#062a2a}.note{font-size:12px;fill:#7890a8}
+    </style>
+  </defs>
+  <rect width="1440" height="860" rx="28" fill="url(#bg)"/>
+  <path d="M0 74H1440" stroke="#203149"/><circle cx="36" cy="37" r="5" fill="#2dd4bf" filter="url(#glow)"/>
+  <text x="56" y="42" class="eyebrow">MP1 / PHASE 2</text>
+  <text x="55" y="96" class="title">Four sources. One observable DC bus.</text>
+  <text x="55" y="124" class="sub">Actual 2026 wiring map · power path, sensing, control and safety layers</text>
+
+  <!-- Four source channels -->
+  <g transform="translate(55 165)">
+    <rect width="355" height="98" rx="16" class="source"/>
+    <circle cx="28" cy="28" r="8" fill="#fbbf24"/><text x="49" y="34" class="name">Photovoltaic</text>
+    <text x="24" y="61" class="meta">DPS3005 · Slave 1 · CC source</text><text x="24" y="83" class="meta mono">INA226  CH3 @ 0x40</text>
+  </g>
+  <g transform="translate(55 281)">
+    <rect width="355" height="98" rx="16" class="source"/>
+    <circle cx="28" cy="28" r="8" fill="#38bdf8"/><text x="49" y="34" class="name">Wind</text>
+    <text x="24" y="61" class="meta">DPS3005 · Slave 2 · CC source</text><text x="24" y="83" class="meta mono">INA226  CH2 @ 0x40</text>
+  </g>
+  <g transform="translate(55 397)">
+    <rect width="355" height="98" rx="16" class="source"/>
+    <circle cx="28" cy="28" r="8" fill="#fb7185"/><text x="49" y="34" class="name">Biogas</text>
+    <text x="24" y="61" class="meta">DPS3005 · Slave 3 · ramp-limited</text><text x="24" y="83" class="meta mono">INA226  CH0 @ 0x40</text>
+  </g>
+  <g transform="translate(55 513)">
+    <rect width="355" height="98" rx="16" class="source"/>
+    <circle cx="28" cy="28" r="8" fill="#4ade80"/><text x="49" y="34" class="name">Battery emulator</text>
+    <text x="24" y="61" class="meta">DPS3005 · Slave 4 · SOC model</text><text x="24" y="83" class="meta mono">INA226  CH1 @ 0x40</text>
+  </g>
+
+  <!-- Source protection and power bus -->
+  <g>
+    <path class="power" d="M410 214H667"/><path class="power" d="M410 330H667"/><path class="power" d="M410 446H667"/><path class="power" d="M410 562H667"/>
+    <g transform="translate(458 188)"><rect width="152" height="28" rx="14" class="chip"/><text x="76" y="19" text-anchor="middle" class="chiptext">MBR745 · reverse block</text></g>
+    <g transform="translate(458 304)"><rect width="152" height="28" rx="14" class="chip"/><text x="76" y="19" text-anchor="middle" class="chiptext">MBR745 · reverse block</text></g>
+    <g transform="translate(458 420)"><rect width="152" height="28" rx="14" class="chip"/><text x="76" y="19" text-anchor="middle" class="chiptext">MBR745 · reverse block</text></g>
+    <g transform="translate(458 536)"><rect width="152" height="28" rx="14" class="chip"/><text x="76" y="19" text-anchor="middle" class="chiptext">MBR745 · reverse block</text></g>
+    <rect x="668" y="165" width="76" height="446" rx="22" fill="url(#bus)" filter="url(#glow)"/>
+    <text x="706" y="362" transform="rotate(-90 706 362)" text-anchor="middle" class="buslabel">SHARED 5.5 V DC BUS</text>
+  </g>
+
+  <!-- Loads and storage -->
+  <g transform="translate(838 165)"><rect width="307" height="86" rx="15" class="load"/><text x="24" y="32" class="name">Critical load</text><text x="24" y="58" class="meta mono">PWM · GPIO13 · INA CH4</text></g>
+  <g transform="translate(838 268)"><rect width="307" height="86" rx="15" class="load"/><text x="24" y="32" class="name">Flexible load</text><text x="24" y="58" class="meta mono">8 Ω · PWM · GPIO12 · CH6</text></g>
+  <g transform="translate(838 371)"><rect width="307" height="86" rx="15" class="load"/><text x="24" y="32" class="name">Charge emulator</text><text x="24" y="58" class="meta mono">10 Ω · PWM · GPIO11</text></g>
+  <g transform="translate(838 474)"><rect width="307" height="137" rx="15" class="storage"/><text x="24" y="35" class="name" fill="#fed7aa">7.5 F buffer</text><text x="24" y="63" class="meta">5.5 V supercapacitor</text><text x="24" y="88" class="meta">TVS clamp · PPTC · reset discharge</text><text x="24" y="113" class="meta mono">Bus sense  CH7 @ 0x41</text></g>
+  <path class="power" d="M744 208H838"/><path class="power" d="M744 311H838"/><path class="power" d="M744 414H838"/><path class="power" d="M744 542H838"/>
+
+  <!-- PV shunt detail -->
+  <g transform="translate(1180 165)"><rect width="205" height="189" rx="15" class="card"/><text x="20" y="31" class="name">PV shaping branch</text>
+    <text x="20" y="60" class="meta">8 × 1N5408 in parallel</text><text x="20" y="82" class="meta">with the source output</text>
+    <path d="M28 118H177" stroke="#fbbf24" stroke-width="3"/><path d="M50 104v28m18-28v28m18-28v28m18-28v28m18-28v28m18-28v28m18-28v28" stroke="#fbbf24" stroke-width="4"/>
+    <text x="20" y="164" class="meta mono">MPP @ 300 mA: 5.52 V</text></g>
+  <path class="hair" d="M1145 207H1180"/>
+
+  <!-- Control layer -->
+  <g transform="translate(55 683)"><rect width="355" height="118" rx="18" class="control"/><text x="25" y="38" class="name">ESP32-S3 · hardware abstraction</text>
+    <text x="25" y="69" class="meta mono">I²C  SDA38 / SCL47</text><text x="25" y="92" class="meta mono">Modbus  TX18 / RX17 · 9600 8N1</text></g>
+  <g transform="translate(535 683)"><rect width="300" height="118" rx="18" class="control"/><text x="24" y="38" class="name">TCA9548A</text>
+    <text x="24" y="69" class="meta">Seven isolated INA226 channels</text><text x="24" y="92" class="meta mono">0x70 · mixed 0x40 / 0x41</text></g>
+  <g transform="translate(963 683)"><rect width="422" height="118" rx="18" class="host"/><text x="24" y="38" class="name">Host controller / future MP2 HIL</text>
+    <text x="24" y="69" class="meta">MQTT actions, observations, health and E-stop</text><text x="24" y="92" class="meta mono">Droop · MPC · MARL bridge</text></g>
+  <path class="measure" d="M410 742H535"/><text x="472" y="727" text-anchor="middle" class="note">I²C</text>
+  <path class="measure" d="M835 742H963"/><text x="899" y="727" text-anchor="middle" class="note">MQTT / WLAN</text>
+  <path class="measure" d="M232 683V642H222V611"/><text x="244" y="649" class="note">Modbus to DPS 1–4</text>
+  <path class="measure" d="M685 683V640H991V611"/><text x="807" y="658" class="note">sensor telemetry</text>
+  <text x="55" y="834" class="note mono">Power path = solid cyan · measurement/control = dashed violet · mappings follow the latest Phase 2 firmware and commissioning notes</text>
+</svg>
