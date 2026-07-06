@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NetzPilot — Day-ahead forecasting &amp; §14a coordination · Amar Akram</title>
-  <meta name="description" content="NetzPilot: a leakage-safe day-ahead load-forecasting and §14a grid-coordination tool for small municipal utilities, with calibrated P10/P50/P90 uncertainty bands. Beats the seasonal-naive baseline on 44 of 46 real grid load series." />
+  <meta name="description" content="NetzPilot: a leakage-safe day-ahead load-forecasting and §14a grid-coordination tool for small municipal utilities, with calibrated P10/P50/P90 uncertainty bands. Significantly beats the seasonal-naive baseline on 74 of 76 public grid load series." />
   <meta name="author" content="Amar Akram" />
   <meta name="theme-color" content="#0A0E14" />
   <link rel="canonical" href="https://amarakramali.github.io/projects/netzpilot.html" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://amarakramali.github.io/projects/netzpilot.html" />
   <meta property="og:title" content="NetzPilot — Day-ahead forecasting &amp; §14a coordination" />
-  <meta property="og:description" content="Leakage-safe day-ahead load forecasting with calibrated P10/P50/P90 bands and fair §14a curtailment — beats the seasonal-naive baseline on 44 of 46 real grid load series." />
+  <meta property="og:description" content="Leakage-safe day-ahead load forecasting with calibrated P10/P50/P90 bands and fair §14a curtailment — significantly beats the seasonal-naive baseline on 74 of 76 public grid load series." />
   <meta property="og:image" content="https://amarakramali.github.io/assets/og-cover.png" />
   <meta property="og:image:alt" content="Amar Akram — Smart Grids &amp; Machine Learning portfolio" />
   <meta property="og:image:width" content="1200" />
@@ -78,7 +78,7 @@
           <div><dt>Role</dt><dd>Solo — concept, ML &amp; engineering</dd></div>
           <div><dt>Field</dt><dd>Energy informatics</dd></div>
           <div><dt>Core methods</dt><dd>Quantile boosting · Conformal prediction</dd></div>
-          <div><dt>Validated on</dt><dd>46 real grid load series (DE + FR)</dd></div>
+          <div><dt>Validated on</dt><dd>76 public grid load series (DE + FR)</dd></div>
           <div><dt>Status</dt><dd>Working prototype, 2026</dd></div>
           <div><dt>Source</dt><dd><a href="https://github.com/amarakramali/netzpilot" target="_blank" rel="noopener">github.com/amarakramali/netzpilot</a></dd></div>
         </dl>
@@ -116,8 +116,8 @@
     <!-- STATS -->
     <div class="wrap" style="margin-top:38px">
       <div class="stats reveal">
-        <div class="stat"><div class="stat__num">44/46</div><div class="stat__label">real grid load series beaten vs. the seasonal-naive baseline (p&lt;0.05)</div></div>
-        <div class="stat"><div class="stat__num">+23.7<small>%</small></div><div class="stat__label">mean forecast-skill gain across all series</div></div>
+        <div class="stat"><div class="stat__num">74/76</div><div class="stat__label">public grid load series beaten vs. the seasonal-naive baseline (p&lt;0.05)</div></div>
+        <div class="stat"><div class="stat__num">+23.1<small>%</small></div><div class="stat__label">median forecast-skill gain across all series</div></div>
         <div class="stat"><div class="stat__num">3.36<small>%</small></div><div class="stat__label">MAPE on national load (SMARD, 2-year window)</div></div>
         <div class="stat"><div class="stat__num">−74.3<small>%</small></div><div class="stat__label">less curtailment energy under §14a re-dispatch</div></div>
       </div>
@@ -287,31 +287,30 @@
         <h2>It beats the baseline — and proves it.</h2>
         <div class="prose reveal" style="margin-bottom:30px">
           <p>
-            Across the 46 real load series, NetzPilot significantly outperforms the seasonal-naive baseline on
-            44 of them, with a mean skill gain of +23.7%. The chart below shows the improvement on four
-            representative series; all four gains are statistically significant.
+            In the public-data baseline from 2 July 2026, NetzPilot significantly outperforms the
+            seasonal-naive baseline on 74 of 76 value-hash-deduplicated load series, with a median skill gain
+            of +23.1%. The chart below shows the improvement on four representative series; all four gains are
+            statistically significant.
           </p>
         </div>
 
         <figure class="figure reveal" style="margin:0 0 30px">
           <div class="figure__frame figure__frame--pad">
-            <svg class="rsvg" viewBox="0 0 960 190" role="img" aria-label="Dot matrix of all 46 benchmark load series: 44 dots lit for a statistically significant skill gain over the seasonal-naive baseline, 2 dots muted for no significant gain.">
-              <text class="t-title" x="10" y="20">Benchmark — 46 real DE + FR load series</text>
-              <g>
-                <circle class="f-acc dotglow" cx="22" cy="70" r="9"/><circle class="f-acc dotglow" cx="63" cy="70" r="9"/><circle class="f-acc dotglow" cx="104" cy="70" r="9"/><circle class="f-acc dotglow" cx="145" cy="70" r="9"/><circle class="f-acc dotglow" cx="186" cy="70" r="9"/><circle class="f-acc dotglow" cx="227" cy="70" r="9"/><circle class="f-acc dotglow" cx="268" cy="70" r="9"/><circle class="f-acc dotglow" cx="309" cy="70" r="9"/><circle class="f-acc dotglow" cx="350" cy="70" r="9"/><circle class="f-acc dotglow" cx="391" cy="70" r="9"/><circle class="f-acc dotglow" cx="432" cy="70" r="9"/><circle class="f-mutedfill" cx="473" cy="70" r="9"/><circle class="f-acc dotglow" cx="514" cy="70" r="9"/><circle class="f-acc dotglow" cx="555" cy="70" r="9"/><circle class="f-acc dotglow" cx="596" cy="70" r="9"/><circle class="f-acc dotglow" cx="637" cy="70" r="9"/><circle class="f-acc dotglow" cx="678" cy="70" r="9"/><circle class="f-acc dotglow" cx="719" cy="70" r="9"/><circle class="f-acc dotglow" cx="760" cy="70" r="9"/><circle class="f-acc dotglow" cx="801" cy="70" r="9"/><circle class="f-acc dotglow" cx="842" cy="70" r="9"/><circle class="f-acc dotglow" cx="883" cy="70" r="9"/><circle class="f-acc dotglow" cx="924" cy="70" r="9"/>
-                <circle class="f-acc dotglow" cx="22" cy="116" r="9"/><circle class="f-acc dotglow" cx="63" cy="116" r="9"/><circle class="f-acc dotglow" cx="104" cy="116" r="9"/><circle class="f-acc dotglow" cx="145" cy="116" r="9"/><circle class="f-acc dotglow" cx="186" cy="116" r="9"/><circle class="f-acc dotglow" cx="227" cy="116" r="9"/><circle class="f-acc dotglow" cx="268" cy="116" r="9"/><circle class="f-acc dotglow" cx="309" cy="116" r="9"/><circle class="f-acc dotglow" cx="350" cy="116" r="9"/><circle class="f-acc dotglow" cx="391" cy="116" r="9"/><circle class="f-acc dotglow" cx="432" cy="116" r="9"/><circle class="f-acc dotglow" cx="473" cy="116" r="9"/><circle class="f-acc dotglow" cx="514" cy="116" r="9"/><circle class="f-acc dotglow" cx="555" cy="116" r="9"/><circle class="f-acc dotglow" cx="596" cy="116" r="9"/><circle class="f-acc dotglow" cx="637" cy="116" r="9"/><circle class="f-acc dotglow" cx="678" cy="116" r="9"/><circle class="f-acc dotglow" cx="719" cy="116" r="9"/><circle class="f-mutedfill" cx="760" cy="116" r="9"/><circle class="f-acc dotglow" cx="801" cy="116" r="9"/><circle class="f-acc dotglow" cx="842" cy="116" r="9"/><circle class="f-acc dotglow" cx="883" cy="116" r="9"/><circle class="f-acc dotglow" cx="924" cy="116" r="9"/>
-              </g>
-              <circle class="f-acc" cx="22" cy="166" r="6"/>
-              <text class="t-muted" x="38" y="170">44 &#8212; significant skill gain (p &lt; 0.05)</text>
-              <circle class="f-mutedfill" cx="350" cy="166" r="6"/>
-              <text class="t-muted" x="366" y="170">2 &#8212; no significant gain</text>
-              <text class="t-copper" x="950" y="171" text-anchor="end">+23.7 % mean skill</text>
+            <svg class="rsvg" viewBox="0 0 960 190" role="img" aria-label="Benchmark of 76 public load series: 74 significantly outperform the seasonal-naive baseline and 2 show no significant gain. Median skill gain is 23.1 percent.">
+              <text class="t-title" x="10" y="20">Public-data benchmark — 76 value-hash-deduplicated DE + FR load series</text>
+              <rect class="f-mutedfill" x="10" y="58" width="940" height="34" rx="17"/>
+              <rect class="f-acc dotglow" x="10" y="58" width="915.3" height="34" rx="17"/>
+              <text x="28" y="81" fill="#07151c" font-size="14" font-weight="700">74 significant gains</text>
+              <text class="t-muted" x="950" y="116" text-anchor="end">2 without significant gain</text>
+              <circle class="f-acc" cx="22" cy="160" r="6"/>
+              <text class="t-muted" x="38" y="164">74 / 76 — significant skill gain (p &lt; 0.05)</text>
+              <text class="t-copper" x="950" y="164" text-anchor="end">+23.1 % median skill</text>
             </svg>
           </div>
-          <figcaption><b>Every series counts.</b> Each dot is one publicly published distribution-grid load
-            series, evaluated over an 84-day rolling-origin test window against the seasonal-naive baseline
-            (paired block bootstrap, 10,000 resamples). The two series without a significant gain are reported,
-            not hidden. Dot positions are schematic.</figcaption>
+          <figcaption><b>Every series counts.</b> Each publicly published distribution-grid load series is
+            evaluated over an 84-day rolling-origin test window against the seasonal-naive baseline (paired
+            block bootstrap, 10,000 resamples). The two series without a significant gain are reported, not
+            hidden. Multiple years and voltage levels from one operator are not independent utilities.</figcaption>
         </figure>
 
         <div class="chart-card reveal">
@@ -324,27 +323,27 @@
           </div>
           <div class="bar-row">
             <span class="bar-row__label">EVDB (NS, 2024)</span>
-            <span class="bar-track"><span class="bar-fill" style="width:69%"></span></span>
-            <span class="bar-row__val">+38.7%</span>
+            <span class="bar-track"><span class="bar-fill" style="width:68%"></span></span>
+            <span class="bar-row__val">+37.9%</span>
           </div>
           <div class="bar-row">
             <span class="bar-row__label">Herne (2024)</span>
-            <span class="bar-track"><span class="bar-fill" style="width:48%"></span></span>
-            <span class="bar-row__val">+26.7%</span>
+            <span class="bar-track"><span class="bar-fill" style="width:49%"></span></span>
+            <span class="bar-row__val">+27.5%</span>
           </div>
           <div class="bar-row">
             <span class="bar-row__label">Hilden (Netzumsatz, 2025)</span>
-            <span class="bar-track"><span class="bar-fill" style="width:30%"></span></span>
-            <span class="bar-row__val">+16.5%</span>
+            <span class="bar-track"><span class="bar-fill" style="width:34%"></span></span>
+            <span class="bar-row__val">+18.9%</span>
           </div>
           <p class="cc-foot">National load: MAPE 3.36% on a two-year SMARD window. City series: MAPE 3.5–4.8%, each significant under a paired block-bootstrap test.</p>
         </div>
 
         <figure class="figure reveal">
           <div class="figure__frame">
-            <img src="../assets/netzpilot/proof_beweis_p1.png" alt="Page from the validation report showing the benchmark table across real German and French distribution-grid load series" loading="lazy" />
+            <img src="../assets/netzpilot/benchmark-2026-07.svg" alt="Current NetzPilot benchmark showing 74 of 76 public load series significantly better than the seasonal-naive baseline" loading="lazy" />
           </div>
-          <figcaption><b>Excerpt from the validation report (German):</b> the full benchmark across every real DE + FR load series — MAPE, MASE, and skill versus both the seasonal-naive and persistence baselines, each with a 95% confidence interval.</figcaption>
+          <figcaption><b>Current benchmark excerpt (2 July 2026):</b> the expanded public-data corpus covers 76 value-hash-deduplicated DE + FR load series. Multiple years and voltage levels from one operator are separate series, not 76 independent utilities.</figcaption>
         </figure>
 
         <div class="prose reveal" style="margin-top:34px">
