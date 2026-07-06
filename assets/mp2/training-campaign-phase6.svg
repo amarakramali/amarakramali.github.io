@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc">
+  <title id="title">Phase 6 training campaign and observed run times</title>
+  <desc id="desc">The main Phase 6 matrix contains 75 completed training runs across five algorithms, three action intervals and five seeds. Summed observed run time is 156.8 hours across a campaign spanning nearly eleven calendar days. Median run times range from 0.67 hours for single-agent PPO to 2.49 hours for IPPO.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1320"/><stop offset="1" stop-color="#111d2d"/></linearGradient>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0f766e"/><stop offset="1" stop-color="#5eead4"/></linearGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6d28d9"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+    <style>
+      text{font-family:Inter,"Segoe UI",Arial,sans-serif;fill:#e7eef7}.mono{font-family:"JetBrains Mono",Consolas,monospace}.eyebrow{font-size:14px;font-weight:750;letter-spacing:2.4px;fill:#5eead4}.title{font-size:32px;font-weight:750}.sub{font-size:14px;fill:#91a3b8}.kpi{font-size:64px;font-weight:750;letter-spacing:-3px}.unit{font-size:21px;font-weight:700;fill:#99f6e4}.klabel{font-size:13px;font-weight:700;letter-spacing:1.5px;fill:#5eead4}.head{font-size:18px;font-weight:700}.label{font-size:14px;fill:#c9d5e3}.value{font-size:14px;font-weight:750}.note{font-size:12px;fill:#8194aa}.tiny{font-size:11px;fill:#7890a8}
+      .panel{fill:#111d2d;stroke:#2a3b52;stroke-width:1.5}.tile{fill:#152234;stroke:#2a3b52}.track{fill:#1c2a3b}.bar{fill:url(#teal)}.bar-alt{fill:url(#violet)}.line{stroke:#31465e;stroke-width:2;fill:none}.dot{fill:#2dd4bf}.dot-alt{fill:#a78bfa}.dot-warn{fill:#fbbf24}
+    </style>
+  </defs>
+  <rect width="1440" height="760" rx="28" fill="url(#bg)"/><path d="M0 74H1440" stroke="#203149" fill="none"/><circle cx="36" cy="37" r="5" fill="#2dd4bf"/>
+  <text x="56" y="42" class="eyebrow">PHASE 6 / TRAINING CAMPAIGN</text><text x="55" y="104" class="title">The result took 75 runs — not one lucky seed.</text><text x="55" y="132" class="sub">Five algorithms × three action intervals × five training seeds · 200 iterations per run</text>
+
+  <g transform="translate(55 170)">
+    <rect width="435" height="360" rx="18" class="panel"/>
+    <text x="28" y="42" class="head">Observed compute</text>
+    <text x="28" y="130" class="kpi">156.8</text><text x="247" y="128" class="unit">run-hours</text>
+    <text x="28" y="157" class="note">summed across the 75 completed jobs</text>
+    <g transform="translate(28 194)"><rect width="180" height="125" rx="14" class="tile"/><text x="18" y="31" class="klabel">RUN MATRIX</text><text x="18" y="78" font-size="37" font-weight="750">75 / 75</text><text x="18" y="103" class="tiny">health-checked complete</text></g>
+    <g transform="translate(226 194)"><rect width="181" height="125" rx="14" class="tile"/><text x="18" y="31" class="klabel">CALENDAR SPAN</text><text x="18" y="78" font-size="37" font-weight="750">10d 17h</text><text x="18" y="103" class="tiny">14–25 June 2026</text></g>
+    <text x="28" y="344" class="tiny mono">15,000 main-matrix training iterations</text>
+  </g>
+
+  <g transform="translate(520 170)">
+    <rect width="865" height="360" rx="18" class="panel"/><text x="28" y="42" class="head">Median wall-clock per 200-iteration run</text><text x="837" y="42" text-anchor="end" class="note">observed campaign timing · lower is faster</text>
+    <text x="28" y="93" class="label">Multi-Policy PPO</text><rect x="245" y="76" width="500" height="24" rx="12" class="track"/><rect x="245" y="76" width="402" height="24" rx="12" class="bar"/><text x="663" y="94" class="value" fill="#99f6e4">2.41 h</text>
+    <text x="28" y="147" class="label">DR Multi-Policy PPO</text><rect x="245" y="130" width="500" height="24" rx="12" class="track"/><rect x="245" y="130" width="403" height="24" rx="12" class="bar"/><text x="664" y="148" class="value" fill="#99f6e4">2.42 h</text>
+    <text x="28" y="201" class="label">IPPO · local observation</text><rect x="245" y="184" width="500" height="24" rx="12" class="track"/><rect x="245" y="184" width="415" height="24" rx="12" fill="#53657a"/><text x="676" y="202" class="value">2.49 h</text>
+    <text x="28" y="255" class="label">Single-agent PPO</text><rect x="245" y="238" width="500" height="24" rx="12" class="track"/><rect x="245" y="238" width="112" height="24" rx="12" class="bar-alt"/><text x="373" y="256" class="value" fill="#c4b5fd">0.67 h</text>
+    <text x="28" y="309" class="label">Lagrangian PPO</text><rect x="245" y="292" width="500" height="24" rx="12" class="track"/><rect x="245" y="292" width="352" height="24" rx="12" fill="#53657a"/><text x="613" y="310" class="value">2.11 h</text>
+    <text x="28" y="342" class="tiny">The fastest model to train was not the best model on held-out evaluation.</text>
+  </g>
+
+  <g transform="translate(55 566)">
+    <text x="0" y="0" class="head">Campaign timeline</text><path class="line" d="M10 56H1320"/>
+    <circle cx="40" cy="56" r="7" class="dot-warn"/><text x="40" y="88" text-anchor="middle" class="label">13 Jun</text><text x="40" y="108" text-anchor="middle" class="tiny">model freeze</text>
+    <circle cx="345" cy="56" r="7" class="dot"/><text x="345" y="88" text-anchor="middle" class="label">14–25 Jun</text><text x="345" y="108" text-anchor="middle" class="tiny">75 main runs</text>
+    <circle cx="735" cy="56" r="7" class="dot-alt"/><text x="735" y="88" text-anchor="middle" class="label">25–30 Jun</text><text x="735" y="108" text-anchor="middle" class="tiny">shield + 27-weight sweep</text>
+    <circle cx="1080" cy="56" r="7" class="dot"/><text x="1080" y="88" text-anchor="middle" class="label">from 30 Jun</text><text x="1080" y="108" text-anchor="middle" class="tiny">held-out evaluation</text>
+    <circle cx="1320" cy="56" r="7" class="dot-warn"/><text x="1320" y="88" text-anchor="middle" class="label">next</text><text x="1320" y="108" text-anchor="middle" class="tiny">statistics + HIL</text>
+  </g>
+  <text x="55" y="730" class="note mono">Timing method: training_metadata.created_utc → completed training_results.json · observed wall-clock, not a hardware-normalised speed benchmark</text>
+</svg>
+

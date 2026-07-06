@@ -3,26 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Multi-Agent RL for Microgrid Control · Amar Akram</title>
-  <meta name="description" content="Cooperative multi-agent reinforcement learning that keeps a simulated DC microgrid stable and supplied, benchmarked against droop and model-predictive control. 51% lower voltage error than droop; policy fits a 5€ ESP32-S3." />
-  <meta name="author" content="Amar Akram" />
-  <meta name="theme-color" content="#0A0E14" />
+  <title>Forecast-free Multi-Agent Control — MP2 Phase 6 · Amar Akram</title>
+  <meta name="description" content="Phase 6 of a multi-agent reinforcement-learning controller for a 5.5 V DC microgrid. On held-out slow-configuration tests, Multi-Policy PPO cuts voltage RMSE by 47% versus droop and supplies the critical load 98.9% of the time." />
   <link rel="canonical" href="https://amarakramali.github.io/projects/microgrid-rl.html" />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://amarakramali.github.io/projects/microgrid-rl.html" />
-  <meta property="og:title" content="Multi-Agent RL for Microgrid Control" />
-  <meta property="og:description" content="Cooperative reinforcement-learning agents that keep a simulated DC microgrid stable — benchmarked head-to-head against droop and model-predictive control, with a policy small enough for a 5€ ESP32-S3." />
-  <meta property="og:image" content="https://amarakramali.github.io/assets/og-cover.png" />
-  <meta property="og:image:alt" content="Amar Akram — Smart Grids &amp; Machine Learning portfolio" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://amarakramali.github.io/assets/og-cover.png" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E5F74'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=4" />
+  <link rel="stylesheet" href="../css/style.css?v=7" />
   <script>
     (function () {
       try {
@@ -35,17 +23,13 @@
   </script>
 </head>
 <body>
-
   <header class="nav">
     <div class="wrap nav__inner">
       <a class="brand" href="../index.html#top" aria-label="Amar Akram — home">
-        <span class="brand__mark">AA</span>
-        <span class="brand__name">Amar Akram</span>
+        <span class="brand__mark">AA</span><span class="brand__name">Amar Akram</span>
       </a>
       <nav class="nav__links" aria-label="Primary">
-        <a href="../index.html#work">Work</a>
-        <a href="../index.html#about">About</a>
-        <a href="../index.html#contact">Contact</a>
+        <a href="../index.html#work">Work</a><a href="../index.html#about">About</a><a href="../index.html#contact">Contact</a>
         <a class="nav__cta" href="mailto:amar.akram_ali@hsbi.de">Email</a>
         <button class="theme-toggle" type="button" aria-label="Toggle dark / light theme" aria-pressed="false" title="Toggle theme">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
@@ -63,313 +47,247 @@
       </a>
     </div>
 
-    <!-- HERO -->
-    <section class="detail-hero">
+    <section class="detail-hero mp2-detail-hero">
       <div class="wrap">
-        <p class="detail-hero__cat">Machine learning · Control</p>
-        <h1>Multi-Agent RL for Microgrid Control</h1>
+        <div class="mp1-kicker-row">
+          <p class="detail-hero__cat">Machine learning · Control · Energy systems</p>
+          <span class="phase-pill"><i></i> Phase 6 · evaluation</span>
+        </div>
+        <h1>Forecast-free control for a four-source microgrid.</h1>
         <p class="detail-hero__sub">
-          Cooperative reinforcement-learning agents that keep a simulated DC microgrid's voltage stable and
-          its critical loads supplied — benchmarked head-to-head against the classical controllers used in
-          real power systems.
+          Four cooperative policies keep an islanded 5.5 V DC bus stable, protect its battery and prioritise a critical load — without depending on a weather forecast.
         </p>
-
         <dl class="meta-row">
-          <div><dt>Role</dt><dd>Solo — research, code &amp; evaluation</dd></div>
+          <div><dt>Role</dt><dd>Solo — model, training &amp; evaluation</dd></div>
           <div><dt>Context</dt><dd>Master's project (MP2), HSBI</dd></div>
           <div><dt>Supervisor</dt><dd>Prof. Dr. Jörn Loviscach</dd></div>
-          <div><dt>Methods</dt><dd>Multi-policy PPO · Safe RL · MPC baselines</dd></div>
-          <div><dt>Status</dt><dd>In progress · simulation (sim-to-real planned)</dd></div>
+          <div><dt>Headline arm</dt><dd>Multi-Policy PPO · BC warm-start</dd></div>
+          <div><dt>Status</dt><dd>Phase 6 simulation study</dd></div>
         </dl>
       </div>
     </section>
 
-    <!-- STATUS / WORK IN PROGRESS -->
     <div class="wrap">
-      <div class="callout reveal" style="margin-top:6px">
-        <p><strong><span aria-hidden="true">🚧</span> Work in progress.</strong> This Master's project (MP2) is still ongoing — the results and figures shown here are preliminary and are being updated over time as the work progresses.</p>
-      </div>
+      <figure class="figure figure--hero reveal">
+        <div class="figure__frame mp2-dark-frame">
+          <a class="figure__zoom" href="../assets/mp2/system-architecture-phase6.svg" target="_blank" rel="noopener" title="Open full-size Phase 6 architecture">
+            <img src="../assets/mp2/system-architecture-phase6.svg" alt="Phase 6 architecture: four learned policies control PV, wind, biogas and battery sources connected to a shared 5.5 volt bus with a 7.5 farad equivalent supercapacitor and two loads." />
+          </a>
+        </div>
+        <figcaption><b>The Phase 6 model.</b> Solid cyan lines show power; dashed violet lines close the control loop. The diagram follows revision <code>d419953</code>: PV is bypass-only, the obsolete diode-chain model is removed, and the bus uses one 7.5 F equivalent capacitance.</figcaption>
+      </figure>
     </div>
 
-    <!-- STATS -->
-    <div class="wrap" style="margin-top:8px">
+    <div class="wrap mp2-stats-wrap">
       <div class="stats reveal">
-        <div class="stat"><div class="stat__num">−51<small>%</small></div><div class="stat__label">lower bus-voltage error than classical droop control (Cohen's d = −15.8, p&lt;0.001)</div></div>
-        <div class="stat"><div class="stat__num">0.068</div><div class="stat__label">voltage-limit saturation rate — the lowest of every controller tested</div></div>
-        <div class="stat"><div class="stat__num">76<small>KB</small></div><div class="stat__label">quantized policy — runs on a 5 € ESP32-S3 at 2.7 ms latency</div></div>
-        <div class="stat"><div class="stat__num">4</div><div class="stat__label">cooperative agents: PV, wind, biogas and battery</div></div>
+        <div class="stat"><div class="stat__num">−47<small>%</small></div><div class="stat__label">voltage RMSE versus droop in the completed slow configuration</div></div>
+        <div class="stat"><div class="stat__num">98.9<small>%</small></div><div class="stat__label">critical-load supply for headline Multi-Policy PPO</div></div>
+        <div class="stat"><div class="stat__num">100</div><div class="stat__label">held-out episodes per MARL arm: 5 checkpoints × 20 seeds</div></div>
+        <div class="stat"><div class="stat__num">157<small>h</small></div><div class="stat__label">summed observed wall-clock across 75 training runs</div></div>
       </div>
     </div>
 
-    <!-- OVERVIEW -->
     <section class="block">
       <div class="wrap">
-        <p class="block__label">Overview</p>
-        <div class="prose reveal">
-          <p>
-            A real power grid keeps its frequency stable by constantly matching generation to demand. A small
-            DC microgrid faces the same challenge in miniature: several independent sources — solar, wind,
-            biogas, a battery — must cooperate to hold the bus voltage steady and keep the most important
-            loads powered, even though no single source sees the whole system. This project asks how well a
-            <strong>multi-agent reinforcement-learning</strong> controller can do that job compared with the
-            classical control methods engineers use today.
-          </p>
+        <p class="block__label">From MP1 to MP2</p>
+        <div class="mp2-intro-grid">
+          <h2>The hardware becomes a control problem.</h2>
+          <div class="prose reveal">
+            <p>
+              <a href="smart-energy-node.html">MP1</a> builds the physical energy node. MP2 turns that setup into a physics-based digital twin and asks a sharper question: can learned source controllers outperform droop and remain useful when an MPC forecast is wrong?
+            </p>
+            <p>
+              Bus voltage is not clamped by an ideal supply. It moves with the net source current through the 7.5 F buffer, so voltage becomes the visible consequence of every control decision — the DC analogue of frequency in a larger AC grid.
+            </p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- QUESTION / ENVIRONMENT -->
     <section class="block">
       <div class="wrap">
-        <p class="block__label">The research question</p>
-        <h2>Can learned controllers beat the classics?</h2>
+        <p class="block__label">Plant model</p>
+        <h2>A small grid with real constraints.</h2>
         <div class="prose reveal">
           <p>
-            The benchmark is a physically realistic simulation of a heterogeneous DC microgrid built on a
-            shared 5.5-volt bus with a supercapacitor buffer. Bus voltage is left to float freely as a dynamic
-            state — the direct analogue of grid frequency — so the agents must actively stabilise it. The
-            biogas source has realistic ramp rates and minimum run-times, wind follows a hub-height power law,
-            and weather is driven by real Open-Meteo data for Bielefeld, where renewables alone cover only
-            about 40% of demand and storage planning spans hours.
+            The simulation integrates bus physics at one-second substeps. Only the decision interval changes — 1 s, 5 s or 30 s — so the study isolates controller speed instead of changing the underlying plant. Each 48-hour slow/default episode combines renewable availability, two load profiles and a dispatchable source with startup constraints.
           </p>
-          <p>
-            It is modelled as a cooperative multi-agent environment: four agents share a 21-dimensional view
-            of the system and a common reward that penalises voltage deviation, unsupplied critical load,
-            wasteful curtailment, and unsafe battery charge. Three control speeds — acting every 1, 5, or 30
-            seconds — form the core study matrix. The whole simulation is built as a faithful digital twin of
-            my <a href="smart-energy-node.html">Smart Energy Node</a> hardware, so a trained policy can later
-            be deployed on the real board.
-          </p>
+        </div>
+        <div class="mp2-component-grid reveal">
+          <article><span class="mp2-dot mp2-dot--pv"></span><h3>Photovoltaic</h3><p>0–1 A passive source, temperature-adjusted and curtailed by its policy. Phase 6 is bypass-only.</p></article>
+          <article><span class="mp2-dot mp2-dot--wind"></span><h3>Wind</h3><p>Cubic turbine curve with 2 m/s cut-in, 8 m/s rated speed and 12 m/s cut-out.</p></article>
+          <article><span class="mp2-dot mp2-dot--bio"></span><h3>Biogas</h3><p>0.3–1 A dispatchable source with a 0.002 A/s ramp, 15-minute runtime and 10-minute pause.</p></article>
+          <article><span class="mp2-dot mp2-dot--bat"></span><h3>Battery</h3><p>0.5 Ah, bidirectional ±1 A, SOC limits 0.05–0.95 and 95% charging efficiency.</p></article>
+        </div>
+        <div class="mp2-equation reveal" aria-label="Bus voltage dynamics equation">
+          <span>Dynamic state</span><b>dV<sub>bus</sub>/dt = (ΣI<sub>sources</sub> − ΣI<sub>loads</sub>) / 7.5 F</b><small>5.5 V nominal · 4.5–6.0 V hard model bounds</small>
         </div>
       </div>
     </section>
 
-    <!-- METHODS -->
     <section class="block">
       <div class="wrap">
-        <p class="block__label">Approach &amp; methods</p>
-        <h2>Learning to control — safely.</h2>
+        <p class="block__label">Learning setup</p>
+        <h2>One policy per source, one shared objective.</h2>
         <div class="prose reveal">
           <p>
-            The main controller is a multi-policy PPO setup: one learning agent per source, each with its own
-            policy, all sharing a global observation. (I'm deliberate about the naming — it is not the
-            centralized-critic MAPPO of the original paper, and the write-up says so, because that distinction
-            matters to a reviewer.) Two ablations isolate <em>why</em> it works: an independent-learner variant
-            with only local observations, and a single-agent variant that merges all four actions into one
-            policy.
+            The headline controller is best described as <strong>Multi-Policy PPO</strong>: four PPO policies receive the same 21-dimensional global observation and optimise one cooperative reward. It is not the original centralised-critic MAPPO architecture, so the project names the implementation precisely.
           </p>
           <p>
-            Safety is handled by an <strong>action-projection shield</strong> — a training-free layer that
-            catches any unsafe command and projects it to the nearest admissible one before it reaches the
-            grid. It is backed by three formal safety theorems, checked with roughly 64,000 randomised
-            property-based tests. I also tried a Lagrangian constrained-RL approach and report it as an honest
-            negative result, alongside behaviour-cloning warm-starts from the droop controller.
-          </p>
-          <p>
-            The learned controllers are measured against three serious baselines — droop control, a heuristic
-            model-predictive controller, and a convex/QP model-predictive controller — under domain
-            randomisation for sensor noise and actuator drift. Every headline number comes with a bootstrap
-            confidence interval and a paired significance test with effect sizes.
+            Behaviour cloning from droop provides the warm-start. The Phase 6 matrix then compares it with local-observation IPPO, single-agent PPO, constrained Lagrangian PPO, domain-randomised training and two inference-time shield settings. Classical references include droop, heuristic MPC with three forecast-noise levels and convex MPC.
           </p>
         </div>
-
-        <figure class="figure reveal">
-          <div class="figure__frame figure__frame--pad">
-            <svg class="rsvg" viewBox="0 0 960 420" role="img" aria-label="Control-loop diagram: four agents for PV, wind, biogas and battery send actions through an action-projection safety shield into the DC microgrid environment; a shared 21-dimensional observation and common reward flow back to all agents.">
-              <text class="t-title" x="10" y="20">Control loop — four policies, one safety shield</text>
-              <!-- shared observation feedback (env -> agents) -->
-              <path class="s-line" fill="none" stroke-dasharray="5 6" d="M821,130 V44 H110 V51"/>
-              <path class="f-acc" d="M110,60 l-4.5,-9 h9 z"/>
-              <text class="t-faint" x="465" y="36" text-anchor="middle">shared 21-dim observation &#183; common reward</text>
-              <!-- agents -->
-              <g>
-                <rect class="box" x="20" y="58" width="180" height="64" rx="10"/>
-                <text class="t-ink" x="110" y="84" text-anchor="middle">PV agent &#183; &#960;1</text>
-                <text class="t-faint" x="110" y="104" text-anchor="middle">curtailable solar</text>
-              </g>
-              <g>
-                <rect class="box" x="20" y="152" width="180" height="64" rx="10"/>
-                <text class="t-ink" x="110" y="178" text-anchor="middle">Wind agent &#183; &#960;2</text>
-                <text class="t-faint" x="110" y="198" text-anchor="middle">hub-height power law</text>
-              </g>
-              <g>
-                <rect class="box" x="20" y="246" width="180" height="64" rx="10"/>
-                <text class="t-ink" x="110" y="272" text-anchor="middle">Biogas agent &#183; &#960;3</text>
-                <text class="t-faint" x="110" y="292" text-anchor="middle">ramps &#183; min run-time</text>
-              </g>
-              <g>
-                <rect class="box" x="20" y="340" width="180" height="64" rx="10"/>
-                <text class="t-ink" x="110" y="366" text-anchor="middle">Battery agent &#183; &#960;4</text>
-                <text class="t-faint" x="110" y="386" text-anchor="middle">SoC-safe charging</text>
-              </g>
-              <!-- action arrows into the shield -->
-              <path class="s-acc flow" fill="none" stroke-width="1.5" d="M200,90 H340 V160 H409"/>
-              <path class="f-acc" d="M418,160 l-9,-4.5 v9 z"/>
-              <path class="s-acc flow" fill="none" stroke-width="1.5" d="M200,184 H409"/>
-              <path class="f-acc" d="M418,184 l-9,-4.5 v9 z"/>
-              <path class="s-acc flow" fill="none" stroke-width="1.5" d="M200,278 H409"/>
-              <path class="f-acc" d="M418,278 l-9,-4.5 v9 z"/>
-              <path class="s-acc flow" fill="none" stroke-width="1.5" d="M200,372 H340 V302 H409"/>
-              <path class="f-acc" d="M418,302 l-9,-4.5 v9 z"/>
-              <!-- safety shield -->
-              <g>
-                <rect class="box box--acc" x="420" y="130" width="190" height="200" rx="12" stroke-width="1.5"/>
-                <path class="f-soft s-acc" stroke-width="1.5" d="M515,148 l17,7 v15 c0,13 -8.5,21 -17,25 c-8.5,-4 -17,-12 -17,-25 v-15 z"/>
-                <polyline class="s-acc" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="508,172 513,177 523,165"/>
-                <text class="t-ink" x="515" y="232" text-anchor="middle">Action shield</text>
-                <text class="t-faint" x="515" y="252" text-anchor="middle">projects any unsafe action</text>
-                <text class="t-faint" x="515" y="268" text-anchor="middle">to the nearest safe one</text>
-                <text class="t-acc" x="515" y="296" text-anchor="middle">3 theorems &#183; 64k tests</text>
-              </g>
-              <!-- safe actions into the environment -->
-              <path class="s-acc flow" fill="none" stroke-width="2.5" d="M610,230 H692"/>
-              <path class="f-acc" d="M702,230 l-10,-5 v10 z"/>
-              <text class="t-faint" x="655" y="218" text-anchor="middle">safe actions</text>
-              <!-- environment -->
-              <g>
-                <rect class="box" x="702" y="130" width="238" height="200" rx="12"/>
-                <text class="t-ink" x="821" y="158" text-anchor="middle">DC microgrid env</text>
-                <text class="t-faint" x="821" y="176" text-anchor="middle">digital twin of the node</text>
-                <path class="s-acc lineglow" stroke-width="3" stroke-linecap="round" fill="none" d="M760,196 V310"/>
-                <circle class="f-acc" cx="760" cy="215" r="4"/>
-                <path class="s-line" d="M760,215 H800"/>
-                <text class="t-faint" x="806" y="219">supercap 22.5 F</text>
-                <circle class="f-acc" cx="760" cy="250" r="4"/>
-                <path class="s-line" d="M760,250 H800"/>
-                <text class="t-faint" x="806" y="254">critical load</text>
-                <circle class="f-acc" cx="760" cy="285" r="4"/>
-                <path class="s-line" d="M760,285 H800"/>
-                <text class="t-faint" x="806" y="289">flex load &#183; PWM</text>
-              </g>
-              <text class="t-acc" x="821" y="352" text-anchor="middle">V_bus floats free &#8212; like grid frequency</text>
-            </svg>
-          </div>
-          <figcaption><b>The control loop.</b> Each source runs its own PPO policy over a shared
-            21-dimensional observation; a training-free shield projects unsafe commands to the nearest
-            admissible ones before they reach the bus. The environment is the faithful digital twin of the
-            <a href="smart-energy-node.html">Smart Energy Node</a> hardware.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- RESULTS -->
-    <section class="block">
-      <div class="wrap">
-        <p class="block__label">Results</p>
-        <h2>Lowest voltage error of any controller.</h2>
-        <div class="prose reveal" style="margin-bottom:30px">
-          <p>
-            On the headline configuration (20 random seeds, paired bootstrap), the RL controller achieves the
-            lowest bus-voltage error of every method tested — well ahead of droop control and the
-            convex MPC, and statistically tied with the strongest classical baseline while holding voltage
-            limits more tightly.
-          </p>
+        <div class="mp2-pipeline reveal" aria-label="Phase 6 evaluation pipeline">
+          <div><span>01</span><b>Train</b><small>5 seeds · 200 iterations · 3 action intervals</small></div><i>→</i>
+          <div><span>02</span><b>Freeze</b><small>best or final checkpoint by declared rule</small></div><i>→</i>
+          <div><span>03</span><b>Evaluate</b><small>20 disjoint held-out seeds · no train leakage</small></div><i>→</i>
+          <div><span>04</span><b>Stress</b><small>storm · overcast · load spike</small></div>
         </div>
-
-        <div class="chart-card reveal">
-          <h3>Bus-voltage RMSE by controller</h3>
-          <p class="cc-sub">Lower is better. RL result highlighted.</p>
-          <div class="bar-row">
-            <span class="bar-row__label">Droop</span>
-            <span class="bar-track"><span class="bar-fill bar-fill--muted" style="width:100%"></span></span>
-            <span class="bar-row__val">0.555</span>
-          </div>
-          <div class="bar-row">
-            <span class="bar-row__label">MPC (convex)</span>
-            <span class="bar-track"><span class="bar-fill bar-fill--muted" style="width:88%"></span></span>
-            <span class="bar-row__val">0.490</span>
-          </div>
-          <div class="bar-row">
-            <span class="bar-row__label">MPC (heuristic)</span>
-            <span class="bar-track"><span class="bar-fill bar-fill--muted" style="width:59%"></span></span>
-            <span class="bar-row__val">0.326</span>
-          </div>
-          <div class="bar-row">
-            <span class="bar-row__label">RL (multi-policy PPO)</span>
-            <span class="bar-track"><span class="bar-fill bar-fill--best" style="width:49%"></span></span>
-            <span class="bar-row__val best">0.270</span>
-          </div>
-          <p class="cc-foot">The RL controller also posts the lowest voltage-saturation rate (0.068) and the best total reward of the group.</p>
-        </div>
-
-        <figure class="figure reveal">
-          <div class="figure__frame figure__frame--pad">
-            <img src="../assets/mp2/trace_comparison.png" alt="48-hour traces of bus voltage, state of charge and control actions comparing the RL controller with MPC baselines" loading="lazy" />
-          </div>
-          <figcaption><b>48-hour behaviour.</b> Bus voltage (top) stays tight and centred under the shielded RL controller (blue), while the unshielded policy (grey) swings widely and forecast-based MPC drifts once its forecast is noisy. Bands show mean ± standard deviation over seeds.</figcaption>
-        </figure>
-
-        <figure class="figure reveal">
-          <div class="figure__frame figure__frame--pad">
-            <img src="../assets/mp2/mpc_robustness_tradeoff.png" alt="Saturation rate rising with forecast noise for MPC, while the forecast-free RL controller stays flat" loading="lazy" />
-          </div>
-          <figcaption><b>The case for going forecast-free.</b> Model-predictive control is excellent with a perfect forecast, but its safety degrades as forecast noise grows. The RL controller uses no forecast at all (flat band) and, by ~15% noise, the two become statistically indistinguishable — a realistic operating point.</figcaption>
-        </figure>
-
-        <figure class="figure reveal">
-          <div class="figure__frame figure__frame--pad">
-            <img src="../assets/mp2/cohens_d_heatmap.png" alt="Heatmap of Cohen's d effect sizes comparing the RL controller against MPC variants across eight metrics" loading="lazy" />
-          </div>
-          <figcaption><b>Effect sizes at a glance.</b> Paired Cohen's d for the RL controller versus each MPC variant across eight metrics, with significance markers — the quantitative backbone behind the headline claims.</figcaption>
-        </figure>
-
         <div class="callout reveal">
-          <p>
-            <strong>Small enough for the real board.</strong> The trained policy quantises to about 76 KB and
-            runs in 2.7 ms — comfortably inside a 5 € ESP32-S3 microcontroller. The controller that wins in
-            simulation is also the one that could actually ship on the hardware it was designed for.
-          </p>
+          <p><strong>Why the gate structure mattered.</strong> Single-agent PPO looked strongest during training, then failed to generalise: in the default held-out evaluation its critical supply collapsed to 30.8%. Phase 6 reports the test result, not the attractive training curve.</p>
         </div>
       </div>
     </section>
 
-    <!-- TECH -->
+    <section class="block" id="training-campaign">
+      <div class="wrap">
+        <p class="block__label">Experiment scale</p>
+        <h2>The result took 157 run-hours — not one lucky seed.</h2>
+        <div class="prose reveal">
+          <p>
+            The main Phase 6 campaign trained <strong>five controller families</strong> at three action intervals and five independent seeds: 75 complete jobs, 200 iterations each. Their measured wall-clock spans sum to <strong>156.8 hours</strong>; the matrix itself ran from 14 to 25 June 2026.
+          </p>
+          <p>
+            A headline Multi-Policy PPO run took a median <strong>2.41 hours</strong>. Single-agent PPO finished in only 0.67 hours because it learns one shared policy instead of four — but its held-out default evaluation collapsed. Faster training did not mean better generalisation.
+          </p>
+        </div>
+
+        <figure class="figure reveal">
+          <div class="figure__frame mp2-dark-frame">
+            <a class="figure__zoom" href="../assets/mp2/training-campaign-phase6.svg" target="_blank" rel="noopener" title="Open full-size Phase 6 training campaign">
+              <img src="../assets/mp2/training-campaign-phase6.svg" alt="Phase 6 training campaign: 75 completed runs, 156.8 summed run-hours, median training times by controller and a timeline from model freeze through evaluation." loading="lazy" />
+            </a>
+          </div>
+          <figcaption><b>Measured training effort.</b> Timings are observed wall-clock spans from each run's recorded creation time to its completed results file. They describe this campaign's workflow, not a hardware-normalised algorithm benchmark.</figcaption>
+        </figure>
+
+        <div class="mp2-scale-grid reveal">
+          <article><span>5 × 3 × 5</span><b>75 main runs</b><p>five algorithms, three action intervals and five seeds</p></article>
+          <article><span>75 × 200</span><b>15,000 iterations</b><p>the health-checked headline training matrix</p></article>
+          <article><span>27 × 5 × 50</span><b>6,750 more</b><p>iterations in the reward-weight sensitivity sweep</p></article>
+          <article><span>20 held-out seeds</span><b>No train leakage</b><p>evaluation pool 100–119 stays disjoint from training and tuning</p></article>
+        </div>
+
+        <div class="mp2-matrix-wrap reveal" aria-label="Phase 6 training matrix">
+          <div class="mp2-matrix-head"><span>Controller family</span><span>Slow · 30 s</span><span>Default · 5 s</span><span>Fast · 1 s</span></div>
+          <div><b>Multi-Policy PPO</b><span>5 seeds · 200</span><span>5 seeds · 200</span><span>5 seeds · 200</span></div>
+          <div><b>Multi-Policy PPO + DR</b><span>5 seeds · 200</span><span>5 seeds · 200</span><span>5 seeds · 200</span></div>
+          <div><b>IPPO · local obs</b><span>5 seeds · 200</span><span>5 seeds · 200</span><span>5 seeds · 200</span></div>
+          <div><b>Single-agent PPO</b><span>5 seeds · 200</span><span>5 seeds · 200</span><span>5 seeds · 200</span></div>
+          <div><b>Lagrangian PPO</b><span>5 seeds · 200</span><span>5 seeds · 200</span><span>5 seeds · 200</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="results">
+      <div class="wrap">
+        <p class="block__label">Phase 6 results</p>
+        <h2>Droop is stable — but it drains the battery and sheds the critical load.</h2>
+        <div class="prose reveal">
+          <p>
+            In the completed slow configuration, headline Multi-Policy PPO reduces mean voltage RMSE from <strong>0.554 to 0.291</strong>, raises critical-load supply from <strong>65.6% to 98.9%</strong>, and ends with mean battery SOC <strong>0.786 instead of 0.052</strong>. These are held-out Phase 6 results, not numbers carried forward from an earlier phase.
+          </p>
+        </div>
+        <figure class="figure reveal">
+          <div class="figure__frame mp2-dark-frame">
+            <a class="figure__zoom" href="../assets/mp2/phase6-benchmark-slow.svg" target="_blank" rel="noopener" title="Open full-size Phase 6 benchmark">
+              <img src="../assets/mp2/phase6-benchmark-slow.svg" alt="Phase 6 slow benchmark comparing voltage RMSE and critical-load supply across Lagrangian PPO, domain-randomised Multi-Policy PPO, Multi-Policy PPO, perfect-forecast MPC, noisy MPC and droop." loading="lazy" />
+            </a>
+          </div>
+          <figcaption><b>Two objectives, not one leaderboard.</b> Multi-Policy PPO is the strongest balanced result. Lagrangian PPO reaches the lowest voltage RMSE, but pushes final SOC to 0.922 near the upper boundary and earns a worse total reward — an important Phase 6 trade-off.</figcaption>
+        </figure>
+
+        <div class="mp2-result-strip reveal">
+          <article><span>Voltage</span><b>0.291</b><small>vs 0.554 droop</small></article>
+          <article><span>Critical supply</span><b>98.9%</b><small>vs 65.6% droop</small></article>
+          <article><span>Final SOC</span><b>0.786</b><small>vs 0.052 droop</small></article>
+          <article><span>DR-mild RMSE</span><b>0.286</b><small>robustness costs no accuracy here</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">Forecast robustness</p>
+        <h2>MPC degrades exactly where the learned policy is independent.</h2>
+        <div class="prose reveal">
+          <p>
+            With a perfect forecast, MPC is competitive. At the Phase 6 15% noise setting, its RMSE rises to 0.548 and critical supply falls to 68.4%. The learned controller has no forecast input, so this error channel does not exist for it.
+          </p>
+        </div>
+        <figure class="figure reveal">
+          <div class="figure__frame mp2-dark-frame">
+            <a class="figure__zoom" href="../assets/mp2/forecast-robustness-phase6.svg" target="_blank" rel="noopener" title="Open full-size forecast robustness chart">
+              <img src="../assets/mp2/forecast-robustness-phase6.svg" alt="Phase 6 chart showing MPC voltage error rising and critical-load supply falling as forecast noise increases, while forecast-free Multi-Policy PPO remains outside that failure mode." loading="lazy" />
+            </a>
+          </div>
+          <figcaption><b>The forecast-free advantage.</b> The horizontal MARL reference is not a claim that its performance changes with MPC noise; it shows that the learned policy consumes no forecast, while MPC is evaluated at perfect, 5% and 15% forecast-noise settings.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <p class="block__label">What Phase 6 established</p>
+        <h2>Strong evidence, with the caveats left visible.</h2>
+        <div class="mp1-status-grid reveal">
+          <section class="mp1-status-card mp1-status-card--verified">
+            <div class="mp1-status-card__head"><span>Established</span><b>Completed gates</b></div>
+            <ul>
+              <li>All 75 planned training runs completed and passed health checks.</li>
+              <li>The held-out slow and default evaluations use seeds 100–119, disjoint from training and tuning.</li>
+              <li>Multi-Policy PPO clearly improves over slow droop on voltage, critical supply and battery state.</li>
+              <li>Mild domain randomisation is neutral to beneficial in the completed configurations.</li>
+              <li>A 27-setting reward-weight sweep confirms robustness but also a real RMSE trade-off.</li>
+            </ul>
+          </section>
+          <section class="mp1-status-card mp1-status-card--open">
+            <div class="mp1-status-card__head"><span>In progress</span><b>Final study closure</b></div>
+            <ul>
+              <li>Fast-configuration MARL evaluation is not yet part of the published headline.</li>
+              <li>Storm, overcast and load-spike stress runs still need the final statistical synthesis.</li>
+              <li>Confidence intervals, paired tests and Holm correction belong to the final analysis gate.</li>
+              <li>Inference-time shields do not dominate the base controller; their safety–performance trade-off remains explicit.</li>
+              <li>Transfer to the physical MP1 node is planned work, not a completed result.</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
+
     <section class="block">
       <div class="wrap">
         <p class="block__label">Technology</p>
-        <h2>A reproducible research stack.</h2>
+        <h2>A reproducible simulation and evaluation stack.</h2>
         <div class="tags reveal">
-          <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Ray RLlib</span><span class="tag">PettingZoo</span><span class="tag">Gymnasium</span><span class="tag">cvxpy · OSQP</span><span class="tag">SciPy</span><span class="tag">scikit-optimize</span><span class="tag">MQTT · Modbus (HIL)</span><span class="tag">pytest</span>
+          <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Ray RLlib</span><span class="tag">PettingZoo</span><span class="tag">Gymnasium</span><span class="tag">NumPy</span><span class="tag">cvxpy · OSQP</span><span class="tag">SciPy</span><span class="tag">pytest</span><span class="tag">MQTT · HIL bridge</span>
         </div>
-        <div class="prose reveal" style="margin-top:30px">
-          <h3>Scope &amp; honesty</h3>
-          <p>
-            These are simulation results, reported on the clean, post-audit run as the canonical numbers;
-            sim-to-real transfer to the physical node is future work. The fastest control setting remains a
-            weak spot, and domain randomisation helps unevenly across stress scenarios — all stated openly in
-            the write-up rather than hidden behind the best configuration. The project is being prepared toward
-            a venue such as IEEE PES ISGT Europe or ACM e-Energy.
-          </p>
+        <div class="mp2-provenance reveal">
+          <span>Source of truth</span><code>Ergebnisse / Phase 6</code><span>Reward</span><code>v6 · 6 physical terms</code><span>Code revision</span><code>d419953</code><span>Eval pool</span><code>100–119</code>
         </div>
       </div>
     </section>
 
-    <!-- NEXT -->
     <nav class="next-project">
       <div class="wrap">
-        <a href="smart-energy-node.html">
-          <span>
-            <div class="np-label">Next project</div>
-            <div class="np-title">Smart Energy Node</div>
-          </span>
-          <svg class="np-arrow" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
+        <a href="smart-energy-node.html"><span><div class="np-label">Companion project</div><div class="np-title">Smart Energy Node</div></span><svg class="np-arrow" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </nav>
   </main>
 
   <footer class="footer">
-    <div class="wrap footer__inner">
-      <small>© <span data-year>2026</span> Amar Akram · Built with care in Bielefeld.</small>
-      <nav class="footer__nav" aria-label="Footer">
-        <a href="../index.html#work">Work</a>
-        <a href="../index.html#about">About</a>
-        <a href="../index.html#contact">Contact</a>
-        <a href="mailto:amar.akram_ali@hsbi.de">Email</a>
-      </nav>
-    </div>
+    <div class="wrap footer__inner"><small>© <span data-year>2026</span> Amar Akram · Built with care in Bielefeld.</small><nav class="footer__nav" aria-label="Footer"><a href="../index.html#work">Work</a><a href="../index.html#about">About</a><a href="../index.html#contact">Contact</a><a href="mailto:amar.akram_ali@hsbi.de">Email</a></nav></div>
   </footer>
-
   <script src="../js/main.js?v=4"></script>
 </body>
 </html>

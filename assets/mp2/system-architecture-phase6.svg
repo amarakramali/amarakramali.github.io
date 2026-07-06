@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 860" role="img" aria-labelledby="title desc">
+  <title id="title">Phase 6 DC microgrid and multi-policy control architecture</title>
+  <desc id="desc">Four learned policies command photovoltaic, wind, biogas and battery models. The sources feed a shared 5.5 volt DC bus with a single equivalent 7.5 farad supercapacitor. Critical and flexible loads draw from the bus. A shared 21-dimensional observation and cooperative reward close the control loop.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1320"/><stop offset="1" stop-color="#111d2d"/></linearGradient>
+    <linearGradient id="bus" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5eead4"/><stop offset="1" stop-color="#0f766e"/></linearGradient>
+    <linearGradient id="policy" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#251d3b"/><stop offset="1" stop-color="#18213a"/></linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="power-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#7dd3fc"/></marker>
+    <marker id="control-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#a78bfa"/></marker>
+    <style>
+      text{font-family:Inter,"Segoe UI",Arial,sans-serif;fill:#e7eef7}.mono{font-family:"JetBrains Mono",Consolas,monospace}
+      .eyebrow{font-size:14px;font-weight:750;letter-spacing:2.4px;fill:#5eead4}.title{font-size:34px;font-weight:750;letter-spacing:-.6px}.sub{font-size:15px;fill:#91a3b8}
+      .card{fill:#132033;stroke:#2a3b52;stroke-width:1.5}.policy{fill:url(#policy);stroke:#6d55a6}.source{fill:#142333;stroke:#286070}.load{fill:#111f31;stroke:#155e75}.storage{fill:#281f16;stroke:#b45309}.shield{fill:#1c2834;stroke:#d59a3a}
+      .name{font-size:18px;font-weight:700}.meta{font-size:13px;fill:#9fb0c3}.tiny{font-size:11.5px;fill:#7890a8}.chip{fill:#0c1725;stroke:#30445d}.chiptext{font-size:11.5px;font-weight:650;fill:#b8c8da}
+      .powerline{stroke:#7dd3fc;stroke-width:3;fill:none;marker-end:url(#power-arrow)}.control-line{stroke:#a78bfa;stroke-width:2;fill:none;stroke-dasharray:7 7;marker-end:url(#control-arrow)}.feedback{stroke:#a78bfa;stroke-width:2;fill:none;stroke-dasharray:7 7}.hair{stroke:#37516a;stroke-width:1.5;fill:none}
+      .buslabel{font-size:14px;font-weight:850;letter-spacing:1.8px;fill:#062a2a}.formula{font-size:14px;font-weight:650;fill:#a7f3d0}.accent{fill:#5eead4}.warn{fill:#fbbf24}
+    </style>
+  </defs>
+  <rect width="1440" height="860" rx="28" fill="url(#bg)"/>
+  <path d="M0 74H1440" stroke="#203149"/><circle cx="36" cy="37" r="5" fill="#2dd4bf" filter="url(#glow)"/>
+  <text x="56" y="42" class="eyebrow">MP2 / PHASE 6</text>
+  <text x="55" y="96" class="title">Four policies. One dynamic DC bus.</text>
+  <text x="55" y="124" class="sub">Authoritative 2026 model · power path, control path and physical state</text>
+
+  <!-- Policies -->
+  <g transform="translate(55 166)"><rect width="250" height="74" rx="15" class="policy"/><circle cx="28" cy="27" r="7" fill="#fbbf24"/><text x="47" y="32" class="name">PV policy π₁</text><text x="23" y="56" class="meta mono">curtailment [0, 1]</text></g>
+  <g transform="translate(325 166)"><rect width="250" height="74" rx="15" class="policy"/><circle cx="28" cy="27" r="7" fill="#38bdf8"/><text x="47" y="32" class="name">Wind policy π₂</text><text x="23" y="56" class="meta mono">curtailment [0, 1]</text></g>
+  <g transform="translate(595 166)"><rect width="250" height="74" rx="15" class="policy"/><circle cx="28" cy="27" r="7" fill="#fb7185"/><text x="47" y="32" class="name">Biogas policy π₃</text><text x="23" y="56" class="meta mono">set-point [0, 1]</text></g>
+  <g transform="translate(865 166)"><rect width="250" height="74" rx="15" class="policy"/><circle cx="28" cy="27" r="7" fill="#4ade80"/><text x="47" y="32" class="name">Battery policy π₄</text><text x="23" y="56" class="meta mono">charge ↔ discharge</text></g>
+  <g transform="translate(1160 156)"><rect width="225" height="94" rx="15" class="shield"/><text x="112.5" y="31" text-anchor="middle" class="name" fill="#fde68a">Optional shield</text><text x="112.5" y="56" text-anchor="middle" class="meta">inference-time projection</text><text x="112.5" y="76" text-anchor="middle" class="tiny">separate Phase 6 ablation</text></g>
+  <path class="hair" d="M305 203h20m250 0h20m250 0h20m250 0h45"/>
+
+  <!-- Control down to plant -->
+  <path class="control-line" d="M180 240v86"/><path class="control-line" d="M450 240v86"/><path class="control-line" d="M720 240v86"/><path class="control-line" d="M990 240v86"/>
+  <text x="1070" y="292" class="tiny">actions every 1 / 5 / 30 s</text>
+
+  <!-- Sources -->
+  <g transform="translate(55 340)"><rect width="250" height="120" rx="16" class="source"/><text x="22" y="34" class="name">PV source</text><text x="22" y="61" class="meta">ideal current source · bypass only</text><text x="22" y="83" class="meta">peak current 1.0 A</text><rect x="20" y="94" width="210" height="20" rx="10" class="chip"/><text x="125" y="108" text-anchor="middle" class="chiptext">diode-chain model removed</text></g>
+  <g transform="translate(325 340)"><rect width="250" height="120" rx="16" class="source"/><text x="22" y="34" class="name">Wind source</text><text x="22" y="61" class="meta">cubic turbine curve</text><text x="22" y="83" class="meta">2 / 8 / 12 m·s⁻¹</text><rect x="20" y="94" width="210" height="20" rx="10" class="chip"/><text x="125" y="108" text-anchor="middle" class="chiptext">rated current 1.0 A</text></g>
+  <g transform="translate(595 340)"><rect width="250" height="120" rx="16" class="source"/><text x="22" y="34" class="name">Biogas source</text><text x="22" y="61" class="meta">0.3–1.0 A · ramp limited</text><text x="22" y="83" class="meta">15 min on · 10 min pause</text><rect x="20" y="94" width="210" height="20" rx="10" class="chip"/><text x="125" y="108" text-anchor="middle" class="chiptext">0.002 A·s⁻¹ ramp</text></g>
+  <g transform="translate(865 340)"><rect width="250" height="120" rx="16" class="source"/><text x="22" y="34" class="name">Battery</text><text x="22" y="61" class="meta">0.5 Ah · bidirectional</text><text x="22" y="83" class="meta">SOC limits 0.05–0.95</text><rect x="20" y="94" width="210" height="20" rx="10" class="chip"/><text x="125" y="108" text-anchor="middle" class="chiptext">±1.0 A · ηcharge 0.95</text></g>
+
+  <!-- Power bus -->
+  <path class="powerline" d="M180 460v102h965"/><path class="powerline" d="M450 460v102h695"/><path class="powerline" d="M720 460v102h425"/><path class="powerline" d="M990 460v102h155"/>
+  <rect x="1146" y="318" width="70" height="360" rx="22" fill="url(#bus)" filter="url(#glow)"/>
+  <text x="1181" y="503" transform="rotate(-90 1181 503)" text-anchor="middle" class="buslabel">SHARED 5.5 V DC BUS</text>
+
+  <!-- Loads and supercap -->
+  <path class="powerline" d="M1216 386h62"/><path class="powerline" d="M1216 488h62"/><path class="powerline" d="M1216 604h62"/>
+  <g transform="translate(1278 340)"><rect width="107" height="91" rx="14" class="load"/><text x="53.5" y="31" text-anchor="middle" class="name">Critical</text><text x="53.5" y="55" text-anchor="middle" class="meta">8 Ω</text><text x="53.5" y="75" text-anchor="middle" class="tiny">always on</text></g>
+  <g transform="translate(1278 442)"><rect width="107" height="91" rx="14" class="load"/><text x="53.5" y="31" text-anchor="middle" class="name">Flexible</text><text x="53.5" y="55" text-anchor="middle" class="meta">10 Ω</text><text x="53.5" y="75" text-anchor="middle" class="tiny">time profile</text></g>
+  <g transform="translate(1278 552)"><rect width="107" height="113" rx="14" class="storage"/><text x="53.5" y="31" text-anchor="middle" class="name" fill="#fed7aa">Cbus</text><path d="M35 54h37m-37 11h37M53.5 42v12m0 11v16" stroke="#fbbf24" stroke-width="3"/><text x="53.5" y="101" text-anchor="middle" class="meta">7.5 F equiv.</text></g>
+
+  <!-- Feedback/control state -->
+  <g transform="translate(55 684)"><rect width="1060" height="118" rx="18" class="card"/><text x="24" y="35" class="name">Shared observation + cooperative objective</text><text x="24" y="65" class="meta mono">21D: Vbus · σV · source currents · availability · SOC · loads · forecasts · previous actions · PV bypass flag</text><text x="24" y="91" class="meta">Reward v6 balances voltage, critical and flexible supply, SOC, battery wear and biogas use.</text></g>
+  <path class="feedback" d="M1146 640h-31v103M1080 684v-404h55V145H180"/>
+  <path class="control-line" d="M180 145v21M450 145v21M720 145v21M990 145v21"/>
+  <text x="1131" y="729" text-anchor="end" class="tiny">measured plant state</text>
+  <text x="585" y="824" class="formula">dVbus/dt = (Σ Isources − Σ Iloads) / 7.5 F</text>
+  <text x="1385" y="824" text-anchor="end" class="tiny mono">solid cyan = power · dashed violet = control / feedback</text>
+</svg>
+

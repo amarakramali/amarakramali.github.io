@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc">
+  <title id="title">Phase 6 slow-configuration benchmark</title>
+  <desc id="desc">Horizontal bar charts compare voltage RMSE and critical-load supply for six controllers. Multi-Policy PPO achieves 0.291 voltage RMSE and 98.9 percent critical supply, compared with droop at 0.554 and 65.6 percent. Constrained Lagrangian PPO has the lowest RMSE at 0.252 but ends with state of charge 0.922, exposing a trade-off.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1320"/><stop offset="1" stop-color="#111d2d"/></linearGradient>
+    <linearGradient id="best" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#14b8a6"/><stop offset="1" stop-color="#5eead4"/></linearGradient>
+    <linearGradient id="alt" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+    <style>
+      text{font-family:Inter,"Segoe UI",Arial,sans-serif;fill:#e7eef7}.mono{font-family:"JetBrains Mono",Consolas,monospace}
+      .eyebrow{font-size:14px;font-weight:750;letter-spacing:2.4px;fill:#5eead4}.title{font-size:32px;font-weight:750}.sub{font-size:14px;fill:#91a3b8}.head{font-size:19px;font-weight:700}.label{font-size:14px;fill:#c9d5e3}.value{font-size:14px;font-weight:750}.note{font-size:12px;fill:#8194aa}.axis{font-size:11px;fill:#6f849b}
+      .panel{fill:#111d2d;stroke:#2a3b52;stroke-width:1.5}.track{fill:#1c2a3b}.muted{fill:#53657a}.mappo{fill:url(#best)}.lag{fill:url(#alt)}.grid{stroke:#26384d;stroke-width:1}.divider{stroke:#2a3b52}
+    </style>
+  </defs>
+  <rect width="1440" height="760" rx="28" fill="url(#bg)"/>
+  <path d="M0 74H1440" stroke="#203149"/><circle cx="36" cy="37" r="5" fill="#2dd4bf"/>
+  <text x="56" y="42" class="eyebrow">PHASE 6 / HELD-OUT EVAL 100–119</text>
+  <text x="55" y="104" class="title">The learned controller fixes droop’s two biggest failures.</text>
+  <text x="55" y="132" class="sub">Slow configuration · 30 s actions · bars show means · lower RMSE and higher critical supply are better</text>
+
+  <g transform="translate(55 172)">
+    <rect width="650" height="530" rx="18" class="panel"/><text x="28" y="42" class="head">Bus-voltage RMSE ↓</text><text x="622" y="42" text-anchor="end" class="note">target = 5.5 V</text>
+    <path class="grid" d="M208 72v386M328 72v386M448 72v386M568 72v386"/>
+    <text x="208" y="478" text-anchor="middle" class="axis">0.0</text><text x="328" y="478" text-anchor="middle" class="axis">0.2</text><text x="448" y="478" text-anchor="middle" class="axis">0.4</text><text x="568" y="478" text-anchor="middle" class="axis">0.6</text>
+    <text x="28" y="100" class="label">Lagrangian PPO</text><rect x="208" y="82" width="360" height="24" rx="12" class="track"/><rect x="208" y="82" width="151" height="24" rx="12" class="lag"/><text x="373" y="100" class="value" fill="#c4b5fd">0.252</text>
+    <text x="28" y="164" class="label">DR Multi-Policy PPO</text><rect x="208" y="146" width="360" height="24" rx="12" class="track"/><rect x="208" y="146" width="172" height="24" rx="12" class="mappo"/><text x="394" y="164" class="value" fill="#99f6e4">0.286</text>
+    <text x="28" y="228" class="label">Multi-Policy PPO</text><rect x="208" y="210" width="360" height="24" rx="12" class="track"/><rect x="208" y="210" width="175" height="24" rx="12" class="mappo"/><text x="397" y="228" class="value" fill="#99f6e4">0.291</text>
+    <text x="28" y="292" class="label">MPC · perfect forecast</text><rect x="208" y="274" width="360" height="24" rx="12" class="track"/><rect x="208" y="274" width="196" height="24" rx="12" class="muted"/><text x="418" y="292" class="value">0.326</text>
+    <text x="28" y="356" class="label">MPC · 15% noise</text><rect x="208" y="338" width="360" height="24" rx="12" class="track"/><rect x="208" y="338" width="329" height="24" rx="12" class="muted"/><text x="551" y="356" class="value">0.548</text>
+    <text x="28" y="420" class="label">Droop</text><rect x="208" y="402" width="360" height="24" rx="12" class="track"/><rect x="208" y="402" width="332" height="24" rx="12" class="muted"/><text x="554" y="420" class="value">0.554</text>
+    <path class="divider" d="M28 492h594"/><text x="28" y="522" class="note">Lagrangian reaches the lowest RMSE, but closes at SOC 0.922 — a boundary trade-off, not a universal win.</text>
+  </g>
+
+  <g transform="translate(735 172)">
+    <rect width="650" height="530" rx="18" class="panel"/><text x="28" y="42" class="head">Critical-load supply ↑</text><text x="622" y="42" text-anchor="end" class="note">brownout floor = 5.0 V</text>
+    <path class="grid" d="M208 72v386M298 72v386M388 72v386M478 72v386M568 72v386"/>
+    <text x="208" y="478" text-anchor="middle" class="axis">0%</text><text x="298" y="478" text-anchor="middle" class="axis">25%</text><text x="388" y="478" text-anchor="middle" class="axis">50%</text><text x="478" y="478" text-anchor="middle" class="axis">75%</text><text x="568" y="478" text-anchor="middle" class="axis">100%</text>
+    <text x="28" y="100" class="label">Lagrangian PPO</text><rect x="208" y="82" width="360" height="24" rx="12" class="track"/><rect x="208" y="82" width="353" height="24" rx="12" class="lag"/><text x="576" y="100" class="value" fill="#c4b5fd">98.0%</text>
+    <text x="28" y="164" class="label">DR Multi-Policy PPO</text><rect x="208" y="146" width="360" height="24" rx="12" class="track"/><rect x="208" y="146" width="354" height="24" rx="12" class="mappo"/><text x="576" y="164" class="value" fill="#99f6e4">98.4%</text>
+    <text x="28" y="228" class="label">Multi-Policy PPO</text><rect x="208" y="210" width="360" height="24" rx="12" class="track"/><rect x="208" y="210" width="356" height="24" rx="12" class="mappo"/><text x="576" y="228" class="value" fill="#99f6e4">98.9%</text>
+    <text x="28" y="292" class="label">MPC · perfect forecast</text><rect x="208" y="274" width="360" height="24" rx="12" class="track"/><rect x="208" y="274" width="321" height="24" rx="12" class="muted"/><text x="543" y="292" class="value">89.1%</text>
+    <text x="28" y="356" class="label">MPC · 15% noise</text><rect x="208" y="338" width="360" height="24" rx="12" class="track"/><rect x="208" y="338" width="246" height="24" rx="12" class="muted"/><text x="468" y="356" class="value">68.4%</text>
+    <text x="28" y="420" class="label">Droop</text><rect x="208" y="402" width="360" height="24" rx="12" class="track"/><rect x="208" y="402" width="236" height="24" rx="12" class="muted"/><text x="458" y="420" class="value">65.6%</text>
+    <path class="divider" d="M28 492h594"/><text x="28" y="522" class="note">Multi-Policy PPO combines 0.291 RMSE, 98.9% critical supply and mean final SOC 0.786.</text>
+  </g>
+  <text x="55" y="724" class="note mono">MARL arms: 5 training checkpoints × 20 held-out seeds = 100 episodes per arm · classical baselines: 20 held-out episodes</text>
+</svg>
+

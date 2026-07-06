@@ -208,14 +208,14 @@
           <!-- Project 02 — Multi-Agent RL -->
           <article class="project reveal">
             <div class="project__media project__media--contain">
-              <img src="assets/mp2/trace_comparison.png" alt="48-hour bus-voltage and state-of-charge traces comparing the RL controller against MPC baselines" loading="lazy" />
+              <img src="assets/mp2/system-architecture-phase6.svg" alt="Phase 6 architecture of the four-policy, four-source DC microgrid controller" loading="lazy" />
             </div>
             <div class="project__body">
               <div class="project__chan"><span class="led"></span>CH-02 // Microgrid-Control<span class="cat">Machine learning · Control</span></div>
               <h3>Multi-Agent RL for Microgrid Control</h3>
-              <p class="project__sub">Cooperative reinforcement-learning agents that keep a simulated DC microgrid stable and supplied — benchmarked head-to-head against classical droop and model-predictive control.</p>
+              <p class="project__sub">Four cooperative policies stabilise a simulated 5.5 V DC microgrid without a forecast — evaluated against droop and model-predictive control in the corrected Phase 6 study.</p>
               <div class="project__kpis">
-                <span><b>−51%</b> voltage error</span><span><b>0.270</b> RMSE</span><span><b>76 KB</b> policy</span>
+                <span><b>−47%</b> vs droop</span><span><b>0.291</b> RMSE</span><span><b>98.9%</b> critical supply</span>
               </div>
               <div class="tags project__tags">
                 <span class="tag tag--solid">In progress</span><span class="tag">PyTorch</span><span class="tag">Ray RLlib</span><span class="tag">PettingZoo</span><span class="tag">Safe RL</span><span class="tag">Control</span>
