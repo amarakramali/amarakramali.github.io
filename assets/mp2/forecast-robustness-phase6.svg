@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 640" role="img" aria-labelledby="title desc">
+  <title id="title">Forecast robustness in the Phase 6 slow configuration</title>
+  <desc id="desc">As MPC forecast noise rises from zero to five to fifteen percent, voltage RMSE worsens from 0.326 to 0.383 to 0.548 and critical supply falls from 89.1 to 86.3 to 68.4 percent. Forecast-free Multi-Policy PPO remains at 0.291 RMSE and 98.9 percent critical supply because it consumes no forecast.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1320"/><stop offset="1" stop-color="#111d2d"/></linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <style>
+      text{font-family:Inter,"Segoe UI",Arial,sans-serif;fill:#e7eef7}.mono{font-family:"JetBrains Mono",Consolas,monospace}.eyebrow{font-size:14px;font-weight:750;letter-spacing:2.4px;fill:#5eead4}.title{font-size:32px;font-weight:750}.sub{font-size:14px;fill:#91a3b8}.head{font-size:18px;font-weight:700}.label{font-size:12px;fill:#8296ad}.value{font-size:13px;font-weight:700}.note{font-size:12px;fill:#8194aa}
+      .panel{fill:#111d2d;stroke:#2a3b52;stroke-width:1.5}.grid{stroke:#26384d;stroke-width:1;fill:none}.axis{stroke:#41566e;stroke-width:1.4;fill:none}.marl{stroke:#2dd4bf;stroke-width:4;fill:none}.mpc{stroke:#f59e0b;stroke-width:4;fill:none}.dotm{fill:#2dd4bf}.dotp{fill:#f59e0b}.band{fill:#2dd4bf;opacity:.09}
+    </style>
+  </defs>
+  <rect width="1440" height="640" rx="28" fill="url(#bg)"/><path d="M0 74H1440" stroke="#203149"/><circle cx="36" cy="37" r="5" fill="#2dd4bf"/>
+  <text x="56" y="42" class="eyebrow">PHASE 6 / FORECAST ABLATION</text><text x="55" y="104" class="title">Forecast errors can erase MPC’s advantage.</text><text x="55" y="132" class="sub">Final T7/G8 release · slow configuration · held-out seeds 100–119 · Multi-Policy PPO consumes no forecast</text>
+  <g transform="translate(55 170)"><rect width="650" height="400" rx="18" class="panel"/><text x="28" y="40" class="head">Bus-voltage RMSE ↓</text>
+    <path class="grid" d="M90 95h500M90 157h500M90 219h500M90 281h500"/><path class="axis" d="M90 75v250h500"/>
+    <text x="75" y="99" text-anchor="end" class="label">0.6</text><text x="75" y="161" text-anchor="end" class="label">0.5</text><text x="75" y="223" text-anchor="end" class="label">0.4</text><text x="75" y="285" text-anchor="end" class="label">0.3</text>
+    <rect x="90" y="275" width="500" height="16" rx="8" class="band"/><path class="marl" d="M120 286H560"/><circle cx="120" cy="286" r="6" class="dotm" filter="url(#glow)"/><circle cx="340" cy="286" r="6" class="dotm"/><circle cx="560" cy="286" r="6" class="dotm"/>
+    <path class="mpc" d="M120 265L340 230L560 127"/><circle cx="120" cy="265" r="6" class="dotp"/><circle cx="340" cy="230" r="6" class="dotp"/><circle cx="560" cy="127" r="6" class="dotp"/>
+    <text x="575" y="132" class="value" fill="#fbbf24">MPC 0.548</text><text x="575" y="291" class="value" fill="#5eead4">MARL 0.291</text>
+    <text x="120" y="350" text-anchor="middle" class="label">perfect</text><text x="340" y="350" text-anchor="middle" class="label">5% noise</text><text x="560" y="350" text-anchor="middle" class="label">15% noise</text><text x="340" y="379" text-anchor="middle" class="note">forecast-noise setting</text>
+  </g>
+  <g transform="translate(735 170)"><rect width="650" height="400" rx="18" class="panel"/><text x="28" y="40" class="head">Critical-load supply ↑</text>
+    <path class="grid" d="M90 95h500M90 157h500M90 219h500M90 281h500"/><path class="axis" d="M90 75v250h500"/>
+    <text x="75" y="99" text-anchor="end" class="label">100%</text><text x="75" y="161" text-anchor="end" class="label">90%</text><text x="75" y="223" text-anchor="end" class="label">80%</text><text x="75" y="285" text-anchor="end" class="label">70%</text>
+    <rect x="90" y="95" width="500" height="16" rx="8" class="band"/><path class="marl" d="M120 102H560"/><circle cx="120" cy="102" r="6" class="dotm" filter="url(#glow)"/><circle cx="340" cy="102" r="6" class="dotm"/><circle cx="560" cy="102" r="6" class="dotm"/>
+    <path class="mpc" d="M120 163L340 180L560 291"/><circle cx="120" cy="163" r="6" class="dotp"/><circle cx="340" cy="180" r="6" class="dotp"/><circle cx="560" cy="291" r="6" class="dotp"/>
+    <text x="575" y="107" class="value" fill="#5eead4">MARL 98.9%</text><text x="575" y="296" class="value" fill="#fbbf24">MPC 68.4%</text>
+    <text x="120" y="350" text-anchor="middle" class="label">perfect</text><text x="340" y="350" text-anchor="middle" class="label">5% noise</text><text x="560" y="350" text-anchor="middle" class="label">15% noise</text><text x="340" y="379" text-anchor="middle" class="note">forecast-noise setting</text>
+  </g>
+  <text x="55" y="610" class="note mono">MPC: 0.326 → 0.383 → 0.548 RMSE · 89.1% → 86.3% → 68.4% critical supply · forecast-free MARL stays out of this failure mode</text>
+</svg>
