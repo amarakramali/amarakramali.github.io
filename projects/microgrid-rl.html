@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=8" />
+  <link rel="stylesheet" href="../css/style.css?v=9" />
   <script>
     (function () {
       try {
@@ -239,6 +239,90 @@
       </div>
     </section>
 
+    <section class="block" id="phase6-evidence">
+      <div class="wrap">
+        <p class="block__label">Original Phase 6 evidence</p>
+        <h2>Eight released plots — organised for exploration, not dumped into a wall of charts.</h2>
+        <div class="prose reveal">
+          <p>
+            The summary graphics above explain the result quickly. This browser keeps the original Phase 6 plots available underneath: three Holm-corrected effect-size matrices and five held-out behaviour traces. Every trace uses the same unseen <strong>EVAL seed 100</strong>, so the controller families face one directly comparable scenario.
+          </p>
+        </div>
+
+        <div class="mp2-evidence-browser reveal" data-mp2-evidence-browser>
+          <div class="mp2-evidence-head">
+            <div>
+              <span class="mp2-evidence-eyebrow">Statistical view</span>
+              <h3>Paired effect sizes across the full method family</h3>
+            </div>
+            <div class="mp2-evidence-controls" role="group" aria-label="Select action interval for effect-size heatmap">
+              <button type="button" aria-pressed="true"
+                data-src="../assets/mp2/phase6-results/cohens-d-slow.png?v=t7"
+                data-alt="Slow Phase 6 paired Cohen's d heatmap comparing all controller families with domain-randomised Multi-Policy PPO."
+                data-caption="Slow · 30 s actions · 48 h episode">Slow <small>30 s</small></button>
+              <button type="button" aria-pressed="false"
+                data-src="../assets/mp2/phase6-results/cohens-d-default.png?v=t7"
+                data-alt="Default Phase 6 paired Cohen's d heatmap comparing all controller families with domain-randomised Multi-Policy PPO."
+                data-caption="Default · 5 s actions · 48 h episode">Default <small>5 s</small></button>
+              <button type="button" aria-pressed="false"
+                data-src="../assets/mp2/phase6-results/cohens-d-fast.png?v=t7"
+                data-alt="Fast Phase 6 paired Cohen's d heatmap comparing all controller families with domain-randomised Multi-Policy PPO."
+                data-caption="Fast · 1 s actions · shorter coupled scenario">Fast <small>1 s</small></button>
+            </div>
+          </div>
+          <figure class="mp2-evidence-figure">
+            <div class="mp2-paper-frame">
+              <a data-mp2-evidence-link class="figure__zoom" href="../assets/mp2/phase6-results/cohens-d-slow.png?v=t7" target="_blank" rel="noopener" title="Open the selected effect-size heatmap full-size">
+                <img data-mp2-evidence-image src="../assets/mp2/phase6-results/cohens-d-slow.png?v=t7" alt="Slow Phase 6 paired Cohen's d heatmap comparing all controller families with domain-randomised Multi-Policy PPO." loading="lazy" />
+              </a>
+            </div>
+            <figcaption><b data-mp2-evidence-caption>Slow · 30 s actions · 48 h episode</b> The reference is MP-PPO + BC + DR. Stars use Holm-adjusted p-values; the sign must be read with the metric direction because lower RMSE is good while higher supply and reward are good.</figcaption>
+          </figure>
+        </div>
+
+        <div class="mp2-evidence-browser reveal" data-mp2-evidence-browser>
+          <div class="mp2-evidence-head">
+            <div>
+              <span class="mp2-evidence-eyebrow">Behaviour view</span>
+              <h3>What the controllers actually do over time</h3>
+            </div>
+            <div class="mp2-evidence-controls mp2-evidence-controls--traces" role="group" aria-label="Select held-out controller trace">
+              <button type="button" aria-pressed="true"
+                data-src="../assets/mp2/phase6-results/trace-core-slow.png?v=t7"
+                data-alt="Slow Phase 6 held-out trace comparing Multi-Policy PPO, domain-randomised Multi-Policy PPO, droop and perfect MPC."
+                data-caption="Slow core · MP-PPO, DR, droop and perfect MPC over 48 h">Slow core</button>
+              <button type="button" aria-pressed="false"
+                data-src="../assets/mp2/phase6-results/trace-core-default.png?v=t7"
+                data-alt="Default Phase 6 held-out trace comparing Multi-Policy PPO, domain-randomised Multi-Policy PPO, droop and perfect MPC."
+                data-caption="Default core · the same four controllers over 48 h">Default core</button>
+              <button type="button" aria-pressed="false"
+                data-src="../assets/mp2/phase6-results/trace-core-fast.png?v=t7"
+                data-alt="Fast Phase 6 held-out trace comparing Multi-Policy PPO, domain-randomised Multi-Policy PPO, droop and perfect MPC."
+                data-caption="Fast core · the same four controllers over the 12 h scenario">Fast core</button>
+              <button type="button" aria-pressed="false"
+                data-src="../assets/mp2/phase6-results/trace-learning-slow.png?v=t7"
+                data-alt="Slow Phase 6 held-out trace comparing learned Multi-Policy PPO, domain-randomised Multi-Policy PPO, IPPO and single-agent PPO controllers."
+                data-caption="Learned arms · MP-PPO, DR, IPPO and single-agent PPO">Learned arms</button>
+              <button type="button" aria-pressed="false"
+                data-src="../assets/mp2/phase6-results/trace-shields-slow.png?v=t7"
+                data-alt="Slow Phase 6 held-out trace comparing raw Multi-Policy PPO with aggressive and ultra inference-time shields."
+                data-caption="Shield ablation · raw policy, aggressive shield and ultra shield">Shields</button>
+            </div>
+          </div>
+          <figure class="mp2-evidence-figure mp2-evidence-figure--trace">
+            <div class="mp2-paper-frame">
+              <a data-mp2-evidence-link class="figure__zoom" href="../assets/mp2/phase6-results/trace-core-slow.png?v=t7" target="_blank" rel="noopener" title="Open the selected held-out trace full-size">
+                <img data-mp2-evidence-image src="../assets/mp2/phase6-results/trace-core-slow.png?v=t7" alt="Slow Phase 6 held-out trace comparing Multi-Policy PPO, domain-randomised Multi-Policy PPO, droop and perfect MPC." loading="lazy" />
+              </a>
+            </div>
+            <figcaption><b data-mp2-evidence-caption>Slow core · MP-PPO, DR, droop and perfect MPC over 48 h</b> From top to bottom: bus voltage, battery SOC, source actions and battery action. The plots expose control behaviour that a single aggregate score cannot show.</figcaption>
+          </figure>
+        </div>
+
+        <p class="mp2-evidence-note reveal"><span>8 / 11 release figures shown</span> The three original MPC-noise exports are represented by the cleaner forecast-robustness graphic above; the underlying conclusion and caveat remain unchanged.</p>
+      </div>
+    </section>
+
     <section class="block">
       <div class="wrap">
         <p class="block__label">What Phase 6 established</p>
@@ -291,6 +375,6 @@
   <footer class="footer">
     <div class="wrap footer__inner"><small>© <span data-year>2026</span> Amar Akram · Built with care in Bielefeld.</small><nav class="footer__nav" aria-label="Footer"><a href="../index.html#work">Work</a><a href="../index.html#about">About</a><a href="../index.html#contact">Contact</a><a href="mailto:amar.akram_ali@hsbi.de">Email</a></nav></div>
   </footer>
-  <script src="../js/main.js?v=4"></script>
+  <script src="../js/main.js?v=5"></script>
 </body>
 </html>
