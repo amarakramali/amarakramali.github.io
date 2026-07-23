@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=10" />
+  <link rel="stylesheet" href="../css/style.css?v=11" />
   <script>
     (function () {
       try {
@@ -101,10 +101,10 @@
     <div class="mp2-command-wrap">
       <div class="wrap">
         <div class="stats mp2-stats reveal">
-          <div class="stat"><div class="stat__num">252</div><div class="stat__label">released evaluation artifacts</div></div>
-          <div class="stat"><div class="stat__num">20</div><div class="stat__label">held-out seeds per comparison</div></div>
-          <div class="stat"><div class="stat__num">693</div><div class="stat__label">tests passed at release gate</div></div>
-          <div class="stat"><div class="stat__num">157<small>h</small></div><div class="stat__label">observed training wall-clock</div></div>
+          <div class="stat"><div class="stat__num" data-count="252">252</div><div class="stat__label">released evaluation artifacts</div></div>
+          <div class="stat"><div class="stat__num" data-count="20">20</div><div class="stat__label">held-out seeds per comparison</div></div>
+          <div class="stat"><div class="stat__num" data-count="693">693</div><div class="stat__label">tests passed at release gate</div></div>
+          <div class="stat"><div class="stat__num"><span data-count="157">157</span><small>h</small></div><div class="stat__label">observed training wall-clock</div></div>
         </div>
       </div>
     </div>
@@ -258,6 +258,58 @@
             In default, domain randomisation improves RMSE, saturation, critical supply and reward over the raw learned arm. In fast, droop is stronger than the DR arm on the main voltage, saturation, supply and reward metrics. The final page therefore presents Phase 6 as a configuration-dependent result instead of a universal “RL wins” claim.
           </p>
         </div>
+
+        <figure class="mp2-result-compare reveal" aria-labelledby="slow-compare-title">
+          <div class="mp2-result-compare__head">
+            <div>
+              <span>Slow configuration · held-out evaluation</span>
+              <h3 id="slow-compare-title">What changed against droop</h3>
+            </div>
+            <div class="mp2-result-legend">
+              <span><i class="mp2-result-legend__learned"></i>MP-PPO</span>
+              <span><i class="mp2-result-legend__droop"></i>Droop</span>
+            </div>
+          </div>
+
+          <div class="mp2-compare-row">
+            <div class="mp2-compare-label">
+              <span>01 / Lower is better</span>
+              <h4>Voltage RMSE</h4>
+              <b>−47.5%</b>
+            </div>
+            <div class="mp2-compare-bars">
+              <div class="mp2-compare-bar mp2-compare-bar--learned"><span>MP-PPO</span><div><i class="mp2-bar--0525"></i></div><b>0.291</b></div>
+              <div class="mp2-compare-bar mp2-compare-bar--droop"><span>Droop</span><div><i class="mp2-bar--1000"></i></div><b>0.554</b></div>
+            </div>
+          </div>
+
+          <div class="mp2-compare-row">
+            <div class="mp2-compare-label">
+              <span>02 / Higher is better</span>
+              <h4>Critical supply</h4>
+              <b>+33.3 pp</b>
+            </div>
+            <div class="mp2-compare-bars">
+              <div class="mp2-compare-bar mp2-compare-bar--learned"><span>MP-PPO</span><div><i class="mp2-bar--1000"></i></div><b>98.9%</b></div>
+              <div class="mp2-compare-bar mp2-compare-bar--droop"><span>Droop</span><div><i class="mp2-bar--0663"></i></div><b>65.6%</b></div>
+            </div>
+          </div>
+
+          <div class="mp2-compare-row">
+            <div class="mp2-compare-label">
+              <span>03 / Terminal state</span>
+              <h4>Battery SOC</h4>
+              <b>+0.734</b>
+            </div>
+            <div class="mp2-compare-bars">
+              <div class="mp2-compare-bar mp2-compare-bar--learned"><span>MP-PPO</span><div><i class="mp2-bar--1000"></i></div><b>0.786</b></div>
+              <div class="mp2-compare-bar mp2-compare-bar--droop"><span>Droop</span><div><i class="mp2-bar--0066"></i></div><b>0.052</b></div>
+            </div>
+          </div>
+
+          <figcaption class="mp2-result-compare__note">Bars are normalised within each metric. They show the paired slow-case contrast, not one combined score.</figcaption>
+        </figure>
+
         <figure class="figure mp2-feature-figure reveal">
           <div class="figure__frame mp2-dark-frame">
             <a class="figure__zoom" href="../assets/mp2/phase6-benchmark-slow.svg?v=t7" target="_blank" rel="noopener" title="Open full-size Phase 6 benchmark">
@@ -268,10 +320,10 @@
         </figure>
 
         <div class="mp2-result-strip reveal">
-          <article><span>Voltage</span><b>0.291</b><small>vs 0.554 droop</small></article>
-          <article><span>Critical supply</span><b>98.9%</b><small>vs 65.6% droop</small></article>
-          <article><span>Final SOC</span><b>0.786</b><small>vs 0.052 droop</small></article>
-          <article><span>DR-mild RMSE</span><b>0.286</b><small>better RMSE, but not free dominance</small></article>
+          <article><span>Voltage</span><b data-count="0.291" data-dec="3">0.291</b><small>vs 0.554 droop</small></article>
+          <article><span>Critical supply</span><b><span data-count="98.9" data-dec="1">98.9</span>%</b><small>vs 65.6% droop</small></article>
+          <article><span>Final SOC</span><b data-count="0.786" data-dec="3">0.786</b><small>vs 0.052 droop</small></article>
+          <article><span>DR-mild RMSE</span><b data-count="0.286" data-dec="3">0.286</b><small>better RMSE, but not free dominance</small></article>
         </div>
       </div>
     </section>
