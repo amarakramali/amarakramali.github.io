@@ -16,8 +16,9 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E5F74'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css?v=10" />
+  <link rel="stylesheet" href="../css/mp2-editorial.css?v=1" />
   <script>
     (function () {
       try {
@@ -48,35 +49,41 @@
   <div class="scroll-progress" aria-hidden="true"></div>
 
   <main>
-    <div class="wrap">
-      <a class="backlink" href="../index.html#work">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
-        All projects
-      </a>
-    </div>
-
     <section class="detail-hero mp2-detail-hero" id="overview">
       <div class="wrap">
-        <div class="mp2-hero-grid">
-          <div class="mp2-hero-copy">
-            <div class="mp1-kicker-row">
-              <p class="detail-hero__cat">Master Project 02 · Research case study</p>
-              <span class="phase-pill"><i></i> Phase 6 · G8 pass</span>
-            </div>
-            <h1>Forecast-free control for a four-source microgrid.</h1>
-            <p class="detail-hero__sub">
-              Four cooperative policies stabilise an islanded 5.5 V DC bus, protect its battery and prioritise a critical load — tested against droop and MPC across a frozen Phase 6 release.
-            </p>
-            <div class="mp2-hero-verdict">
-              <span>Research verdict</span>
-              <p><strong>No universal winner.</strong> Learned control leads the balanced slow case; domain randomisation strengthens default; classical droop remains the better fast reference.</p>
-            </div>
+        <a class="backlink" href="../index.html#work">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+          All projects
+        </a>
+        <div class="mp2-hero-status">
+          <p>Master Project 02 <span>→</span> Research case study</p>
+          <span class="phase-pill"><i></i> Phase 6 · G8 pass</span>
+        </div>
+
+        <div class="mp2-title-lockup" aria-label="Control without forecasts">
+          <span class="mp2-title-line">CONTROL</span>
+          <span class="mp2-title-line mp2-title-line--offset"><em>without</em> FORECASTS.</span>
+        </div>
+
+        <div class="mp2-hero-lede">
+          <p>
+            Four cooperative policies stabilise an islanded 5.5 V DC bus, protect its battery and prioritise a critical load — without seeing the future.
+          </p>
+          <div class="mp2-hero-index" aria-label="Project index">
+            <span>MP—02</span><span>PH—06</span><span>2026</span>
           </div>
+        </div>
+
+        <div class="mp2-hero-stage">
+          <svg class="mp2-signal" viewBox="0 0 1200 160" preserveAspectRatio="none" aria-hidden="true">
+            <path class="mp2-signal-grid" d="M0 80H1200M300 0V160M600 0V160M900 0V160" />
+            <path class="mp2-signal-line" pathLength="1" d="M0 82 C80 82 90 42 150 42 S230 119 310 82 S418 24 488 82 S555 111 610 82 S692 42 745 82 S827 129 900 82 S995 36 1055 82 S1140 101 1200 82" />
+          </svg>
 
           <figure class="mp2-hero-visual reveal">
             <div class="mp2-panel-top">
-              <span><i></i> Digital twin · online</span>
-              <code>V<sub>bus</sub> 5.5 V</code>
+              <span><i></i> System architecture / Phase 6</span>
+              <code>V<sub>bus</sub> = 5.5 V</code>
             </div>
             <a class="figure__zoom" href="../assets/mp2/system-architecture-phase6.svg?v=t7" target="_blank" rel="noopener" title="Open full-size Phase 6 architecture">
               <img src="../assets/mp2/system-architecture-phase6.svg?v=t7" alt="Phase 6 architecture: four learned policies control PV, wind, biogas and battery sources connected to a shared 5.5 volt bus with a 7.5 farad equivalent supercapacitor and two loads." />
@@ -86,6 +93,11 @@
             </div>
             <figcaption><b>Final Phase 6 architecture.</b> Power paths, shared observation and the 7.5 F equivalent bus buffer in one view.</figcaption>
           </figure>
+
+          <aside class="mp2-hero-verdict">
+            <span>Research verdict</span>
+            <p><strong>No universal winner.</strong> Learned control leads the balanced slow case; domain randomisation strengthens default; classical droop remains the better fast reference.</p>
+          </aside>
         </div>
 
         <dl class="meta-row mp2-meta-row">
@@ -101,10 +113,10 @@
     <div class="mp2-command-wrap">
       <div class="wrap">
         <div class="stats mp2-stats reveal">
-          <div class="stat"><div class="stat__num">252</div><div class="stat__label">released evaluation artifacts</div></div>
-          <div class="stat"><div class="stat__num">20</div><div class="stat__label">held-out seeds per comparison</div></div>
-          <div class="stat"><div class="stat__num">693</div><div class="stat__label">tests passed at release gate</div></div>
-          <div class="stat"><div class="stat__num">157<small>h</small></div><div class="stat__label">observed training wall-clock</div></div>
+          <div class="stat"><span>01</span><div class="stat__num">252</div><div class="stat__label">released evaluation artifacts</div></div>
+          <div class="stat"><span>02</span><div class="stat__num">20</div><div class="stat__label">held-out seeds per comparison</div></div>
+          <div class="stat"><span>03</span><div class="stat__num">693</div><div class="stat__label">tests passed at release gate</div></div>
+          <div class="stat"><span>04</span><div class="stat__num">157<small>h</small></div><div class="stat__label">observed training wall-clock</div></div>
         </div>
       </div>
     </div>
@@ -137,6 +149,11 @@
               Bus voltage is not clamped by an ideal supply. It moves with the net source current through the 7.5 F buffer, so voltage becomes the visible consequence of every control decision — the DC analogue of frequency in a larger AC grid.
             </p>
           </div>
+        </div>
+        <div class="mp2-thesis reveal">
+          <span>The finding</span>
+          <p>The result is configuration-dependent.</p>
+          <small>That is not a weaker conclusion. It is the useful one.</small>
         </div>
         <div class="mp2-verdict-grid reveal" aria-label="Phase 6 executive readout">
           <article class="mp2-verdict-card mp2-verdict-card--learned">
@@ -432,6 +449,6 @@
   <footer class="footer">
     <div class="wrap footer__inner"><small>© <span data-year>2026</span> Amar Akram · Built with care in Bielefeld.</small><nav class="footer__nav" aria-label="Footer"><a href="../index.html#work">Work</a><a href="../index.html#about">About</a><a href="../index.html#contact">Contact</a><a href="mailto:amar.akram_ali@hsbi.de">Email</a></nav></div>
   </footer>
-  <script src="../js/main.js?v=6"></script>
+  <script src="../js/main.js?v=7"></script>
 </body>
 </html>
