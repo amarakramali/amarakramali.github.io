@@ -5,12 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Forecast-free Multi-Agent Control — MP2 Phase 6 · Amar Akram</title>
   <meta name="description" content="Final Phase 6 T7/G8 release of a multi-policy PPO controller for a 5.5 V DC microgrid: 252 released evaluation artifacts, 20 held-out seeds, Holm-corrected statistics, and clear caveats on droop, MPC, DR and shields." />
+  <meta name="theme-color" content="#0A0E14" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Forecast-free Multi-Agent Control · MP2 Phase 6" />
+  <meta property="og:description" content="A research case study on multi-policy PPO, droop and MPC for an islanded four-source DC microgrid." />
+  <meta property="og:url" content="https://amarakramali.github.io/projects/microgrid-rl.html" />
+  <meta property="article:published_time" content="2026-07-17" />
+  <meta name="twitter:card" content="summary" />
   <link rel="canonical" href="https://amarakramali.github.io/projects/microgrid-rl.html" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E5F74'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=9" />
+  <link rel="stylesheet" href="../css/style.css?v=10" />
   <script>
     (function () {
       try {
@@ -22,7 +29,7 @@
     })();
   </script>
 </head>
-<body>
+<body class="mp2-case-study">
   <header class="nav">
     <div class="wrap nav__inner">
       <a class="brand" href="../index.html#top" aria-label="Amar Akram — home">
@@ -38,6 +45,7 @@
       </nav>
     </div>
   </header>
+  <div class="scroll-progress" aria-hidden="true"></div>
 
   <main>
     <div class="wrap">
@@ -47,49 +55,78 @@
       </a>
     </div>
 
-    <section class="detail-hero mp2-detail-hero">
+    <section class="detail-hero mp2-detail-hero" id="overview">
       <div class="wrap">
-        <div class="mp1-kicker-row">
-          <p class="detail-hero__cat">Machine learning · Control · Energy systems</p>
-          <span class="phase-pill"><i></i> Phase 6 · T7/G8 release</span>
+        <div class="mp2-hero-grid">
+          <div class="mp2-hero-copy">
+            <div class="mp1-kicker-row">
+              <p class="detail-hero__cat">Master Project 02 · Research case study</p>
+              <span class="phase-pill"><i></i> Phase 6 · G8 pass</span>
+            </div>
+            <h1>Forecast-free control for a four-source microgrid.</h1>
+            <p class="detail-hero__sub">
+              Four cooperative policies stabilise an islanded 5.5 V DC bus, protect its battery and prioritise a critical load — tested against droop and MPC across a frozen Phase 6 release.
+            </p>
+            <div class="mp2-hero-verdict">
+              <span>Research verdict</span>
+              <p><strong>No universal winner.</strong> Learned control leads the balanced slow case; domain randomisation strengthens default; classical droop remains the better fast reference.</p>
+            </div>
+          </div>
+
+          <figure class="mp2-hero-visual reveal">
+            <div class="mp2-panel-top">
+              <span><i></i> Digital twin · online</span>
+              <code>V<sub>bus</sub> 5.5 V</code>
+            </div>
+            <a class="figure__zoom" href="../assets/mp2/system-architecture-phase6.svg?v=t7" target="_blank" rel="noopener" title="Open full-size Phase 6 architecture">
+              <img src="../assets/mp2/system-architecture-phase6.svg?v=t7" alt="Phase 6 architecture: four learned policies control PV, wind, biogas and battery sources connected to a shared 5.5 volt bus with a 7.5 farad equivalent supercapacitor and two loads." />
+            </a>
+            <div class="mp2-panel-foot" aria-label="Architecture summary">
+              <span><b>04</b> policies</span><span><b>21</b> observations</span><span><b>7.5 F</b> buffer</span>
+            </div>
+            <figcaption><b>Final Phase 6 architecture.</b> Power paths, shared observation and the 7.5 F equivalent bus buffer in one view.</figcaption>
+          </figure>
         </div>
-        <h1>Forecast-free control for a four-source microgrid.</h1>
-        <p class="detail-hero__sub">
-          Four cooperative policies keep an islanded 5.5 V DC bus stable, protect its battery and prioritise a critical load — now evaluated in the final Phase 6 results bundle.
-        </p>
-        <dl class="meta-row">
+
+        <dl class="meta-row mp2-meta-row">
           <div><dt>Role</dt><dd>Solo — model, training &amp; evaluation</dd></div>
           <div><dt>Context</dt><dd>Master's project (MP2), HSBI</dd></div>
           <div><dt>Supervisor</dt><dd>Prof. Dr. Jörn Loviscach</dd></div>
           <div><dt>Headline arm</dt><dd>Multi-Policy PPO · BC + DR ablation</dd></div>
-          <div><dt>Status</dt><dd>T7 complete · G8 pass</dd></div>
+          <div><dt>Release</dt><dd>17 July 2026 · T7 complete</dd></div>
         </dl>
       </div>
     </section>
 
-    <div class="wrap">
-      <figure class="figure figure--hero reveal">
-        <div class="figure__frame mp2-dark-frame">
-          <a class="figure__zoom" href="../assets/mp2/system-architecture-phase6.svg?v=t7" target="_blank" rel="noopener" title="Open full-size Phase 6 architecture">
-            <img src="../assets/mp2/system-architecture-phase6.svg?v=t7" alt="Phase 6 architecture: four learned policies control PV, wind, biogas and battery sources connected to a shared 5.5 volt bus with a 7.5 farad equivalent supercapacitor and two loads." />
-          </a>
+    <div class="mp2-command-wrap">
+      <div class="wrap">
+        <div class="stats mp2-stats reveal">
+          <div class="stat"><div class="stat__num">252</div><div class="stat__label">released evaluation artifacts</div></div>
+          <div class="stat"><div class="stat__num">20</div><div class="stat__label">held-out seeds per comparison</div></div>
+          <div class="stat"><div class="stat__num">693</div><div class="stat__label">tests passed at release gate</div></div>
+          <div class="stat"><div class="stat__num">157<small>h</small></div><div class="stat__label">observed training wall-clock</div></div>
         </div>
-        <figcaption><b>The final Phase 6 model.</b> Solid cyan lines show power; dashed violet lines close the control loop. The diagram follows evaluation revision <code>d419953</code>: PV is bypass-only, the obsolete diode-chain model is removed, and the bus uses one 7.5 F equivalent capacitance.</figcaption>
-      </figure>
-    </div>
-
-    <div class="wrap mp2-stats-wrap">
-      <div class="stats reveal">
-        <div class="stat"><div class="stat__num">252</div><div class="stat__label">released artifacts: 120 regular evals, 108 stress runs and 24 traces</div></div>
-        <div class="stat"><div class="stat__num">20</div><div class="stat__label">held-out EVAL seeds with paired bootstrap and Holm correction</div></div>
-        <div class="stat"><div class="stat__num">693</div><div class="stat__label">tests passed before the Phase 6 bundle was marked G8 PASS</div></div>
-        <div class="stat"><div class="stat__num">157<small>h</small></div><div class="stat__label">summed observed wall-clock across 75 training runs</div></div>
       </div>
     </div>
 
-    <section class="block">
+    <nav class="mp2-project-nav" aria-label="MP2 case study sections">
       <div class="wrap">
-        <p class="block__label">From MP1 to MP2</p>
+        <span class="mp2-project-nav__label">Case index</span>
+        <div class="mp2-project-nav__links">
+          <a href="#overview">Overview</a>
+          <a href="#system">System</a>
+          <a href="#method">Method</a>
+          <a href="#training-campaign">Training</a>
+          <a href="#results">Results</a>
+          <a href="#phase6-evidence">Evidence</a>
+          <a href="#limitations">Limits</a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="block mp2-context" id="context" data-nav="overview">
+      <div class="wrap">
+        <p class="block__label">01 / From hardware to control</p>
         <div class="mp2-intro-grid">
           <h2>The hardware becomes a control problem.</h2>
           <div class="prose reveal">
@@ -101,12 +138,32 @@
             </p>
           </div>
         </div>
+        <div class="mp2-verdict-grid reveal" aria-label="Phase 6 executive readout">
+          <article class="mp2-verdict-card mp2-verdict-card--learned">
+            <div><span>Slow · 30 s</span><b>Learned balance</b></div>
+            <h3>MP-PPO leads the balanced case.</h3>
+            <p>Strong voltage control, 98.9% critical supply and healthy terminal SOC.</p>
+            <small>Best portfolio result</small>
+          </article>
+          <article class="mp2-verdict-card mp2-verdict-card--dr">
+            <div><span>Default · 5 s</span><b>DR helps</b></div>
+            <h3>Randomisation improves the raw policy.</h3>
+            <p>Lower RMSE and saturation with better supply and reward across held-out seeds.</p>
+            <small>Cleanest DR gain</small>
+          </article>
+          <article class="mp2-verdict-card mp2-verdict-card--classical">
+            <div><span>Fast · 1 s</span><b>Classical lead</b></div>
+            <h3>Droop remains the stronger reference.</h3>
+            <p>The short coupled scenario resists a simple “faster RL is better” conclusion.</p>
+            <small>Honest boundary</small>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section class="block">
+    <section class="block mp2-section--tint" id="system">
       <div class="wrap">
-        <p class="block__label">Plant model</p>
+        <p class="block__label">02 / Plant model</p>
         <h2>A small grid with real constraints.</h2>
         <div class="prose reveal">
           <p>
@@ -114,10 +171,10 @@
           </p>
         </div>
         <div class="mp2-component-grid reveal">
-          <article><span class="mp2-dot mp2-dot--pv"></span><h3>Photovoltaic</h3><p>0–1 A passive source, temperature-adjusted and curtailed by its policy. Phase 6 is bypass-only.</p></article>
-          <article><span class="mp2-dot mp2-dot--wind"></span><h3>Wind</h3><p>Cubic turbine curve with 2 m/s cut-in, 8 m/s rated speed and 12 m/s cut-out.</p></article>
-          <article><span class="mp2-dot mp2-dot--bio"></span><h3>Biogas</h3><p>0.3–1 A dispatchable source with a 0.002 A/s ramp, 15-minute runtime and 10-minute pause.</p></article>
-          <article><span class="mp2-dot mp2-dot--bat"></span><h3>Battery</h3><p>0.5 Ah, bidirectional ±1 A, SOC limits 0.05–0.95 and 95% charging efficiency.</p></article>
+          <article data-source="PV"><span class="mp2-dot mp2-dot--pv"></span><h3>Photovoltaic</h3><strong>0–1 A</strong><p>Passive source, temperature-adjusted and curtailed by its policy. Phase 6 is bypass-only.</p></article>
+          <article data-source="WND"><span class="mp2-dot mp2-dot--wind"></span><h3>Wind</h3><strong>2–12 m/s</strong><p>Cubic turbine curve from cut-in through rated speed to cut-out.</p></article>
+          <article data-source="BIO"><span class="mp2-dot mp2-dot--bio"></span><h3>Biogas</h3><strong>0.3–1 A</strong><p>Dispatchable source with ramp, minimum runtime and cooldown constraints.</p></article>
+          <article data-source="BAT"><span class="mp2-dot mp2-dot--bat"></span><h3>Battery</h3><strong>±1 A</strong><p>0.5 Ah bidirectional storage with SOC limits and 95% charging efficiency.</p></article>
         </div>
         <div class="mp2-equation reveal" aria-label="Bus voltage dynamics equation">
           <span>Dynamic state</span><b>dV<sub>bus</sub>/dt = (ΣI<sub>sources</sub> − ΣI<sub>loads</sub>) / 7.5 F</b><small>5.5 V nominal · 4.5–6.0 V hard model bounds</small>
@@ -125,9 +182,9 @@
       </div>
     </section>
 
-    <section class="block">
+    <section class="block" id="method">
       <div class="wrap">
-        <p class="block__label">Learning setup</p>
+        <p class="block__label">03 / Learning setup</p>
         <h2>One policy per source, one shared objective.</h2>
         <div class="prose reveal">
           <p>
@@ -149,9 +206,9 @@
       </div>
     </section>
 
-    <section class="block" id="training-campaign">
+    <section class="block mp2-section--tint" id="training-campaign">
       <div class="wrap">
-        <p class="block__label">Experiment scale</p>
+        <p class="block__label">04 / Experiment scale</p>
         <h2>The result took 157 run-hours before it became a 252-job release bundle.</h2>
         <div class="prose reveal">
           <p>
@@ -162,7 +219,7 @@
           </p>
         </div>
 
-        <figure class="figure reveal">
+        <figure class="figure mp2-feature-figure reveal">
           <div class="figure__frame mp2-dark-frame">
             <a class="figure__zoom" href="../assets/mp2/training-campaign-phase6.svg?v=t7" target="_blank" rel="noopener" title="Open full-size Phase 6 training campaign">
               <img src="../assets/mp2/training-campaign-phase6.svg?v=t7" alt="Phase 6 training campaign and release bundle: 75 completed training runs, 156.8 summed run-hours, 252 released evaluation artifacts and T7/G8 PASS." loading="lazy" />
@@ -189,9 +246,9 @@
       </div>
     </section>
 
-    <section class="block" id="results">
+    <section class="block mp2-results-section" id="results">
       <div class="wrap">
-        <p class="block__label">Phase 6 results</p>
+        <p class="block__label">05 / Phase 6 results</p>
         <h2>Slow shows the learned controller’s strength — fast shows why the story stays honest.</h2>
         <div class="prose reveal">
           <p>
@@ -201,7 +258,7 @@
             In default, domain randomisation improves RMSE, saturation, critical supply and reward over the raw learned arm. In fast, droop is stronger than the DR arm on the main voltage, saturation, supply and reward metrics. The final page therefore presents Phase 6 as a configuration-dependent result instead of a universal “RL wins” claim.
           </p>
         </div>
-        <figure class="figure reveal">
+        <figure class="figure mp2-feature-figure reveal">
           <div class="figure__frame mp2-dark-frame">
             <a class="figure__zoom" href="../assets/mp2/phase6-benchmark-slow.svg?v=t7" target="_blank" rel="noopener" title="Open full-size Phase 6 benchmark">
               <img src="../assets/mp2/phase6-benchmark-slow.svg?v=t7" alt="Phase 6 slow benchmark comparing voltage RMSE and critical-load supply across Lagrangian PPO, domain-randomised Multi-Policy PPO, Multi-Policy PPO, perfect-forecast MPC, noisy MPC and droop." loading="lazy" />
@@ -219,7 +276,7 @@
       </div>
     </section>
 
-    <section class="block">
+    <section class="block" id="forecast" data-nav="results">
       <div class="wrap">
         <p class="block__label">Forecast robustness</p>
         <h2>MPC degrades exactly where the learned policy is independent.</h2>
@@ -228,7 +285,7 @@
             With a perfect forecast, MPC is competitive and in some metrics better. At the Phase 6 15% noise setting, however, its RMSE rises to 0.548 and critical supply falls to 68.4%. The learned controller has no forecast input, so this specific error channel does not exist for it.
           </p>
         </div>
-        <figure class="figure reveal">
+        <figure class="figure mp2-feature-figure reveal">
           <div class="figure__frame mp2-dark-frame">
             <a class="figure__zoom" href="../assets/mp2/forecast-robustness-phase6.svg?v=t7" target="_blank" rel="noopener" title="Open full-size forecast robustness chart">
               <img src="../assets/mp2/forecast-robustness-phase6.svg?v=t7" alt="Phase 6 chart showing MPC voltage error rising and critical-load supply falling as forecast noise increases, while forecast-free Multi-Policy PPO remains outside that failure mode." loading="lazy" />
@@ -239,9 +296,9 @@
       </div>
     </section>
 
-    <section class="block" id="phase6-evidence">
+    <section class="block mp2-section--tint mp2-evidence-section" id="phase6-evidence">
       <div class="wrap">
-        <p class="block__label">Original Phase 6 evidence</p>
+        <p class="block__label">06 / Original Phase 6 evidence</p>
         <h2>Eight released plots — organised for exploration, not dumped into a wall of charts.</h2>
         <div class="prose reveal">
           <p>
@@ -323,9 +380,9 @@
       </div>
     </section>
 
-    <section class="block">
+    <section class="block mp2-limits-section" id="limitations">
       <div class="wrap">
-        <p class="block__label">What Phase 6 established</p>
+        <p class="block__label">07 / What Phase 6 established</p>
         <h2>Strong evidence, with the caveats left visible.</h2>
         <div class="mp1-status-grid reveal">
           <article class="mp1-status-card mp1-status-card--verified">
@@ -352,9 +409,9 @@
       </div>
     </section>
 
-    <section class="block">
+    <section class="block mp2-section--tint mp2-stack-section" id="stack" data-nav="limitations">
       <div class="wrap">
-        <p class="block__label">Technology</p>
+        <p class="block__label">08 / Technology</p>
         <h2>A reproducible simulation and evaluation stack.</h2>
         <div class="tags reveal">
           <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Ray RLlib</span><span class="tag">PettingZoo</span><span class="tag">Gymnasium</span><span class="tag">NumPy</span><span class="tag">cvxpy · OSQP</span><span class="tag">SciPy</span><span class="tag">pytest</span><span class="tag">MQTT · HIL bridge</span>
@@ -375,6 +432,6 @@
   <footer class="footer">
     <div class="wrap footer__inner"><small>© <span data-year>2026</span> Amar Akram · Built with care in Bielefeld.</small><nav class="footer__nav" aria-label="Footer"><a href="../index.html#work">Work</a><a href="../index.html#about">About</a><a href="../index.html#contact">Contact</a><a href="mailto:amar.akram_ali@hsbi.de">Email</a></nav></div>
   </footer>
-  <script src="../js/main.js?v=5"></script>
+  <script src="../js/main.js?v=6"></script>
 </body>
 </html>
