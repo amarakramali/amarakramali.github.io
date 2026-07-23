@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Forecast-free Multi-Agent Control — MP2 Phase 6 · Amar Akram</title>
-  <meta name="description" content="Phase 6 of a multi-agent reinforcement-learning controller for a 5.5 V DC microgrid. On held-out slow-configuration tests, Multi-Policy PPO cuts voltage RMSE by 47% versus droop and supplies the critical load 98.9% of the time." />
+  <meta name="description" content="Final Phase 6 T7/G8 release of a multi-policy PPO controller for a 5.5 V DC microgrid: 252 released evaluation artifacts, 20 held-out seeds, Holm-corrected statistics, and clear caveats on droop, MPC, DR and shields." />
   <link rel="canonical" href="https://amarakramali.github.io/projects/microgrid-rl.html" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E5F74'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' font-weight='700' fill='white' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=7" />
+  <link rel="stylesheet" href="../css/style.css?v=8" />
   <script>
     (function () {
       try {
@@ -51,18 +51,18 @@
       <div class="wrap">
         <div class="mp1-kicker-row">
           <p class="detail-hero__cat">Machine learning · Control · Energy systems</p>
-          <span class="phase-pill"><i></i> Phase 6 · evaluation</span>
+          <span class="phase-pill"><i></i> Phase 6 · T7/G8 release</span>
         </div>
         <h1>Forecast-free control for a four-source microgrid.</h1>
         <p class="detail-hero__sub">
-          Four cooperative policies keep an islanded 5.5 V DC bus stable, protect its battery and prioritise a critical load — without depending on a weather forecast.
+          Four cooperative policies keep an islanded 5.5 V DC bus stable, protect its battery and prioritise a critical load — now evaluated in the final Phase 6 results bundle.
         </p>
         <dl class="meta-row">
           <div><dt>Role</dt><dd>Solo — model, training &amp; evaluation</dd></div>
           <div><dt>Context</dt><dd>Master's project (MP2), HSBI</dd></div>
           <div><dt>Supervisor</dt><dd>Prof. Dr. Jörn Loviscach</dd></div>
-          <div><dt>Headline arm</dt><dd>Multi-Policy PPO · BC warm-start</dd></div>
-          <div><dt>Status</dt><dd>Phase 6 simulation study</dd></div>
+          <div><dt>Headline arm</dt><dd>Multi-Policy PPO · BC + DR ablation</dd></div>
+          <div><dt>Status</dt><dd>T7 complete · G8 pass</dd></div>
         </dl>
       </div>
     </section>
@@ -70,19 +70,19 @@
     <div class="wrap">
       <figure class="figure figure--hero reveal">
         <div class="figure__frame mp2-dark-frame">
-          <a class="figure__zoom" href="../assets/mp2/system-architecture-phase6.svg" target="_blank" rel="noopener" title="Open full-size Phase 6 architecture">
-            <img src="../assets/mp2/system-architecture-phase6.svg" alt="Phase 6 architecture: four learned policies control PV, wind, biogas and battery sources connected to a shared 5.5 volt bus with a 7.5 farad equivalent supercapacitor and two loads." />
+          <a class="figure__zoom" href="../assets/mp2/system-architecture-phase6.svg?v=t7" target="_blank" rel="noopener" title="Open full-size Phase 6 architecture">
+            <img src="../assets/mp2/system-architecture-phase6.svg?v=t7" alt="Phase 6 architecture: four learned policies control PV, wind, biogas and battery sources connected to a shared 5.5 volt bus with a 7.5 farad equivalent supercapacitor and two loads." />
           </a>
         </div>
-        <figcaption><b>The Phase 6 model.</b> Solid cyan lines show power; dashed violet lines close the control loop. The diagram follows revision <code>d419953</code>: PV is bypass-only, the obsolete diode-chain model is removed, and the bus uses one 7.5 F equivalent capacitance.</figcaption>
+        <figcaption><b>The final Phase 6 model.</b> Solid cyan lines show power; dashed violet lines close the control loop. The diagram follows evaluation revision <code>d419953</code>: PV is bypass-only, the obsolete diode-chain model is removed, and the bus uses one 7.5 F equivalent capacitance.</figcaption>
       </figure>
     </div>
 
     <div class="wrap mp2-stats-wrap">
       <div class="stats reveal">
-        <div class="stat"><div class="stat__num">−47<small>%</small></div><div class="stat__label">voltage RMSE versus droop in the completed slow configuration</div></div>
-        <div class="stat"><div class="stat__num">98.9<small>%</small></div><div class="stat__label">critical-load supply for headline Multi-Policy PPO</div></div>
-        <div class="stat"><div class="stat__num">100</div><div class="stat__label">held-out episodes per MARL arm: 5 checkpoints × 20 seeds</div></div>
+        <div class="stat"><div class="stat__num">252</div><div class="stat__label">released artifacts: 120 regular evals, 108 stress runs and 24 traces</div></div>
+        <div class="stat"><div class="stat__num">20</div><div class="stat__label">held-out EVAL seeds with paired bootstrap and Holm correction</div></div>
+        <div class="stat"><div class="stat__num">693</div><div class="stat__label">tests passed before the Phase 6 bundle was marked G8 PASS</div></div>
         <div class="stat"><div class="stat__num">157<small>h</small></div><div class="stat__label">summed observed wall-clock across 75 training runs</div></div>
       </div>
     </div>
@@ -94,7 +94,7 @@
           <h2>The hardware becomes a control problem.</h2>
           <div class="prose reveal">
             <p>
-              <a href="smart-energy-node.html">MP1</a> builds the physical energy node. MP2 turns that setup into a physics-based digital twin and asks a sharper question: can learned source controllers outperform droop and remain useful when an MPC forecast is wrong?
+              <a href="smart-energy-node.html">MP1</a> builds the physical energy node. MP2 turns that setup into a physics-based digital twin and asks a sharper question: where can learned source controllers beat droop and MPC — and where do the classical controllers still deserve respect?
             </p>
             <p>
               Bus voltage is not clamped by an ideal supply. It moves with the net source current through the 7.5 F buffer, so voltage becomes the visible consequence of every control decision — the DC analogue of frequency in a larger AC grid.
@@ -110,7 +110,7 @@
         <h2>A small grid with real constraints.</h2>
         <div class="prose reveal">
           <p>
-            The simulation integrates bus physics at one-second substeps. Only the decision interval changes — 1 s, 5 s or 30 s — so the study isolates controller speed instead of changing the underlying plant. Each 48-hour slow/default episode combines renewable availability, two load profiles and a dispatchable source with startup constraints.
+            The simulation integrates bus physics at one-second substeps, while the controller acts at 30 s, 5 s or 1 s intervals. Slow and default use 48-hour episodes; the fast setting has a shorter horizon and scenario coupling, so cross-configuration differences are reported as configuration effects — not as a pure action-interval causal claim.
           </p>
         </div>
         <div class="mp2-component-grid reveal">
@@ -141,10 +141,10 @@
           <div><span>01</span><b>Train</b><small>5 seeds · 200 iterations · 3 action intervals</small></div><i>→</i>
           <div><span>02</span><b>Freeze</b><small>best or final checkpoint by declared rule</small></div><i>→</i>
           <div><span>03</span><b>Evaluate</b><small>20 disjoint held-out seeds · no train leakage</small></div><i>→</i>
-          <div><span>04</span><b>Stress</b><small>storm · overcast · load spike</small></div>
+          <div><span>04</span><b>Release</b><small>10k paired bootstrap · Holm-corrected reports</small></div>
         </div>
         <div class="callout reveal">
-          <p><strong>Why the gate structure mattered.</strong> Single-agent PPO looked strongest during training, then failed to generalise: in the default held-out evaluation its critical supply collapsed to 30.8%. Phase 6 reports the test result, not the attractive training curve.</p>
+          <p><strong>Why the gate structure mattered.</strong> Single-agent PPO looked attractive during training, then failed to generalise: in the default held-out evaluation its critical supply collapsed. Phase 6 reports the held-out test result, not the flattering training curve.</p>
         </div>
       </div>
     </section>
@@ -152,20 +152,20 @@
     <section class="block" id="training-campaign">
       <div class="wrap">
         <p class="block__label">Experiment scale</p>
-        <h2>The result took 157 run-hours — not one lucky seed.</h2>
+        <h2>The result took 157 run-hours before it became a 252-job release bundle.</h2>
         <div class="prose reveal">
           <p>
             The main Phase 6 campaign trained <strong>five controller families</strong> at three action intervals and five independent seeds: 75 complete jobs, 200 iterations each. Their measured wall-clock spans sum to <strong>156.8 hours</strong>; the matrix itself ran from 14 to 25 June 2026.
           </p>
           <p>
-            A headline Multi-Policy PPO run took a median <strong>2.41 hours</strong>. Single-agent PPO finished in only 0.67 hours because it learns one shared policy instead of four — but its held-out default evaluation collapsed. Faster training did not mean better generalisation.
+            The final T7/G8 bundle then adds <strong>120/120 regular evaluations</strong>, <strong>108/108 stress evaluations</strong> and <strong>24/24 behaviour traces</strong>. A headline Multi-Policy PPO run took a median <strong>2.41 hours</strong>; the faster single-agent PPO was not the better held-out controller.
           </p>
         </div>
 
         <figure class="figure reveal">
           <div class="figure__frame mp2-dark-frame">
-            <a class="figure__zoom" href="../assets/mp2/training-campaign-phase6.svg" target="_blank" rel="noopener" title="Open full-size Phase 6 training campaign">
-              <img src="../assets/mp2/training-campaign-phase6.svg" alt="Phase 6 training campaign: 75 completed runs, 156.8 summed run-hours, median training times by controller and a timeline from model freeze through evaluation." loading="lazy" />
+            <a class="figure__zoom" href="../assets/mp2/training-campaign-phase6.svg?v=t7" target="_blank" rel="noopener" title="Open full-size Phase 6 training campaign">
+              <img src="../assets/mp2/training-campaign-phase6.svg?v=t7" alt="Phase 6 training campaign and release bundle: 75 completed training runs, 156.8 summed run-hours, 252 released evaluation artifacts and T7/G8 PASS." loading="lazy" />
             </a>
           </div>
           <figcaption><b>Measured training effort.</b> Timings are observed wall-clock spans from each run's recorded creation time to its completed results file. They describe this campaign's workflow, not a hardware-normalised algorithm benchmark.</figcaption>
@@ -175,7 +175,7 @@
           <article><span>5 × 3 × 5</span><b>75 main runs</b><p>five algorithms, three action intervals and five seeds</p></article>
           <article><span>75 × 200</span><b>15,000 iterations</b><p>the health-checked headline training matrix</p></article>
           <article><span>27 × 5 × 50</span><b>6,750 more</b><p>iterations in the reward-weight sensitivity sweep</p></article>
-          <article><span>20 held-out seeds</span><b>No train leakage</b><p>evaluation pool 100–119 stays disjoint from training and tuning</p></article>
+          <article><span>120 + 108 + 24</span><b>252 artifacts</b><p>regular evaluation, stress scenarios and behaviour traces all released</p></article>
         </div>
 
         <div class="mp2-matrix-wrap reveal" aria-label="Phase 6 training matrix">
@@ -192,26 +192,29 @@
     <section class="block" id="results">
       <div class="wrap">
         <p class="block__label">Phase 6 results</p>
-        <h2>Droop is stable — but it drains the battery and sheds the critical load.</h2>
+        <h2>Slow shows the learned controller’s strength — fast shows why the story stays honest.</h2>
         <div class="prose reveal">
           <p>
-            In the completed slow configuration, headline Multi-Policy PPO reduces mean voltage RMSE from <strong>0.554 to 0.291</strong>, raises critical-load supply from <strong>65.6% to 98.9%</strong>, and ends with mean battery SOC <strong>0.786 instead of 0.052</strong>. These are held-out Phase 6 results, not numbers carried forward from an earlier phase.
+            In the completed slow configuration, raw Multi-Policy PPO reduces mean voltage RMSE from <strong>0.554 to 0.291</strong>, raises critical-load supply from <strong>65.6% to 98.9%</strong>, and ends with mean battery SOC <strong>0.786 instead of 0.052</strong>. The domain-randomised arm improves RMSE further to <strong>0.286</strong>, but slightly lowers critical supply, final SOC and reward — a real trade-off, not free dominance.
+          </p>
+          <p>
+            In default, domain randomisation improves RMSE, saturation, critical supply and reward over the raw learned arm. In fast, droop is stronger than the DR arm on the main voltage, saturation, supply and reward metrics. The final page therefore presents Phase 6 as a configuration-dependent result instead of a universal “RL wins” claim.
           </p>
         </div>
         <figure class="figure reveal">
           <div class="figure__frame mp2-dark-frame">
-            <a class="figure__zoom" href="../assets/mp2/phase6-benchmark-slow.svg" target="_blank" rel="noopener" title="Open full-size Phase 6 benchmark">
-              <img src="../assets/mp2/phase6-benchmark-slow.svg" alt="Phase 6 slow benchmark comparing voltage RMSE and critical-load supply across Lagrangian PPO, domain-randomised Multi-Policy PPO, Multi-Policy PPO, perfect-forecast MPC, noisy MPC and droop." loading="lazy" />
+            <a class="figure__zoom" href="../assets/mp2/phase6-benchmark-slow.svg?v=t7" target="_blank" rel="noopener" title="Open full-size Phase 6 benchmark">
+              <img src="../assets/mp2/phase6-benchmark-slow.svg?v=t7" alt="Phase 6 slow benchmark comparing voltage RMSE and critical-load supply across Lagrangian PPO, domain-randomised Multi-Policy PPO, Multi-Policy PPO, perfect-forecast MPC, noisy MPC and droop." loading="lazy" />
             </a>
           </div>
-          <figcaption><b>Two objectives, not one leaderboard.</b> Multi-Policy PPO is the strongest balanced result. Lagrangian PPO reaches the lowest voltage RMSE, but pushes final SOC to 0.922 near the upper boundary and earns a worse total reward — an important Phase 6 trade-off.</figcaption>
+          <figcaption><b>Two objectives, not one leaderboard.</b> Raw Multi-Policy PPO is the strongest balanced slow result. Lagrangian PPO reaches the lowest voltage RMSE, but pushes final SOC to 0.922 near the upper boundary and earns a worse total reward — an important Phase 6 trade-off.</figcaption>
         </figure>
 
         <div class="mp2-result-strip reveal">
           <article><span>Voltage</span><b>0.291</b><small>vs 0.554 droop</small></article>
           <article><span>Critical supply</span><b>98.9%</b><small>vs 65.6% droop</small></article>
           <article><span>Final SOC</span><b>0.786</b><small>vs 0.052 droop</small></article>
-          <article><span>DR-mild RMSE</span><b>0.286</b><small>robustness costs no accuracy here</small></article>
+          <article><span>DR-mild RMSE</span><b>0.286</b><small>better RMSE, but not free dominance</small></article>
         </div>
       </div>
     </section>
@@ -222,13 +225,13 @@
         <h2>MPC degrades exactly where the learned policy is independent.</h2>
         <div class="prose reveal">
           <p>
-            With a perfect forecast, MPC is competitive. At the Phase 6 15% noise setting, its RMSE rises to 0.548 and critical supply falls to 68.4%. The learned controller has no forecast input, so this error channel does not exist for it.
+            With a perfect forecast, MPC is competitive and in some metrics better. At the Phase 6 15% noise setting, however, its RMSE rises to 0.548 and critical supply falls to 68.4%. The learned controller has no forecast input, so this specific error channel does not exist for it.
           </p>
         </div>
         <figure class="figure reveal">
           <div class="figure__frame mp2-dark-frame">
-            <a class="figure__zoom" href="../assets/mp2/forecast-robustness-phase6.svg" target="_blank" rel="noopener" title="Open full-size forecast robustness chart">
-              <img src="../assets/mp2/forecast-robustness-phase6.svg" alt="Phase 6 chart showing MPC voltage error rising and critical-load supply falling as forecast noise increases, while forecast-free Multi-Policy PPO remains outside that failure mode." loading="lazy" />
+            <a class="figure__zoom" href="../assets/mp2/forecast-robustness-phase6.svg?v=t7" target="_blank" rel="noopener" title="Open full-size forecast robustness chart">
+              <img src="../assets/mp2/forecast-robustness-phase6.svg?v=t7" alt="Phase 6 chart showing MPC voltage error rising and critical-load supply falling as forecast noise increases, while forecast-free Multi-Policy PPO remains outside that failure mode." loading="lazy" />
             </a>
           </div>
           <figcaption><b>The forecast-free advantage.</b> The horizontal MARL reference is not a claim that its performance changes with MPC noise; it shows that the learned policy consumes no forecast, while MPC is evaluated at perfect, 5% and 15% forecast-noise settings.</figcaption>
@@ -241,26 +244,26 @@
         <p class="block__label">What Phase 6 established</p>
         <h2>Strong evidence, with the caveats left visible.</h2>
         <div class="mp1-status-grid reveal">
-          <section class="mp1-status-card mp1-status-card--verified">
-            <div class="mp1-status-card__head"><span>Established</span><b>Completed gates</b></div>
+          <article class="mp1-status-card mp1-status-card--verified">
+            <div class="mp1-status-card__head"><span>Established</span><b>Released evidence</b></div>
             <ul>
-              <li>All 75 planned training runs completed and passed health checks.</li>
-              <li>The held-out slow and default evaluations use seeds 100–119, disjoint from training and tuning.</li>
-              <li>Multi-Policy PPO clearly improves over slow droop on voltage, critical supply and battery state.</li>
-              <li>Mild domain randomisation is neutral to beneficial in the completed configurations.</li>
-              <li>A 27-setting reward-weight sweep confirms robustness but also a real RMSE trade-off.</li>
+              <li>T7 complete / G8 pass on 17 July 2026 for the frozen Phase 6 result bundle.</li>
+              <li>120/120 regular evaluations, 108/108 stress jobs and 24/24 behaviour traces are valid.</li>
+              <li>Held-out EVAL seeds 100–119 stay disjoint from demo, training and tuning seeds.</li>
+              <li>Statistics use one EVAL seed as the unit, 10,000 paired bootstrap resamples and Holm correction.</li>
+              <li>Final artifacts include 3 regular reports, 9 stress reports, paper tables, 11 PNG/PDF figure pairs and 693 passed tests.</li>
             </ul>
-          </section>
-          <section class="mp1-status-card mp1-status-card--open">
-            <div class="mp1-status-card__head"><span>In progress</span><b>Final study closure</b></div>
+          </article>
+          <article class="mp1-status-card mp1-status-card--open">
+            <div class="mp1-status-card__head"><span>Boundaries</span><b>Claims kept scoped</b></div>
             <ul>
-              <li>Fast-configuration MARL evaluation is not yet part of the published headline.</li>
-              <li>Storm, overcast and load-spike stress runs still need the final statistical synthesis.</li>
-              <li>Confidence intervals, paired tests and Holm correction belong to the final analysis gate.</li>
-              <li>Inference-time shields do not dominate the base controller; their safety–performance trade-off remains explicit.</li>
-              <li>Transfer to the physical MP1 node is planned work, not a completed result.</li>
+              <li>There is no universal winner: slow, default and fast support different operational conclusions.</li>
+              <li>DR improves default clearly, but in slow it trades lower RMSE/saturation for slightly lower supply, SOC and reward.</li>
+              <li>The fast setting changes horizon/scenario together with action interval, so it is not a pure speed-causality study.</li>
+              <li>Perfect MPC is an oracle benchmark without voltage feedback; it is not a deployable MPC claim.</li>
+              <li>Inference-time shields do not establish formal safety and hardware results remain compute-feasibility, not field performance.</li>
             </ul>
-          </section>
+          </article>
         </div>
       </div>
     </section>
@@ -273,7 +276,7 @@
           <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Ray RLlib</span><span class="tag">PettingZoo</span><span class="tag">Gymnasium</span><span class="tag">NumPy</span><span class="tag">cvxpy · OSQP</span><span class="tag">SciPy</span><span class="tag">pytest</span><span class="tag">MQTT · HIL bridge</span>
         </div>
         <div class="mp2-provenance reveal">
-          <span>Source of truth</span><code>Ergebnisse / Phase 6</code><span>Reward</span><code>v6 · 6 physical terms</code><span>Code revision</span><code>d419953</code><span>Eval pool</span><code>100–119</code>
+          <span>Source of truth</span><code>Ergebnisse / Phase 6</code><span>Release</span><code>T7 complete · G8 pass</code><span>Eval revision</span><code>d419953</code><span>T7 post-process</span><code>b9642ec</code>
         </div>
       </div>
     </section>

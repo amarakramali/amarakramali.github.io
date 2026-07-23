@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc">
-  <title id="title">Phase 6 training campaign and observed run times</title>
-  <desc id="desc">The main Phase 6 matrix contains 75 completed training runs across five algorithms, three action intervals and five seeds. Summed observed run time is 156.8 hours across a campaign spanning nearly eleven calendar days. Median run times range from 0.67 hours for single-agent PPO to 2.49 hours for IPPO.</desc>
+  <title id="title">Phase 6 training campaign and release bundle</title>
+  <desc id="desc">The main Phase 6 matrix contains 75 completed training runs across five algorithms, three action intervals and five seeds. Summed observed run time is 156.8 hours. The final T7/G8 release contains 252 released artifacts: 120 regular evaluations, 108 stress evaluations and 24 behavior traces, with 693 tests passed.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1320"/><stop offset="1" stop-color="#111d2d"/></linearGradient>
     <linearGradient id="teal" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0f766e"/><stop offset="1" stop-color="#5eead4"/></linearGradient>
@@ -11,7 +11,7 @@
     </style>
   </defs>
   <rect width="1440" height="760" rx="28" fill="url(#bg)"/><path d="M0 74H1440" stroke="#203149" fill="none"/><circle cx="36" cy="37" r="5" fill="#2dd4bf"/>
-  <text x="56" y="42" class="eyebrow">PHASE 6 / TRAINING CAMPAIGN</text><text x="55" y="104" class="title">The result took 75 runs — not one lucky seed.</text><text x="55" y="132" class="sub">Five algorithms × three action intervals × five training seeds · 200 iterations per run</text>
+  <text x="56" y="42" class="eyebrow">PHASE 6 / TRAINING + RELEASE</text><text x="55" y="104" class="title">75 training runs became a 252-artifact release bundle.</text><text x="55" y="132" class="sub">Five algorithms × three action intervals × five training seeds · final T7/G8 PASS on 17 July 2026</text>
 
   <g transform="translate(55 170)">
     <rect width="435" height="360" rx="18" class="panel"/>
@@ -38,9 +38,8 @@
     <circle cx="40" cy="56" r="7" class="dot-warn"/><text x="40" y="88" text-anchor="middle" class="label">13 Jun</text><text x="40" y="108" text-anchor="middle" class="tiny">model freeze</text>
     <circle cx="345" cy="56" r="7" class="dot"/><text x="345" y="88" text-anchor="middle" class="label">14–25 Jun</text><text x="345" y="108" text-anchor="middle" class="tiny">75 main runs</text>
     <circle cx="735" cy="56" r="7" class="dot-alt"/><text x="735" y="88" text-anchor="middle" class="label">25–30 Jun</text><text x="735" y="108" text-anchor="middle" class="tiny">shield + 27-weight sweep</text>
-    <circle cx="1080" cy="56" r="7" class="dot"/><text x="1080" y="88" text-anchor="middle" class="label">from 30 Jun</text><text x="1080" y="108" text-anchor="middle" class="tiny">held-out evaluation</text>
-    <circle cx="1320" cy="56" r="7" class="dot-warn"/><text x="1320" y="88" text-anchor="middle" class="label">next</text><text x="1320" y="108" text-anchor="middle" class="tiny">statistics + HIL</text>
+    <circle cx="1080" cy="56" r="7" class="dot"/><text x="1080" y="88" text-anchor="middle" class="label">30 Jun–1 Jul</text><text x="1080" y="108" text-anchor="middle" class="tiny">eval + stress + traces</text>
+    <circle cx="1320" cy="56" r="7" class="dot-warn"/><text x="1320" y="88" text-anchor="middle" class="label">17 Jul</text><text x="1320" y="108" text-anchor="middle" class="tiny">T7/G8 PASS</text>
   </g>
-  <text x="55" y="730" class="note mono">Timing method: training_metadata.created_utc → completed training_results.json · observed wall-clock, not a hardware-normalised speed benchmark</text>
+  <text x="55" y="730" class="note mono">Released artifacts: 120 regular eval + 108 stress + 24 traces = 252 · 693 tests passed · timings are observed wall-clock, not hardware-normalised</text>
 </svg>
-

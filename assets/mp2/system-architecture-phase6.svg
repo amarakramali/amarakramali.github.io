@@ -21,7 +21,7 @@
   <path d="M0 74H1440" stroke="#203149"/><circle cx="36" cy="37" r="5" fill="#2dd4bf" filter="url(#glow)"/>
   <text x="56" y="42" class="eyebrow">MP2 / PHASE 6</text>
   <text x="55" y="96" class="title">Four policies. One dynamic DC bus.</text>
-  <text x="55" y="124" class="sub">Authoritative 2026 model · power path, control path and physical state</text>
+  <text x="55" y="124" class="sub">Final Phase 6 release model · power path, control path and physical state</text>
 
   <!-- Policies -->
   <g transform="translate(55 166)"><rect width="250" height="74" rx="15" class="policy"/><circle cx="28" cy="27" r="7" fill="#fbbf24"/><text x="47" y="32" class="name">PV policy π₁</text><text x="23" y="56" class="meta mono">curtailment [0, 1]</text></g>
@@ -60,4 +60,3 @@
   <text x="585" y="824" class="formula">dVbus/dt = (Σ Isources − Σ Iloads) / 7.5 F</text>
   <text x="1385" y="824" text-anchor="end" class="tiny mono">solid cyan = power · dashed violet = control / feedback</text>
 </svg>
-

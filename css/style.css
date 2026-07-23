@@ -960,6 +960,7 @@ section { padding-block: clamp(56px, 9vw, 104px); position: relative; }
 
 /* ---------- MP2 · Forecast-free microgrid control · Phase 6 ---------- */
 .mp2-detail-hero { padding-bottom: clamp(38px, 6vw, 68px); }
+.mp2-detail-hero .phase-pill i { background: var(--success); box-shadow: 0 0 9px color-mix(in srgb, var(--success) 65%, transparent); }
 .mp2-dark-frame { background: #0a1320; border-color: color-mix(in srgb, var(--accent) 35%, var(--line-strong)); }
 .mp2-dark-frame img { display: block; }
 .mp2-stats-wrap { margin-top: 38px; }

@@ -14,8 +14,8 @@
   <rect width="1440" height="760" rx="28" fill="url(#bg)"/>
   <path d="M0 74H1440" stroke="#203149"/><circle cx="36" cy="37" r="5" fill="#2dd4bf"/>
   <text x="56" y="42" class="eyebrow">PHASE 6 / HELD-OUT EVAL 100–119</text>
-  <text x="55" y="104" class="title">The learned controller fixes droop’s two biggest failures.</text>
-  <text x="55" y="132" class="sub">Slow configuration · 30 s actions · bars show means · lower RMSE and higher critical supply are better</text>
+  <text x="55" y="104" class="title">Slow mode shows the learned controller’s balanced strength.</text>
+  <text x="55" y="132" class="sub">Final T7/G8 release · slow configuration · 30 s actions · bars show means · lower RMSE and higher critical supply are better</text>
 
   <g transform="translate(55 172)">
     <rect width="650" height="530" rx="18" class="panel"/><text x="28" y="42" class="head">Bus-voltage RMSE ↓</text><text x="622" y="42" text-anchor="end" class="note">target = 5.5 V</text>
@@ -44,4 +44,3 @@
   </g>
   <text x="55" y="724" class="note mono">MARL arms: 5 training checkpoints × 20 held-out seeds = 100 episodes per arm · classical baselines: 20 held-out episodes</text>
 </svg>
-
