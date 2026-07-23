@@ -43,7 +43,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="css/style.css?v=4" />
+  <link rel="stylesheet" href="css/style.css?v=8" />
 
   <script type="application/ld+json">
   {
@@ -148,8 +148,8 @@
             <span class="kpi__val"><span data-count="3.36" data-dec="2">0</span><small>%</small></span>
           </div>
           <div class="kpi">
-            <span class="kpi__label">Voltage error</span>
-            <span class="kpi__val">−<span data-count="51">0</span><small>%</small></span>
+            <span class="kpi__label">MP2 voltage RMSE</span>
+            <span class="kpi__val">−<span data-count="48">0</span><small>%</small></span>
           </div>
           <div class="kpi kpi--copper">
             <span class="kpi__label">Edge policy</span>
@@ -208,17 +208,17 @@
           <!-- Project 02 — Multi-Agent RL -->
           <article class="project reveal">
             <div class="project__media project__media--contain">
-              <img src="assets/mp2/trace_comparison.png" alt="48-hour bus-voltage and state-of-charge traces comparing the RL controller against MPC baselines" loading="lazy" />
+              <img src="assets/mp2/system-architecture-phase6.svg?v=t7" alt="Phase 6 architecture of the four-policy, four-source DC microgrid controller" loading="lazy" />
             </div>
             <div class="project__body">
               <div class="project__chan"><span class="led"></span>CH-02 // Microgrid-Control<span class="cat">Machine learning · Control</span></div>
               <h3>Multi-Agent RL for Microgrid Control</h3>
-              <p class="project__sub">Cooperative reinforcement-learning agents that keep a simulated DC microgrid stable and supplied — benchmarked head-to-head against classical droop and model-predictive control.</p>
+              <p class="project__sub">Four cooperative policies stabilise a simulated 5.5 V DC microgrid without a forecast — released as the final Phase 6 T7/G8 result bundle with scoped caveats.</p>
               <div class="project__kpis">
-                <span><b>−51%</b> voltage error</span><span><b>0.270</b> RMSE</span><span><b>76 KB</b> policy</span>
+                <span><b>252</b> artifacts</span><span><b>20</b> eval seeds</span><span><b>693</b> tests</span>
               </div>
               <div class="tags project__tags">
-                <span class="tag tag--solid">In progress</span><span class="tag">PyTorch</span><span class="tag">Ray RLlib</span><span class="tag">PettingZoo</span><span class="tag">Safe RL</span><span class="tag">Control</span>
+                <span class="tag tag--solid">T7/G8 pass</span><span class="tag">PyTorch</span><span class="tag">Ray RLlib</span><span class="tag">PettingZoo</span><span class="tag">Safe RL</span><span class="tag">Control</span>
               </div>
               <a class="project__link" href="projects/microgrid-rl.html">Read the case study
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
