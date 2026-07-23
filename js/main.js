@@ -441,4 +441,25 @@
     });
     setCaseActive("overview");
   }
+
+  /* ---------------------------------------------------------------
+     10) MP2 architecture plate
+         — a restrained pointer tilt that keeps the system drawing tactile
+  --------------------------------------------------------------- */
+  var mp2Plate = document.querySelector(".mp2-hero-visual");
+  var finePointer = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
+  var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (mp2Plate && finePointer && !reducedMotion) {
+    mp2Plate.addEventListener("pointermove", function (event) {
+      var bounds = mp2Plate.getBoundingClientRect();
+      var x = (event.clientX - bounds.left) / bounds.width - .5;
+      var y = (event.clientY - bounds.top) / bounds.height - .5;
+      mp2Plate.style.setProperty("--mp2-tilt-y", (x * 2.6).toFixed(2) + "deg");
+      mp2Plate.style.setProperty("--mp2-tilt-x", (y * -2.1).toFixed(2) + "deg");
+    });
+    mp2Plate.addEventListener("pointerleave", function () {
+      mp2Plate.style.removeProperty("--mp2-tilt-x");
+      mp2Plate.style.removeProperty("--mp2-tilt-y");
+    });
+  }
 })();
