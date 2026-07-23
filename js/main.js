@@ -405,4 +405,40 @@
       });
     });
   });
+
+  /* ---------------------------------------------------------------
+     9) MP2 case-study index
+        — keep the reading position visible in the sticky section rail
+  --------------------------------------------------------------- */
+  var caseNav = document.querySelector(".mp2-project-nav");
+  if (caseNav && "IntersectionObserver" in window) {
+    var caseLinks = Array.prototype.slice.call(caseNav.querySelectorAll('a[href^="#"]'));
+    var caseById = {};
+    caseLinks.forEach(function (link) {
+      caseById[link.getAttribute("href").slice(1)] = link;
+      link.addEventListener("click", function () {
+        caseLinks.forEach(function (item) { item.classList.remove("active"); });
+        link.classList.add("active");
+      });
+    });
+
+    var setCaseActive = function (id) {
+      var active = caseById[id];
+      if (!active) return;
+      caseLinks.forEach(function (link) { link.classList.toggle("active", link === active); });
+    };
+
+    var caseObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        setCaseActive(entry.target.getAttribute("data-nav") || entry.target.id);
+      });
+    }, { rootMargin: "-24% 0px -66% 0px", threshold: 0 });
+
+    document.querySelectorAll(".mp2-case-study section[id]").forEach(function (section) {
+      var targetId = section.getAttribute("data-nav") || section.id;
+      if (caseById[targetId]) caseObserver.observe(section);
+    });
+    setCaseActive("overview");
+  }
 })();
