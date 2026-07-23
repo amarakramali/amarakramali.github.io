@@ -369,4 +369,40 @@
       });
     }
   }
+
+  /* ---------------------------------------------------------------
+     8) MP2 Phase 6 evidence browsers
+        — swap original released plots without loading all 8 upfront
+  --------------------------------------------------------------- */
+  document.querySelectorAll("[data-mp2-evidence-browser]").forEach(function (browserEl) {
+    var buttons = browserEl.querySelectorAll(".mp2-evidence-controls button[data-src]");
+    var image = browserEl.querySelector("[data-mp2-evidence-image]");
+    var link = browserEl.querySelector("[data-mp2-evidence-link]");
+    var caption = browserEl.querySelector("[data-mp2-evidence-caption]");
+    if (!buttons.length || !image || !link || !caption) return;
+
+    buttons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        if (button.getAttribute("aria-pressed") === "true") return;
+
+        buttons.forEach(function (item) { item.setAttribute("aria-pressed", "false"); });
+        button.setAttribute("aria-pressed", "true");
+
+        var src = button.getAttribute("data-src");
+        var alt = button.getAttribute("data-alt");
+        var label = button.getAttribute("data-caption");
+        if (!src || !alt || !label) return;
+
+        image.classList.add("is-switching");
+        image.addEventListener("load", function () {
+          image.classList.remove("is-switching");
+          recalcMax();
+        }, { once: true });
+        image.src = src;
+        image.alt = alt;
+        link.href = src;
+        caption.textContent = label;
+      });
+    });
+  });
 })();
