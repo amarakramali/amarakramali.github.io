@@ -882,7 +882,9 @@ section { padding-block: clamp(56px, 9vw, 104px); position: relative; }
 }
 .meta-row > div { background: var(--surface); padding: 15px 18px 13px; }
 .meta-row dt { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); margin-bottom: 7px; }
-.meta-row dd { font-size: 15px; color: var(--ink); }
+/* A source URL is one unbreakable string. In a 150px-min track it overran its
+   cell and the row's overflow:hidden cut it off mid-address — wrap instead. */
+.meta-row dd { font-size: 15px; color: var(--ink); overflow-wrap: anywhere; }
 
 /* Content blocks */
 .block { padding-block: clamp(30px, 5vw, 56px); }
