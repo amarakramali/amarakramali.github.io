@@ -561,7 +561,14 @@ section { padding-block: clamp(56px, 9vw, 104px); position: relative; }
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
 }
 :root[data-theme="dark"] .project__chan { text-shadow: 0 0 9px var(--glow); }
-.project__chan .cat { color: var(--faint); }
+/* the channel id and the category are both uppercase mono and ran together as
+   one string; separate them by weight and size rather than a rule, which would
+   strand a leading tick whenever the category wraps to its own line */
+.project__chan { column-gap: 14px; }
+.project__chan .cat {
+  color: var(--faint); font-weight: 500;
+  font-size: 10.5px; letter-spacing: 0.14em;
+}
 .project h3 {
   font-family: var(--font-serif); font-weight: 600;
   font-size: clamp(24px, 3.2vw, 31px); line-height: 1.12;
@@ -615,6 +622,29 @@ section { padding-block: clamp(56px, 9vw, 104px); position: relative; }
 .project__media--contain { padding: 18px; }
 .project__media--contain img { object-fit: contain; }
 :root[data-theme="dark"] .project__media--contain img { filter: brightness(.97) contrast(1.02); }
+
+/* Project assets carry their own baked-in ground, so a raw asset reads as a
+   pasted rectangle in whichever theme it was not drawn for. Mount each one
+   instead: --screen matches the architecture SVGs' own navy so image and
+   bezel merge into one panel; --print keeps the plotted figure on a white
+   plate, dimmed as a whole in dark mode so no seam appears at its edge. */
+.project__media--screen {
+  background: linear-gradient(157deg, #0A1320 0%, #111D2D 100%);
+  box-shadow: inset 0 0 0 1px rgba(150, 190, 210, .10);
+}
+:root[data-theme="light"] .project__media--screen { border-color: #C9C2B3; }
+:root[data-theme="dark"] .project__media--screen img { filter: none; }
+
+.project__media--print { background: var(--surface-2); }
+.project__media--print .plate {
+  display: block; width: 100%; height: 100%;
+  background: #FFFFFF; border-radius: var(--r-sm);
+  box-shadow: 0 0 0 1px rgba(20, 30, 40, .12), 0 8px 22px -12px rgba(0, 0, 0, .5);
+  overflow: hidden;
+}
+.project__media--print .plate img { width: 100%; height: 100%; object-fit: contain; }
+:root[data-theme="dark"] .project__media--print .plate { filter: brightness(.93); }
+:root[data-theme="dark"] .project__media--print .plate img { filter: none; }
 @media (max-width: 760px) {
   .project { grid-template-columns: 1fr; }
   .project:nth-child(even) .project__media { order: 0; }
@@ -694,7 +724,13 @@ section { padding-block: clamp(56px, 9vw, 104px); position: relative; }
 }
 @keyframes blink { 50% { opacity: 0; } }
 .contact p { color: var(--muted); margin: 18px auto 32px; max-width: 48ch; }
-.contact__links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+/* the four chips need ~825px but the narrow text column offers 680, which
+   stranded one of them on its own line; let just this row use the full width */
+.contact__links {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+  width: min(900px, calc(100vw - 96px));
+  margin-inline: auto;
+}
 .contact__link {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 11px 18px; border-radius: 10px;
