@@ -847,6 +847,14 @@ section { padding-block: clamp(56px, 9vw, 104px); position: relative; }
 .backlink svg { transition: transform .2s ease; }
 .backlink:hover svg { transform: translateX(-3px); }
 
+/* 404 is far shorter than a viewport, which left the footer floating in the
+   middle with a dead band beneath it. Fill the height and centre the message
+   so the page reads as composed rather than cut off. */
+.page-404 { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+.page-404 main { flex: 1 0 auto; display: grid; align-items: center; }
+.page-404 .detail-hero { width: 100%; padding-block: clamp(40px, 8vh, 96px); }
+.page-404 .footer { margin-top: auto; }
+
 .detail-hero {
   padding-top: clamp(30px, 5vw, 52px); padding-bottom: clamp(28px, 4vw, 44px);
   position: relative;
