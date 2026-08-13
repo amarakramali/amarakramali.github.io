@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=11" />
+  <link rel="stylesheet" href="../css/style.css?v=13" />
   <script>
     (function () {
       try {
@@ -36,6 +36,7 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#top">Skip to main content</a>
   <header class="nav">
     <div class="wrap nav__inner">
       <a class="brand" href="../index.html#top" aria-label="Amar Akram — home">
@@ -55,7 +56,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="top" tabindex="-1">
     <div class="wrap">
       <a class="backlink" href="../index.html#work">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
@@ -341,7 +342,7 @@
 
         <figure class="figure reveal">
           <div class="figure__frame">
-            <img src="../assets/netzpilot/benchmark-2026-07.svg" alt="Current NetzPilot benchmark showing 74 of 76 public load series significantly better than the seasonal-naive baseline" loading="lazy" />
+            <img src="../assets/netzpilot/benchmark-2026-07.svg" alt="Current NetzPilot benchmark showing 74 of 76 public load series significantly better than the seasonal-naive baseline" loading="lazy" width="1440" height="1120" />
           </div>
           <figcaption><b>Current benchmark excerpt (2 July 2026):</b> the expanded public-data corpus covers 76 value-hash-deduplicated DE + FR load series. Multiple years and voltage levels from one operator are separate series, not 76 independent utilities.</figcaption>
         </figure>
@@ -438,6 +439,6 @@
     </div>
   </footer>
 
-  <script src="../js/main.js?v=6"></script>
+  <script src="../js/main.js?v=7"></script>
 </body>
 </html>

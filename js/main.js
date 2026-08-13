@@ -394,10 +394,14 @@
         if (!src || !alt || !label) return;
 
         image.classList.add("is-switching");
-        image.addEventListener("load", function () {
+        var settle = function () {
           image.classList.remove("is-switching");
+          image.removeEventListener("load", settle);
+          image.removeEventListener("error", settle);
           recalcMax();
-        }, { once: true });
+        };
+        image.addEventListener("load", settle);
+        image.addEventListener("error", settle);   // a failed swap must not stay dimmed
         image.src = src;
         image.alt = alt;
         link.href = src;

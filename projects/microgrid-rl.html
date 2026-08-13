@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css?v=11" />
+  <link rel="stylesheet" href="../css/style.css?v=13" />
   <script>
     (function () {
       try {
@@ -35,6 +35,7 @@
   </script>
 </head>
 <body class="mp2-case-study">
+  <a class="skip-link" href="#top">Skip to main content</a>
   <header class="nav">
     <div class="wrap nav__inner">
       <a class="brand" href="../index.html#top" aria-label="Amar Akram — home">
@@ -52,7 +53,7 @@
   </header>
   <div class="scroll-progress" aria-hidden="true"></div>
 
-  <main>
+  <main id="top" tabindex="-1">
     <div class="wrap">
       <a class="backlink" href="../index.html#work">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
@@ -84,7 +85,7 @@
               <code>V<sub>bus</sub> 5.5 V</code>
             </div>
             <a class="figure__zoom" href="../assets/mp2/system-architecture-phase6.svg?v=t7" target="_blank" rel="noopener" title="Open full-size Phase 6 architecture">
-              <img src="../assets/mp2/system-architecture-phase6.svg?v=t7" alt="Phase 6 architecture: four learned policies control PV, wind, biogas and battery sources connected to a shared 5.5 volt bus with a 7.5 farad equivalent supercapacitor and two loads." />
+              <img src="../assets/mp2/system-architecture-phase6.svg?v=t7" alt="Phase 6 architecture: four learned policies control PV, wind, biogas and battery sources connected to a shared 5.5 volt bus with a 7.5 farad equivalent supercapacitor and two loads." width="1440" height="860" />
             </a>
             <div class="mp2-panel-foot" aria-label="Architecture summary">
               <span><b>04</b> policies</span><span><b>21</b> observations</span><span><b>7.5 F</b> buffer</span>
@@ -227,7 +228,7 @@
         <figure class="figure mp2-feature-figure reveal">
           <div class="figure__frame mp2-dark-frame">
             <a class="figure__zoom" href="../assets/mp2/training-campaign-phase6.svg?v=t7" target="_blank" rel="noopener" title="Open full-size Phase 6 training campaign">
-              <img src="../assets/mp2/training-campaign-phase6.svg?v=t7" alt="Phase 6 training campaign and release bundle: 75 completed training runs, 156.8 summed run-hours, 252 released evaluation artifacts and T7/G8 PASS." loading="lazy" />
+              <img src="../assets/mp2/training-campaign-phase6.svg?v=t7" alt="Phase 6 training campaign and release bundle: 75 completed training runs, 156.8 summed run-hours, 252 released evaluation artifacts and T7/G8 PASS." loading="lazy" width="1440" height="760" />
             </a>
           </div>
           <figcaption><b>Measured training effort.</b> Timings are observed wall-clock spans from each run's recorded creation time to its completed results file. They describe this campaign's workflow, not a hardware-normalised algorithm benchmark.</figcaption>
@@ -318,7 +319,7 @@
         <figure class="figure mp2-feature-figure reveal">
           <div class="figure__frame mp2-dark-frame">
             <a class="figure__zoom" href="../assets/mp2/phase6-benchmark-slow.svg?v=t7" target="_blank" rel="noopener" title="Open full-size Phase 6 benchmark">
-              <img src="../assets/mp2/phase6-benchmark-slow.svg?v=t7" alt="Phase 6 slow benchmark comparing voltage RMSE and critical-load supply across Lagrangian PPO, domain-randomised Multi-Policy PPO, Multi-Policy PPO, perfect-forecast MPC, noisy MPC and droop." loading="lazy" />
+              <img src="../assets/mp2/phase6-benchmark-slow.svg?v=t7" alt="Phase 6 slow benchmark comparing voltage RMSE and critical-load supply across Lagrangian PPO, domain-randomised Multi-Policy PPO, Multi-Policy PPO, perfect-forecast MPC, noisy MPC and droop." loading="lazy" width="1440" height="760" />
             </a>
           </div>
           <figcaption><b>Two objectives, not one leaderboard.</b> Raw Multi-Policy PPO is the strongest balanced slow result. Lagrangian PPO reaches the lowest voltage RMSE, but pushes final SOC to 0.922 near the upper boundary and earns a worse total reward — an important Phase 6 trade-off.</figcaption>
@@ -345,7 +346,7 @@
         <figure class="figure mp2-feature-figure reveal">
           <div class="figure__frame mp2-dark-frame">
             <a class="figure__zoom" href="../assets/mp2/forecast-robustness-phase6.svg?v=t7" target="_blank" rel="noopener" title="Open full-size forecast robustness chart">
-              <img src="../assets/mp2/forecast-robustness-phase6.svg?v=t7" alt="Phase 6 chart showing MPC voltage error rising and critical-load supply falling as forecast noise increases, while forecast-free Multi-Policy PPO remains outside that failure mode." loading="lazy" />
+              <img src="../assets/mp2/forecast-robustness-phase6.svg?v=t7" alt="Phase 6 chart showing MPC voltage error rising and critical-load supply falling as forecast noise increases, while forecast-free Multi-Policy PPO remains outside that failure mode." loading="lazy" width="1440" height="640" />
             </a>
           </div>
           <figcaption><b>The forecast-free advantage.</b> The horizontal MARL reference is not a claim that its performance changes with MPC noise; it shows that the learned policy consumes no forecast, while MPC is evaluated at perfect, 5% and 15% forecast-noise settings.</figcaption>
@@ -387,7 +388,7 @@
           <figure class="mp2-evidence-figure">
             <div class="mp2-paper-frame">
               <a data-mp2-evidence-link class="figure__zoom" href="../assets/mp2/phase6-results/cohens-d-slow.png?v=t7" target="_blank" rel="noopener" title="Open the selected effect-size heatmap full-size">
-                <img data-mp2-evidence-image src="../assets/mp2/phase6-results/cohens-d-slow.png?v=t7" alt="Slow Phase 6 paired Cohen's d heatmap comparing all controller families with domain-randomised Multi-Policy PPO." loading="lazy" />
+                <img data-mp2-evidence-image src="../assets/mp2/phase6-results/cohens-d-slow.png?v=t7" alt="Slow Phase 6 paired Cohen's d heatmap comparing all controller families with domain-randomised Multi-Policy PPO." loading="lazy" width="2279" height="818" />
               </a>
             </div>
             <figcaption><b data-mp2-evidence-caption>Slow · 30 s actions · 48 h episode</b> The reference is MP-PPO + BC + DR. Stars use Holm-adjusted p-values; the sign must be read with the metric direction because lower RMSE is good while higher supply and reward are good.</figcaption>
@@ -426,7 +427,7 @@
           <figure class="mp2-evidence-figure mp2-evidence-figure--trace">
             <div class="mp2-paper-frame">
               <a data-mp2-evidence-link class="figure__zoom" href="../assets/mp2/phase6-results/trace-core-slow.png?v=t7" target="_blank" rel="noopener" title="Open the selected held-out trace full-size">
-                <img data-mp2-evidence-image src="../assets/mp2/phase6-results/trace-core-slow.png?v=t7" alt="Slow Phase 6 held-out trace comparing Multi-Policy PPO, domain-randomised Multi-Policy PPO, droop and perfect MPC." loading="lazy" />
+                <img data-mp2-evidence-image src="../assets/mp2/phase6-results/trace-core-slow.png?v=t7" alt="Slow Phase 6 held-out trace comparing Multi-Policy PPO, domain-randomised Multi-Policy PPO, droop and perfect MPC." loading="lazy" width="2192" height="1709" />
               </a>
             </div>
             <figcaption><b data-mp2-evidence-caption>Slow core · MP-PPO, DR, droop and perfect MPC over 48 h</b> From top to bottom: bus voltage, battery SOC, source actions and battery action. The plots expose control behaviour that a single aggregate score cannot show.</figcaption>
@@ -489,6 +490,6 @@
   <footer class="footer">
     <div class="wrap footer__inner"><small>© <span data-year>2026</span> Amar Akram · Built with care in Bielefeld.</small><nav class="footer__nav" aria-label="Footer"><a href="../index.html#work">Work</a><a href="../index.html#about">About</a><a href="../index.html#contact">Contact</a><a href="mailto:amarakramali@gmail.com">Email</a></nav></div>
   </footer>
-  <script src="../js/main.js?v=6"></script>
+  <script src="../js/main.js?v=7"></script>
 </body>
 </html>
