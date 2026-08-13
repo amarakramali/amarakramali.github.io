@@ -753,6 +753,42 @@ section { padding-block: clamp(56px, 9vw, 104px); position: relative; }
 .thesis-card__body { min-width: 0; }
 .thesis-card__body h3 { font-family: var(--font-serif); font-size: clamp(19px, 2.4vw, 23px); font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; max-width: 40ch; }
 .thesis-card__en { color: var(--muted); margin: 10px 0 16px; max-width: 60ch; }
+
+/* The thesis compared four-wire sensing against the Wheatstone bridge but the
+   section carried no figure, leaving the card's right half empty. Draw the
+   bridge instead of describing it. */
+/* own row, full width; min-width:0 keeps it from inflating the auto column
+   (below 760px the stamp becomes a grid item, so the cells shift) */
+.thesis-figure { grid-column: 1 / -1; min-width: 0; justify-self: start; width: min(300px, 100%); margin: 6px 0 0; }
+.thesis-figure svg { width: 100%; height: auto; overflow: visible; }
+.thesis-figure figcaption {
+  margin-top: 10px; text-align: center;
+  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--faint);
+}
+.thesis-figure figcaption b { color: var(--accent-ink); font-weight: 600; }
+@media (min-width: 980px) {
+  .thesis-card { grid-template-columns: auto 1fr 300px; }
+  .thesis-figure { grid-column: 3; grid-row: 1; justify-self: end; margin-top: 26px; }
+}
+.wb-wire { fill: none; stroke: var(--line-strong); stroke-width: 1.6; stroke-linecap: round; }
+.wb-res { fill: var(--surface); stroke: var(--muted); stroke-width: 1.6; }
+.wb-res--x { stroke: var(--accent); }
+.wb-meter { fill: var(--surface); stroke: var(--muted); stroke-width: 1.6; }
+.wb-node { fill: var(--accent); }
+.wb-glyph {
+  fill: var(--ink); font-family: var(--font-mono); font-size: 13px; font-weight: 600;
+  text-anchor: middle;
+}
+.wb-label {
+  fill: var(--faint); font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+  text-anchor: middle; letter-spacing: .06em;
+}
+.wb-label--x { fill: var(--accent-ink); }
+.wb-rail {
+  fill: var(--faint); font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+  text-anchor: middle; letter-spacing: .12em;
+}
 @media (max-width: 760px) {
   .thesis-card { grid-template-columns: auto 1fr; }
   .thesis-card__stamp { position: static; display: inline-block; margin-bottom: 10px; }
