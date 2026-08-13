@@ -517,7 +517,37 @@ section { padding-block: clamp(56px, 9vw, 104px); position: relative; }
 :root[data-theme="dark"] .hero__svg .dot { filter: drop-shadow(0 0 7px var(--glow)); }
 
 /* ---------- Work / subsystem panels ---------- */
-.work-list { display: flex; flex-direction: column; gap: clamp(20px, 3vw, 30px); }
+.work-list { display: flex; flex-direction: column; gap: clamp(20px, 3vw, 30px); position: relative; }
+/* The projects are labelled CH-01..CH-05 like channels on an instrument, and
+   the work itself is about sources sharing one DC bus. Run that bus down the
+   stack: the rail sits behind the cards, which are opaque, so it only shows
+   in the gaps — the channels read as taps on a continuous line. */
+.work-list::before {
+  content: ""; position: absolute; pointer-events: none;
+  left: 0; top: 10px; bottom: 10px; width: 1px;
+  background: linear-gradient(180deg,
+    transparent 0%, var(--line-strong) 7%,
+    var(--line-strong) 93%, transparent 100%);
+}
+/* energy on the bus: a slow pulse travels the rail, echoing the hero playhead.
+   It paints above the cards so it reads as one continuous run rather than
+   blinking on and off in the gaps. */
+@media (prefers-reduced-motion: no-preference) {
+  .work-list::after {
+    content: ""; position: absolute; z-index: 2; pointer-events: none;
+    left: -1px; top: 10px; bottom: 10px; width: 3px; border-radius: 2px;
+    background: linear-gradient(180deg, transparent 0%, var(--accent) 50%, transparent 100%);
+    background-size: 100% 96px;
+    background-repeat: no-repeat;
+    opacity: .45;
+    animation: bus-flow 16s linear infinite;
+  }
+}
+@keyframes bus-flow {
+  from { background-position: 0 -96px; }
+  to   { background-position: 0 calc(100% + 96px); }
+}
+
 .project {
   display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(22px, 4vw, 48px);
   align-items: center;
@@ -528,8 +558,17 @@ section { padding-block: clamp(56px, 9vw, 104px); position: relative; }
   padding: clamp(22px, 3vw, 34px);
   box-shadow: var(--shadow-sm);
   overflow: hidden;
-  transition: transform .25s ease, box-shadow .3s ease, border-color .3s ease;
+  transition: transform .25s ease, box-shadow .3s ease, border-color .3s ease, background-size .35s ease;
 }
+/* Each channel taps the bus: a short accent stripe down the card's leading
+   edge. Must follow the background shorthand above, which resets the image. */
+.project {
+  background-image: linear-gradient(180deg, var(--accent) 0%, transparent 100%);
+  background-repeat: no-repeat;
+  background-size: 2px 78px;
+  background-position: left top;
+}
+.project:hover { background-size: 2px 132px; }
 /* cursor-tracked inner sheen (CSS vars set by JS, pointer:fine only) */
 .project::before {
   content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
@@ -565,6 +604,11 @@ section { padding-block: clamp(56px, 9vw, 104px); position: relative; }
    one string; separate them by weight and size rather than a rule, which would
    strand a leading tick whenever the category wraps to its own line */
 .project__chan { column-gap: 14px; }
+/* the row left ~200px of dead space; close it with a channel-strip rule */
+.project__chan::after {
+  content: ""; flex: 1 1 32px; min-width: 20px; height: 1px;
+  background: linear-gradient(90deg, var(--line-strong), transparent);
+}
 .project__chan .cat {
   color: var(--faint); font-weight: 500;
   font-size: 10.5px; letter-spacing: 0.14em;
