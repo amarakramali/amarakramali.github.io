@@ -1041,6 +1041,9 @@ section { padding-block: clamp(56px, 9vw, 104px); position: relative; }
 .mp1-flow__step small { display: block; margin-top: 5px; color: var(--muted); font-size: 12px; line-height: 1.35; }
 .mp1-flow__step--bus { background: var(--accent-soft); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
 .mp1-flow__step--bus b { color: var(--accent-ink); }
+/* the tinted bus panel lifts the backdrop, leaving the 10px step index at 4.27:1
+   against it — one step darker so the label clears AA like its siblings */
+.mp1-flow__step--bus span { color: var(--muted); }
 
 .mp1-table-wrap { margin-top: 18px; overflow-x: auto; border: 1px solid var(--line-strong); border-radius: var(--r); background: var(--surface); }
 .mp1-map { width: 100%; border-collapse: collapse; min-width: 680px; }
